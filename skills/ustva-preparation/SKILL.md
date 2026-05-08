@@ -69,6 +69,13 @@ Require professional review when:
 - If a deadline was missed, preserve notices and payment records, collect the missing-period ledger, and route to Steuerberater before filing or correcting.
 - Treat every generated deadline as a planning candidate until weekends, holidays, extensions, and user-specific authority messages are checked.
 
+## Operational Reality Checks
+
+- Do not turn a candidate deadline into a reminder until the filing frequency and authority correspondence are confirmed.
+- If a deadline is already missed, stop calendar generation as the main task and build a damage-control packet first.
+- Keep submitted, draft, corrected, estimated, reminded, and paid states separate for each period.
+- Do not summarize VAT amounts until sales, expense, input VAT, VAT rates, and cross-border transactions are reconciled to records.
+
 ## Source Notes
 
 Use `ustg-18` for filing procedure and deadline candidates. Use `ustg-19` when Kleinunternehmer assumptions affect whether or how VAT pre-returns apply. Do not submit through ELSTER.

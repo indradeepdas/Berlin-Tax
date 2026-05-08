@@ -74,6 +74,13 @@ Require professional review when:
 - Resolve any contradictory advice using official sources or professional review before filing the steuerliche Erfassung.
 - Keep the output in preparation status until ELSTER and Finanzamt correspondence have been checked.
 
+## Operational Reality Checks
+
+- Treat "private ELSTER access available" as a starting fact, not proof that the user can complete the correct form for the case.
+- Ask whether the user has already issued invoices, received money, hired help, or opened a business bank account.
+- Keep revenue, profit, cash received, and invoice totals separate. Do not let a user-provided forecast become a tax position.
+- If the user only wants invoice wording, check whether the underlying tax number, VAT ID, Kleinunternehmer, and cross-border posture is unresolved first.
+
 ## Source Notes
 
 Use `berlin-tax-registration`, `elster-fseeun`, and `elster-fseeun-help` for onboarding. For corporations and partnerships, treat Einzelunternehmen references as incomplete and add an open verification item for the correct ELSTER form.

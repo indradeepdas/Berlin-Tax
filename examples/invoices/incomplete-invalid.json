@@ -6,7 +6,7 @@
   "relationship": "eu_b2b",
   "special_vat_case": true,
   "supplier": {
-    "name": "Sample Founder"
+    "name": "Fictional Solo Operator"
   },
   "customer": {
     "name": "Client BV"

@@ -1,5 +1,5 @@
 {
-  "entity_name": "Sample Founder",
+  "entity_name": "Fictional Solo Operator",
   "tax_year": 2026,
   "prior_calendar_year_revenue_eur": 18200,
   "current_year_revenue_to_date_eur": 7600,
@@ -13,4 +13,3 @@
     "non_eu": false
   }
 }
-

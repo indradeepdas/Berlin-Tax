@@ -12,6 +12,7 @@ const requiredHeadings = [
   "Risks",
   "Escalation Conditions",
   "Verify Before Submission Controls",
+  "Operational Reality Checks",
   "Source Notes",
   "Examples"
 ];

@@ -73,6 +73,13 @@ Require professional or authority review when:
 - Confirm restaurant, food, alcohol, hygiene, craft, or other sector permit paths before treating Gewerbeanmeldung as the only setup step.
 - Keep the output in preparation status until the responsible authority path and required documents are verified for the user's legal form.
 
+## Operational Reality Checks
+
+- Do not assume the user has not started. Ask whether work, purchases, invoices, customer acquisition, or authority contact already happened.
+- Do not treat a German activity phrase as harmless wording. It can affect downstream classification, permits, tax onboarding, and accountant review.
+- Do not use a fake full address in examples or public fixtures. Use redacted fixture addresses unless the user provides a real one for private workflow use.
+- If the user wants a same-day filing, separate what can be filed today from what remains legally or operationally unresolved.
+
 ## Source Notes
 
 Read `references/source-notes.md` before producing final workflow output. Use `source_id` `berlin-gewerbeanmeldung` for Berlin procedural notes and `gewerbeanmeldung-legal-basis` for the federal notification basis.

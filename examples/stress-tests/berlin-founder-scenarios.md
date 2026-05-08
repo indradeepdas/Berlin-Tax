@@ -27,7 +27,7 @@ Terminology issues:
 
 - "Selbstaendig", "freiberuflich", and "gewerblich" are easily collapsed into "self-employed" in English.
 
-Operational gaps improved:
+Repository changes made:
 
 - Gewerbeanmeldung now starts with operational intake and routes non-EU cases to `berlin-lea-self-employed` or `berlin-lea-freelance`.
 - Verify-before-submission controls now block filing readiness until immigration permission is checked.
@@ -55,7 +55,7 @@ Terminology issues:
 
 - "Freelancer" in English is not the same as "Freiberufler" in German tax classification.
 
-Operational gaps improved:
+Repository changes made:
 
 - Finanzamt onboarding now uses official BMWK classification context only as context and routes final classification to authority/professional review.
 - Added `templates/contradictory-advice-log.md`.
@@ -83,7 +83,7 @@ Terminology issues:
 
 - "Nebenjob", "Nebentaetigkeit", and "selbststaendige Nebentaetigkeit" need to be preserved.
 
-Operational gaps improved:
+Repository changes made:
 
 - Operational intake now has ALG I stop conditions.
 - Gewerbeanmeldung now routes ALG I side-business facts to Agentur fuer Arbeit review before work starts.
@@ -115,7 +115,7 @@ Terminology issues:
 
 - "Receipt", "invoice", "Bewirtungsbeleg", "Kassenbon", and "Rechnung" can refer to different evidence.
 
-Operational gaps improved:
+Repository changes made:
 
 - Invoice validation now detects restaurant/POS sectors and sent/paid/booked/reported document states.
 - Added restaurant permit source and correction-packet language.
@@ -147,7 +147,7 @@ Terminology issues:
 
 - "Revenue", "turnover", "Umsatz", and "Gewinn" must not be mixed.
 
-Operational gaps improved:
+Repository changes made:
 
 - Kleinunternehmer workflow now asks for the crossing invoice and later invoices.
 - Threshold script now flags reported crossing events and instructs a freeze-and-review step.
@@ -178,7 +178,7 @@ Terminology issues:
 
 - "Steuernummer" and "USt-IdNr." need to be kept separate.
 
-Operational gaps improved:
+Repository changes made:
 
 - UStVA workflow now keeps new-business periods unselected until confirmed.
 - Accountant handoff and operational intake now focus on records, letters, and authority correspondence.
@@ -210,7 +210,7 @@ Terminology issues:
 
 - "EU client" is too broad; the workflow needs country, B2B/B2C, VAT ID, service type, and platform involvement.
 
-Operational gaps improved:
+Repository changes made:
 
 - Invoice validator keeps non-domestic relationships in professional review.
 - Invoice skill now treats reverse-charge and marketplace cases as review-gated.
@@ -241,7 +241,7 @@ Terminology issues:
 
 - "Deadline", "reminder", "estimate", "late filing", "correction", and "payment" need separate tracking.
 
-Operational gaps improved:
+Repository changes made:
 
 - UStVA workflow and calendar script now emit `missed_ustva_damage_control` events.
 
@@ -267,7 +267,7 @@ Terminology issues:
 
 - "Accountant" may mean Steuerberater, bookkeeper, payroll office, or internal admin.
 
-Operational gaps improved:
+Repository changes made:
 
 - Added operational intake and stronger handoff verification checkpoints.
 
@@ -292,7 +292,7 @@ Terminology issues:
 
 - "Can", "must", "usually", "accepted", and "my accountant said" need evidence labels.
 
-Operational gaps improved:
+Repository changes made:
 
 - Added `templates/contradictory-advice-log.md`.
 - Finanzamt onboarding now requires contradiction logging before selecting a posture that would change a filing or invoice.

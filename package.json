@@ -1,7 +1,7 @@
 {
   "name": "berlin-tax",
   "version": "0.1.0",
-  "description": "Operational intelligence for surviving German bureaucracy.",
+  "description": "Preparation workflows and deterministic checks for Berlin founder bureaucracy.",
   "license": "MIT",
   "type": "module",
   "private": false,
@@ -9,7 +9,7 @@
     "validate:skills": "node scripts/validate-skill.mjs",
     "audit:sources": "node scripts/audit-sources.mjs",
     "audit:self": "node scripts/self-audit.mjs",
-    "validate:invoice:valid": "node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-valid.json",
+    "validate:invoice:sample": "node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-b2b-review.json",
     "stress:restaurant": "node scripts/validate-invoice.mjs examples/invoices/restaurant-incorrect.json",
     "stress:eu-invoice": "node scripts/validate-invoice.mjs examples/invoices/eu-contractor-review.json",
     "stress:threshold-crossing": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-crossed-midyear.json",
@@ -22,7 +22,7 @@
     "validate:invoice:invalid": "node scripts/validate-invoice.mjs examples/invoices/incomplete-invalid.json",
     "check:thresholds": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-monitoring.json",
     "calendar:sample": "node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berlin.json",
-    "test": "npm run validate:skills && npm run audit:sources && npm run audit:self && npm run validate:invoice:valid && npm run check:thresholds && npm run calendar:sample && npm run validate:workflows"
+    "test": "npm run validate:skills && npm run audit:sources && npm run audit:self && npm run validate:invoice:sample && npm run check:thresholds && npm run calendar:sample && npm run validate:workflows"
   },
   "engines": {
     "node": ">=20"

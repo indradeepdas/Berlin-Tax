@@ -52,7 +52,7 @@ function walk(dir) {
 
 walk(root);
 
-const requiredRootFiles = ["README.md", "ARCHITECTURE.md", "LEGAL_DISCLAIMER.md", "CONTRIBUTING.md", "ROADMAP.md"];
+const requiredRootFiles = ["README.md", "ARCHITECTURE.md", "LEGAL_DISCLAIMER.md", "CONTRIBUTING.md", "ROADMAP.md", "BRUTAL_HONESTY_REVIEW.md"];
 for (const file of requiredRootFiles) {
   if (!fs.existsSync(resolveRepoPath(file))) {
     process.stderr.write(`Missing required root file ${file}\n`);

@@ -18,6 +18,10 @@ Assumptions made to continue the workflow. Each assumption should be easy for th
 
 Questions that must be checked against an official authority, source, professional adviser, or the user's documents.
 
+## Evidence State
+
+Status of the source documents behind the output: available, partial, missing, pending, not reconciled, or unknown. Use this section whenever the workflow depends on user records, authority letters, invoices, ledgers, bank exports, residence documents, or adviser comments.
+
 ## Verification Checkpoints
 
 Blocking checks that must be completed before a form, invoice, calendar, or handoff package is used externally. If any checkpoint is incomplete, mark the output as preparation-only.

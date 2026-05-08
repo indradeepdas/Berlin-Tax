@@ -71,10 +71,43 @@
       "records.expense_ledger_status",
       "records.bank_statements_status",
       "records.invoice_records_status",
+      "records.ledger_reconciliation_status",
+      "attachments.identity_status",
+      "attachments.authority_letters_status",
+      "attachments.invoice_exports_status",
+      "attachments.bank_exports_status",
       "assumptions",
       "open_questions",
       "professional_review_items",
       "source_notes"
+    ],
+    "review_status_paths": [
+      "tax.elster_status",
+      "tax.tax_number_status",
+      "tax.vat_id_status",
+      "records.sales_ledger_status",
+      "records.expense_ledger_status",
+      "records.bank_statements_status",
+      "records.invoice_records_status",
+      "records.ledger_reconciliation_status",
+      "attachments.identity_status",
+      "attachments.authority_letters_status",
+      "attachments.invoice_exports_status",
+      "attachments.bank_exports_status"
+    ],
+    "review_status_values": [
+      "missing",
+      "not_started",
+      "not started",
+      "not available",
+      "unknown",
+      "pending",
+      "partial",
+      "unclear",
+      "incomplete",
+      "not requested",
+      "not reconciled",
+      "folder of receipts"
     ]
   },
   "contradictory_advice": {
@@ -93,4 +126,3 @@
     "blocking_statuses": ["unverified", "conflicting", "needs_professional_review"]
   }
 }
-

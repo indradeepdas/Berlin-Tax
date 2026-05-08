@@ -35,6 +35,13 @@ function hasValue(value) {
   return value !== undefined && value !== null && value !== "" && !(Array.isArray(value) && value.length === 0);
 }
 
+function normalizeStatus(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/-/g, "_");
+}
+
 function addMissingField(field, scope = "input") {
   report.findings.push({
     level: "error",
@@ -94,6 +101,15 @@ if (workflow === "contradictory_advice") {
 }
 
 if (workflow === "accountant_handoff") {
+  const reviewValues = new Set((workflowRules.review_status_values || []).map(normalizeStatus));
+  for (const field of workflowRules.review_status_paths || []) {
+    const value = getPath(input, field);
+    if (hasValue(value) && reviewValues.has(normalizeStatus(value))) {
+      report.open_verification_items.push(`${field} is ${value}`);
+      report.verification_checkpoints.push(`Resolve or document ${field} before treating the handoff as externally usable.`);
+    }
+  }
+
   for (const sourceId of input.source_notes || []) {
     if (!report.source_notes.includes(sourceId)) report.source_notes.push(sourceId);
     if (!sources.has(sourceId)) addUnknownSource("source_notes", sourceId);

@@ -2,9 +2,30 @@
 
 Operational intelligence for surviving German bureaucracy.
 
-Berlin-Tax is an open-source skill library for agents and founder operators navigating German and Berlin administrative workflows. It focuses on preparation, validation, checklists, source tracking, and accountant-ready handoff packages.
+Berlin-Tax is an early open-source preparation toolkit for agents and founder operators navigating German and Berlin administrative workflows. It focuses on intake, validation, checklists, source tracking, and accountant-handoff drafts.
 
 It is built for Berlin founders, freelancers, immigrants, side-business operators, UG/GmbH founders, solo entrepreneurs, restaurant operators, cross-border contractors, and first-time German business operators who need a reliable procedural map rather than another vague explanation of "German paperwork."
+
+## Current Maturity
+
+This repository is useful when you need to structure a case, find missing inputs, run field and threshold checks, and prepare review packets. It is not yet deep enough to replace a real bookkeeping system, tax adviser workflow, payroll setup, immigration review, or company-law checklist.
+
+Expect many outputs to say `review`. That is intentional. A `review` status means the workflow found a real-world decision, document gap, source freshness issue, or professional-review condition that should not be resolved by an LLM.
+
+Good first uses:
+
+- Check whether a founder intake packet is missing obvious operational facts.
+- Validate invoice fields and route risky invoice cases to review.
+- Monitor Kleinunternehmer assumptions from structured revenue inputs.
+- Generate candidate UStVA planning dates with explicit caveats.
+- Prepare a messy but traceable packet for a Steuerberater or authority call.
+
+Poor uses:
+
+- Deciding whether you are freiberuflich or gewerblich.
+- Deciding VAT treatment for cross-border invoices.
+- Filing anything directly from generated text.
+- Treating a generated checklist as proof that an authority will accept your case.
 
 ## What This Is
 
@@ -15,7 +36,7 @@ Berlin-Tax is:
 - Deterministic field checks, threshold monitoring, candidate deadline generation, and handoff completeness checks.
 - Checklist generation with assumptions and uncertainty visible.
 - A procedural knowledge layer for Codex, Claude Code, Cursor, Windsurf, Aider, and similar agentic coding tools.
-- An accountant-ready output system, not an accountant replacement.
+- A structured accountant-handoff draft system, not an accountant replacement.
 
 Berlin-Tax is not:
 
@@ -41,9 +62,9 @@ Every workflow output must separate:
 - Open verification items.
 - Items requiring professional review.
 
-## First Release Skills
+## First Release Scope
 
-The v1 skill set focuses on founder onboarding and early operating compliance:
+The first release focuses on founder onboarding and early operating compliance preparation:
 
 - `skills/gewerbeanmeldung-berlin`: Berlin business registration preparation.
 - `skills/finanzamt-onboarding`: steuerliche Erfassung and Finanzamt onboarding preparation.
@@ -61,10 +82,10 @@ Run the deterministic checks:
 npm test
 ```
 
-Validate an invoice input:
+Validate an invoice sample. This sample intentionally returns `review` because domestic B2B Kleinunternehmer invoicing has review-gated e-invoice and status questions:
 
 ```bash
-node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-valid.json
+node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-b2b-review.json
 ```
 
 Check Kleinunternehmer monitoring inputs:
@@ -88,6 +109,7 @@ node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berli
 - `templates/`: shared output formats for assumption logs, accountant handoff, and professional review.
 - `examples/`: sample inputs, stress fixtures, and outputs for realistic founder scenarios.
 - `AUDIT_REPORT.md`: current trust-boundary audit findings and safeguards.
+- `BRUTAL_HONESTY_REVIEW.md`: skeptical review of what felt fake, shallow, overpromised, or operationally weak.
 
 ## Source Discipline
 
@@ -136,6 +158,15 @@ Generated outputs must include:
 Never present an uncertain legal, tax, employment, residency, or company-law classification as a conclusion. Present it as a preparation position and route it to review.
 
 Validation reports are not compliance certificates. A generated invoice report, threshold report, or calendar is preparation-only until every verification checkpoint is complete.
+
+## What Is Still Weak
+
+- There is no attachment manifest validator yet.
+- There is no ledger reconciliation engine yet.
+- There is no XRechnung/ZUGFeRD parser yet.
+- UStVA scripts generate candidate dates, not filing figures.
+- The examples are fictional public fixtures, not model answers for real users.
+- The repository cannot resolve conflicting adviser, authority, or forum advice by itself.
 
 ## Legal Notice
 

@@ -1,7 +1,7 @@
 {
-  "entity_name": "Example UG",
+  "entity_name": "Fictional UG",
   "legal_form": "UG",
-  "business_address": "Musterstrasse 2, 10115 Berlin",
+  "business_address": "Berlin, Mitte - full address omitted in public fixture",
   "new_business": true,
   "business_start_date": "2026-05-01",
   "calendar_start": "2026-05-01",
@@ -12,4 +12,3 @@
   "vat_id_status": "not_requested",
   "known_risks": ["new entity", "Finanzamt onboarding pending"]
 }
-

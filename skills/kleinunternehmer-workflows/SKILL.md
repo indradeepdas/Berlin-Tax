@@ -71,6 +71,13 @@ Require professional review when:
 - If crossing is suspected, freeze invoice templates and prepare a dated invoice sequence for Steuerberater review before issuing more invoices.
 - Keep outputs labeled as monitoring and preparation unless a Steuerberater or Finanzamt confirms the user's position.
 
+## Operational Reality Checks
+
+- Ask for invoice sequence, not just yearly totals. The practical question is often which invoice changed the risk state.
+- Separate booked invoices, sent invoices, paid invoices, cancelled invoices, and credit notes.
+- Do not give replacement invoice wording while the crossing event, opt-out history, or VAT-charged invoices are unresolved.
+- Treat "I am under the threshold" as unverified until the number reconciles to invoice records and bank/payment data.
+
 ## Source Notes
 
 Use `ustg-19` for threshold monitoring. Load threshold values from `config/rules.de.berlin.json`; do not restate them as permanent prose. Use `ustg-14`, `ustdv-33`, `ustdv-34a`, and `bmf-e-rechnung-faq` when invoices are involved.

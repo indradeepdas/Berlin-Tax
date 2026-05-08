@@ -10,6 +10,9 @@ Berlin-Tax is a trust-sensitive repository. Contributions should make the system
 - Expose assumptions and uncertainty in every workflow.
 - Keep skills composable and focused. A skill should solve one operational workflow well.
 - Use plain Node.js for deterministic scripts. Avoid dependencies unless the maintainer group explicitly accepts the tradeoff.
+- Do not add polished happy-path examples unless they also show evidence state, unresolved questions, and why the output is or is not externally usable.
+- Do not use fake full addresses, fake authority letters, or fake official acceptance language in public fixtures.
+- Replace vague claims like "accountant-ready", "complete", "compliant", or "validated" with the narrower status actually proven by scripts.
 
 ## Pull Request Checklist
 
@@ -19,6 +22,7 @@ Before opening a PR:
 - Confirm every new source has `source_url`, `last_verified`, `review_by`, and `risk_level`.
 - Confirm every high-risk rule has a `verification_checkpoint`.
 - Confirm every new skill has purpose, workflow, required inputs, outputs, risks, escalation conditions, source notes, and examples.
+- Confirm every new skill has operational reality checks that address messy real-world state, not only ideal workflow order.
 - Confirm outputs separate verified facts, user-provided inputs, assumptions, open verification items, verification checkpoints, and professional-review items.
 - Run the self-audit and resolve unsafe claim patterns before merging.
 

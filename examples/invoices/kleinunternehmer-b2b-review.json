@@ -7,13 +7,13 @@
   "relationship": "domestic_b2b",
   "special_vat_case": false,
   "supplier": {
-    "name": "Sample Founder",
-    "address": "Musterstrasse 1, 10115 Berlin",
+    "name": "Fictional Solo Operator",
+    "address": "Berlin, Prenzlauer Berg - full address omitted in public fixture",
     "tax_number": "12/345/67890"
   },
   "customer": {
-    "name": "Example GmbH",
-    "address": "Beispielweg 10, 10999 Berlin"
+    "name": "Fictional Berlin Client GmbH",
+    "address": "Berlin, Kreuzberg - full address omitted in public fixture"
   },
   "line_items": [
     {
@@ -32,5 +32,5 @@
     }
   ],
   "gross_total_eur": 950,
-  "notes": "No VAT charged under Kleinunternehmer assumption according to UStG 19. Please verify tax treatment and UStDV 34a requirements before repeated use."
+  "notes": "No VAT charged under Kleinunternehmer assumption according to UStG 19. Public fixture intentionally returns review because domestic B2B e-invoice and Kleinunternehmer posture need verification."
 }

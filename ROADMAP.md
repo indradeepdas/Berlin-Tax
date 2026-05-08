@@ -14,6 +14,9 @@ Berlin-Tax starts with founder onboarding and early operating compliance. It del
 
 ## v0.2 Founder Survival Workflows
 
+- Attachment manifest validator for accountant handoffs.
+- Ledger reconciliation checks for revenue, invoice, and bank-export consistency.
+- Invoice sequence validator for draft/sent/paid/booked/reported document state.
 - Freelancer vs Gewerbe classification preparation, with mandatory review routing.
 - ALG I plus side-business compliance preparation.
 - UG/GmbH setup preparation and notary/accountant handoff.
@@ -33,4 +36,3 @@ Berlin-Tax starts with founder onboarding and early operating compliance. It del
 - No tax return generation.
 - No legal classification engine.
 - No replacement for Steuerberater, lawyer, Finanzamt, Arbeitsagentur, IHK, HWK, or Berlin authorities.
-

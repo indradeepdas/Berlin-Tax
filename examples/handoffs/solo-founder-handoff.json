@@ -1,8 +1,8 @@
 {
   "client": {
-    "name": "Sample Founder",
+    "name": "Fictional founder A. N.",
     "legal_form": "Einzelunternehmen candidate",
-    "business_address": "Musterstrasse 1, 10115 Berlin",
+    "business_address": "Berlin, Neukoelln - full address omitted in public fixture",
     "activity_description": "Product strategy consulting and workshops",
     "start_date": "2026-05-01"
   },
@@ -15,7 +15,14 @@
     "sales_ledger_status": "not started",
     "expense_ledger_status": "folder of receipts",
     "bank_statements_status": "available",
-    "invoice_records_status": "two draft invoices"
+    "invoice_records_status": "two draft invoices",
+    "ledger_reconciliation_status": "not reconciled"
+  },
+  "attachments": {
+    "identity_status": "available",
+    "authority_letters_status": "missing",
+    "invoice_exports_status": "partial",
+    "bank_exports_status": "available"
   },
   "assumptions": [
     "Kleinunternehmer treatment is assumed but not confirmed."
@@ -32,4 +39,3 @@
     "ustg-19"
   ]
 }
-

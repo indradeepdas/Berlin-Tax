@@ -13,5 +13,6 @@
   ],
   "finding_levels": ["info", "warning", "error", "review"],
   "status_values": ["pass", "review", "fail"],
+  "optional_sections": ["evidence_state", "authority_correspondence", "decision_log"],
   "policy": "Every output must separate facts from assumptions and professional-review items. No generated output is submission-ready until its verification_checkpoints are complete."
 }

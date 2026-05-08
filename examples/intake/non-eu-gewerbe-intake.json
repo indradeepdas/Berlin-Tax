@@ -1,6 +1,6 @@
 {
   "person": {
-    "name": "Sample Non-EU Founder",
+    "name": "Fictional non-EU founder",
     "residence_status": "residence permit - self-employment permission unclear",
     "non_eu_citizen": true,
     "alg1_status": "none"
@@ -21,8 +21,19 @@
     "invoice_tool": "spreadsheet",
     "bookkeeping_status": "not_started"
   },
+  "evidence": {
+    "residence_title_status": "available but permission unclear",
+    "business_address_evidence": "unknown",
+    "authority_letters": "none",
+    "invoice_exports": "missing",
+    "bank_exports": "missing"
+  },
+  "messy_reality": {
+    "already_started_work": false,
+    "already_bought_inventory": true,
+    "already_contacted_authority": false
+  },
   "advice": {
     "contradictory_claims_present": false
   }
 }
-
