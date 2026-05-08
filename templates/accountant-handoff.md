@@ -57,11 +57,11 @@ Use `available`, `partial`, `missing`, `pending`, `not reconciled`, or `unknown`
 
 ## Assumptions
 
-- 
+- TBD
 
 ## Open Questions For Accountant
 
-- 
+- TBD
 
 ## Verification Checkpoints
 
@@ -72,7 +72,7 @@ Use `available`, `partial`, `missing`, `pending`, `not reconciled`, or `unknown`
 
 ## Professional Review Items
 
-- 
+- TBD
 
 ## Decision Log
 
@@ -93,7 +93,7 @@ Use `available`, `partial`, `missing`, `pending`, `not reconciled`, or `unknown`
 
 ## Source Notes
 
-- 
+- TBD
 
 ## Boundary Notice
 

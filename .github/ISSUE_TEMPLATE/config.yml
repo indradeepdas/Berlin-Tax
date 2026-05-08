@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or unsafe-advice report
+    url: https://github.com/indradeepdas/Berlin-Tax/security
+    about: Use private vulnerability reporting when possible. Do not post private user data in public issues.
+  - name: Legal and tax advice boundary
+    url: https://github.com/indradeepdas/Berlin-Tax/blob/main/LEGAL_DISCLAIMER.md
+    about: Berlin-Tax is preparation infrastructure and does not provide professional advice.
+

@@ -1,71 +1,137 @@
 # Architecture
 
-Berlin-Tax is a procedural knowledge layer for AI agents and founder operators. The architecture intentionally separates judgment, source metadata, and deterministic checks.
+Berlin-Tax is a procedural knowledge layer for AI agents and founder operators. It separates judgment, source metadata, deterministic checks, and human review.
 
-## Core Model
+## Core Boundary
 
-Agents do three things:
+Agents may interpret context, ask follow-up questions, assemble packets, and explain uncertainty. Scripts validate structured inputs and source freshness. Humans and qualified professionals make case-specific legal, tax, employment, immigration, company-law, and filing decisions.
 
-- Interpret the user's business context.
-- Orchestrate a workflow from the relevant skill.
-- Produce a structured preparation package with uncertainty exposed.
+```mermaid
+flowchart LR
+  User["Founder / operator"] --> Agent["LLM agent or human operator"]
+  Agent --> Skills["skills/*/SKILL.md"]
+  Agent --> Templates["templates/*.md"]
+  Agent --> Scripts["scripts/*.mjs"]
+  Scripts --> Config["config/*.json"]
+  Scripts --> Sources["sources/source-registry.json"]
+  Sources --> Scripts
+  Scripts --> Report["structured report: pass / review / fail"]
+  Report --> Reviewer["Steuerberater / lawyer / authority / qualified reviewer"]
+  Reviewer --> User
+```
 
-Scripts do three things:
+## Data Flow
 
-- Validate structured inputs.
-- Calculate config-backed thresholds, field checks, and deadline scenarios.
-- Fail or warn when source metadata is missing, stale, or unsafe.
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant A as Agent
+  participant S as Skill
+  participant V as Validator
+  participant C as Config
+  participant R as Source registry
+  participant P as Professional reviewer
 
-Humans and professionals do the final legal, tax, company-law, employment, and filing decisions.
+  U->>A: Provides facts, documents, uncertainty
+  A->>S: Selects workflow
+  A->>V: Runs deterministic validator when structured input exists
+  V->>C: Loads rule and workflow config
+  V->>R: Checks source IDs and review dates
+  V-->>A: Emits report with findings and review gates
+  A-->>U: Produces preparation packet
+  A-->>P: Routes unresolved review items
+```
 
-## Separation of Concerns
+## Repository Layers
 
-`skills/` contains procedural workflows. Skills should describe how to run a process, what inputs to collect, what output to produce, and when to escalate.
-
-`config/` contains machine-readable rule packs. Thresholds, deadlines, review dates, and official-source identifiers belong here.
-
-`sources/` contains the source registry. It records official URLs, authorities, jurisdictions, review cadence, and usage.
-
-`scripts/` contains deterministic Node.js logic. Scripts must not contain legal thresholds that also exist in `config/`.
-
-`templates/` contains output contracts. These define how agent outputs should separate facts, assumptions, user inputs, uncertainty, verification checkpoints, and professional-review items.
+| Layer | Path | Owns | Must not do |
+| --- | --- | --- | --- |
+| Skills | `skills/` | Procedural workflow instructions | Hardcode thresholds or case-specific legal determinations |
+| Config | `config/` | Machine-readable thresholds, field lists, workflow gates, output contracts | Hide professional judgment in opaque rules |
+| Sources | `sources/` | Official-source registry and review metadata | Use non-official sources for deterministic legal values |
+| Scripts | `scripts/` | Deterministic validation and report generation | Submit filings or decide legal/tax status |
+| Templates | `templates/` | Output shapes and evidence discipline | Present generated text as submission-ready |
+| Examples | `examples/` | Fictional fixtures and stress cases | Pretend to be model answers for real users |
+| Docs | `docs/` | Maintainer process, source governance, versioning | Duplicate active rules from config |
 
 ## Trust Boundaries
 
-Berlin-Tax does not submit filings, classify legal status, or decide tax treatment. It prepares the user for those actions.
+Berlin-Tax does not submit filings, classify legal status, certify invoices, or decide tax treatment. It prepares the user for those actions.
 
 Risk-heavy workflows must route to review when they involve:
 
 - Gewerbe vs freiberuflich classification.
-- Kleinunternehmer eligibility or opt-out decisions.
-- VAT registration and filing frequency.
-- ALG I and side-business rules.
+- Kleinunternehmer eligibility, threshold crossing, or opt-out decisions.
+- VAT registration, VAT ID, reverse charge, OSS, imports, exports, or filing frequency.
+- ALG I, Buergergeld, employment, side-business, or availability rules.
 - Residence permit, visa, or work authorization constraints.
-- UG/GmbH formation decisions.
-- Retroactive corrections or missed deadlines.
+- UG/GmbH formation, notary, shareholder, payroll, or managing-director issues.
+- Retroactive corrections, missed deadlines, penalties, estimates, or authority notices.
+- Regulated sectors such as food, alcohol, health, transport, finance, security, childcare, craft trades, or POS/cash-heavy retail.
 
 ## Source Lifecycle
 
 Every rule pack value has an owner-facing lifecycle:
 
+- `source_id`: registry key in `sources/source-registry.json`.
 - `last_verified`: date a contributor checked the cited source.
-- `review_by`: date after which the value should be treated as stale.
+- `review_by`: date after which the value must be treated as stale.
 - `risk_level`: operational impact if the value is wrong.
-- `source_id`: link to a registry entry in `sources/source-registry.json`.
+- `verification_checkpoint`: blocking instruction surfaced in reports.
 
-The default posture is conservative. A stale source should create a warning or failure, not silent confidence.
+```mermaid
+flowchart TD
+  A["Official source changes or review_by arrives"] --> B["Open source update issue"]
+  B --> C["Update sources/source-registry.json"]
+  C --> D["Update config rule if value or interpretation changed"]
+  D --> E["Run npm run audit:sources"]
+  E --> F["Run npm test"]
+  F --> G["Maintainer review"]
+  G --> H["Merge with version note"]
+```
 
-High-risk config values must include a `verification_checkpoint`. Scripts should surface those checkpoints in generated reports so a user cannot mistake a candidate result for a submission-ready answer.
+The default posture is conservative. A stale source should create a failure or review gate, not silent confidence.
+
+## Script Design
+
+Scripts follow the same pattern:
+
+1. Parse one structured input file.
+2. Load config through `scripts/lib/config.mjs`.
+3. Never hardcode legal thresholds already represented in `config/`.
+4. Emit the shared report shape from `createReport`.
+5. Use `pass`, `review`, or `fail`.
+6. Preserve source IDs and verification checkpoints.
+
+Current script groups:
+
+- Source and repository audits: `audit-sources.mjs`, `self-audit.mjs`, `validate-skill.mjs`.
+- Domain validators: `validate-invoice.mjs`, `check-thresholds.mjs`, `generate-compliance-calendar.mjs`.
+- Workflow validators: `validate-workflow.mjs`.
+
+## Configuration Strategy
+
+Use config files for values or branches that contributors need to inspect without reading script internals:
+
+- `config/rules.de.berlin.json`: source-backed tax, invoice, calendar, and Berlin workflow candidates.
+- `config/workflow-rules.json`: required fields and review-routing gates for operational workflows.
+- `config/output-standard.json`: shared output contract and allowed status/finding levels.
+
+Do not duplicate active rule values in docs. Docs may explain where a value lives and how to verify it, but the script should read from config.
 
 ## Agent Compatibility
 
-Skills are plain directories with `SKILL.md` and optional references/examples. They are intentionally readable by Codex, Claude Code, Cursor, Windsurf, Aider, and other file-oriented coding agents.
+Skills are plain directories with `SKILL.md`, optional references, and examples. They are readable by file-oriented coding agents and by maintainers reviewing changes in GitHub.
 
-The expected agent pattern is:
+Expected agent pattern:
 
 1. Read the relevant skill.
-2. Load only the referenced material needed for the user's case.
+2. Load only the referenced material needed for the case.
 3. Ask for missing user inputs.
 4. Run deterministic scripts where structured validation is available.
-5. Produce output using the shared templates.
-6. Clearly label uncertainty and review items.
+5. Produce output using shared templates.
+6. Clearly label uncertainty, review items, and evidence gaps.
+
+## Maintainer Rule
+
+When a change touches legal/tax wording, source IDs, config values, or validator branching, reviewers should ask: "What would happen if a stressed founder copied this output into a real filing, invoice, or authority email?"

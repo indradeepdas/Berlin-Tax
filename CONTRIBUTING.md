@@ -2,29 +2,86 @@
 
 Berlin-Tax is a trust-sensitive repository. Contributions should make the system more verifiable, more cautious, or more operationally useful.
 
-## Contribution Rules
+Before contributing, read:
 
-- Prefer official sources: laws, official portals, authority pages, BMF, ELSTER, Berlin service pages, Bundesagentur fuer Arbeit, IHK/HWK only when relevant and clearly labeled.
-- Do not add legal thresholds or deadlines directly to scripts or prose-only workflows. Put them in `config/` with source metadata.
-- Do not present legal, tax, employment, immigration, or company-law judgments as final conclusions.
-- Expose assumptions and uncertainty in every workflow.
-- Keep skills composable and focused. A skill should solve one operational workflow well.
-- Use plain Node.js for deterministic scripts. Avoid dependencies unless the maintainer group explicitly accepts the tradeoff.
-- Do not add polished happy-path examples unless they also show evidence state, unresolved questions, and why the output is or is not externally usable.
-- Do not use fake full addresses, fake authority letters, or fake official acceptance language in public fixtures.
-- Replace vague claims like "accountant-ready", "complete", "compliant", or "validated" with the narrower status actually proven by scripts.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- [SECURITY.md](SECURITY.md)
+- [docs/MAINTAINER_GUIDE.md](docs/MAINTAINER_GUIDE.md)
+- [docs/SOURCE_GOVERNANCE.md](docs/SOURCE_GOVERNANCE.md)
+- [docs/NAMING_CONVENTIONS.md](docs/NAMING_CONVENTIONS.md)
+- [docs/VERSIONING.md](docs/VERSIONING.md)
 
-## Pull Request Checklist
+## Contribution Types
 
-Before opening a PR:
+Good contributions include:
+
+- Source freshness updates.
+- Safer workflow wording.
+- Deterministic validators for structured checks.
+- More realistic redacted examples.
+- Missing escalation conditions.
+- Better source notes and verification checkpoints.
+- Maintainer tooling that keeps the repository easier to audit.
+
+Avoid contributions that add:
+
+- Final legal, tax, employment, immigration, or company-law conclusions.
+- Automated filing or submission behavior.
+- Hardcoded unstable thresholds in scripts.
+- Non-official sources as the basis for deterministic rules.
+- Polished happy-path examples that hide missing evidence.
+- Fake full addresses, fake authority letters, or fake acceptance outcomes.
+
+## Local Setup
+
+Requires Node.js 20 or newer.
+
+```bash
+npm test
+npm run stress
+```
+
+No install step is currently required because the deterministic scripts use plain Node.js only.
+
+## Pull Request Standards
+
+Before opening a pull request:
 
 - Run `npm test`.
+- Run `npm run stress` if you changed workflows, examples, validators, config, or templates.
+- Run `git diff --check`.
 - Confirm every new source has `source_url`, `last_verified`, `review_by`, and `risk_level`.
 - Confirm every high-risk rule has a `verification_checkpoint`.
-- Confirm every new skill has purpose, workflow, required inputs, outputs, risks, escalation conditions, source notes, and examples.
-- Confirm every new skill has operational reality checks that address messy real-world state, not only ideal workflow order.
-- Confirm outputs separate verified facts, user-provided inputs, assumptions, open verification items, verification checkpoints, and professional-review items.
-- Run the self-audit and resolve unsafe claim patterns before merging.
+- Confirm every new skill has purpose, workflow, required inputs, outputs, risks, escalation conditions, verify-before-submission controls, operational reality checks, source notes, and examples.
+- Confirm generated outputs separate verified facts, user-provided inputs, assumptions, open verification items, verification checkpoints, and professional-review items.
+- Confirm examples are fictional, redacted, and explicit about evidence state.
+
+## Source-Backed Rules
+
+If a value affects tax, registration, invoice checks, deadlines, or workflow branching:
+
+1. Add or update the source in `sources/source-registry.json`.
+2. Add or update the rule in `config/`.
+3. Add a verification checkpoint.
+4. Run `npm run audit:sources`.
+5. Document the source impact in the pull request.
+
+See [docs/SOURCE_GOVERNANCE.md](docs/SOURCE_GOVERNANCE.md).
+
+## Deterministic Logic
+
+Use deterministic scripts for:
+
+- calculations
+- thresholds
+- syntax validation
+- field validation
+- recurrence logic
+- completeness checks
+- source freshness checks
+- workflow branching into review states
+
+Do not ask an LLM to decide those things when structured input exists.
 
 ## Risk Levels
 
@@ -33,12 +90,20 @@ Before opening a PR:
 - `high`: could affect deadlines, tax position, registration status, or penalties.
 - `professional_review_required`: the workflow must route the matter to a qualified professional or official authority.
 
-## Source Review
+## Naming
 
-Set `review_by` based on risk:
+Follow [docs/NAMING_CONVENTIONS.md](docs/NAMING_CONVENTIONS.md). Do not rename source IDs, scripts, or config keys only for style after they are published.
 
-- High-risk tax and deadline values: 90 days or less.
-- Medium-risk authority workflow pages: 180 days or less.
-- Stable explanatory references: 365 days or less.
+## Versioning
 
-When in doubt, shorten the review window.
+Use [docs/VERSIONING.md](docs/VERSIONING.md) for release impact. Until `1.0.0`, maintainers may still refine structure, but report-shape changes and script argument changes should be treated carefully.
+
+## Maintainer Review Posture
+
+When reviewing a change, ask:
+
+- Would this make a stressed founder more likely to act without review?
+- Does the script prove the claim, or only format it?
+- Is the official source current and jurisdictionally correct?
+- Does the output make uncertainty visible?
+- Would a Steuerberater or compliance reviewer understand what is verified and what is assumed?

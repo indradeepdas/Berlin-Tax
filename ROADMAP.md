@@ -17,6 +17,7 @@ Berlin-Tax starts with founder onboarding and early operating compliance. It del
 - Attachment manifest validator for accountant handoffs.
 - Ledger reconciliation checks for revenue, invoice, and bank-export consistency.
 - Invoice sequence validator for draft/sent/paid/booked/reported document state.
+- GitHub Actions for `npm test`, source freshness audit, and template validation.
 - Freelancer vs Gewerbe classification preparation, with mandatory review routing.
 - ALG I plus side-business compliance preparation.
 - UG/GmbH setup preparation and notary/accountant handoff.

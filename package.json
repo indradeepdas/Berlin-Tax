@@ -5,7 +5,30 @@
   "license": "MIT",
   "type": "module",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indradeepdas/Berlin-Tax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/indradeepdas/Berlin-Tax/issues"
+  },
+  "homepage": "https://github.com/indradeepdas/Berlin-Tax#readme",
+  "keywords": [
+    "berlin",
+    "germany",
+    "bureaucracy",
+    "founder-compliance",
+    "gewerbeanmeldung",
+    "finanzamt",
+    "elster",
+    "ustva",
+    "invoicing",
+    "kleinunternehmer",
+    "ai-skills",
+    "steuerberater-handoff"
+  ],
   "scripts": {
+    "audit": "npm run audit:sources && npm run audit:self",
     "validate:skills": "node scripts/validate-skill.mjs",
     "audit:sources": "node scripts/audit-sources.mjs",
     "audit:self": "node scripts/self-audit.mjs",
@@ -19,9 +42,11 @@
     "validate:handoff": "node scripts/validate-workflow.mjs accountant_handoff examples/handoffs/solo-founder-handoff.json",
     "validate:advice": "node scripts/validate-workflow.mjs contradictory_advice examples/advice/contradictory-online-advice.json",
     "validate:workflows": "npm run validate:intake && npm run validate:handoff && npm run validate:advice",
+    "validate": "npm run validate:skills && npm run validate:workflows && npm run validate:invoice:sample && npm run check:thresholds && npm run calendar:sample",
     "validate:invoice:invalid": "node scripts/validate-invoice.mjs examples/invoices/incomplete-invalid.json",
     "check:thresholds": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-monitoring.json",
     "calendar:sample": "node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berlin.json",
+    "maintain:check": "npm test && npm run stress",
     "test": "npm run validate:skills && npm run audit:sources && npm run audit:self && npm run validate:invoice:sample && npm run check:thresholds && npm run calendar:sample && npm run validate:workflows"
   },
   "engines": {

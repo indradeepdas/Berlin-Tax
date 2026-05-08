@@ -52,10 +52,38 @@ function walk(dir) {
 
 walk(root);
 
-const requiredRootFiles = ["README.md", "ARCHITECTURE.md", "LEGAL_DISCLAIMER.md", "CONTRIBUTING.md", "ROADMAP.md", "BRUTAL_HONESTY_REVIEW.md"];
+const requiredRootFiles = [
+  "README.md",
+  "ARCHITECTURE.md",
+  "LEGAL_DISCLAIMER.md",
+  "CONTRIBUTING.md",
+  "CODE_OF_CONDUCT.md",
+  "SECURITY.md",
+  "ROADMAP.md",
+  "BRUTAL_HONESTY_REVIEW.md",
+  "ISSUE_TEMPLATE.md",
+  "PR_TEMPLATE.md"
+];
 for (const file of requiredRootFiles) {
   if (!fs.existsSync(resolveRepoPath(file))) {
     process.stderr.write(`Missing required root file ${file}\n`);
+    failures++;
+  }
+}
+
+const requiredMaintainerFiles = [
+  ".github/PULL_REQUEST_TEMPLATE.md",
+  ".github/ISSUE_TEMPLATE/config.yml",
+  ".github/workflows/ci.yml",
+  "docs/MAINTAINER_GUIDE.md",
+  "docs/SOURCE_GOVERNANCE.md",
+  "docs/VERSIONING.md",
+  "docs/NAMING_CONVENTIONS.md",
+  "config/README.md"
+];
+for (const file of requiredMaintainerFiles) {
+  if (!fs.existsSync(resolveRepoPath(file))) {
+    process.stderr.write(`Missing required maintainer file ${file}\n`);
     failures++;
   }
 }

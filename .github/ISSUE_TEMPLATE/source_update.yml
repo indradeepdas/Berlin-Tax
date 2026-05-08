@@ -1,26 +1,53 @@
 name: Source update
-description: Report a stale or changed official source.
+description: Report a stale, moved, or changed official source.
 title: "[Source]: "
-labels: ["source", "compliance"]
+labels: ["source", "compliance", "needs-triage"]
 body:
   - type: input
     id: source_id
     attributes:
       label: Source ID
-      description: The source_id from sources/source-registry.json or config.
+      description: The `source_id` from `sources/source-registry.json` or config.
+      placeholder: ustg-19
     validations:
       required: true
   - type: input
     id: url
     attributes:
       label: Official URL
+      description: Use an official authority, law, ELSTER, BMF, Berlin, Arbeitsagentur, IHK, or HWK URL where possible.
     validations:
       required: true
   - type: textarea
     id: change
     attributes:
       label: Observed change
-      description: What appears stale, missing, or changed?
+      description: What appears stale, missing, moved, or changed?
     validations:
       required: true
-
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected workflows or files
+      description: List affected skills, config keys, scripts, or examples if known.
+    validations:
+      required: false
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk level
+      options:
+        - unknown
+        - low
+        - medium
+        - high
+        - professional_review_required
+    validations:
+      required: true
+  - type: checkboxes
+    id: process
+    attributes:
+      label: Process check
+      options:
+        - label: I understand source updates should follow `docs/SOURCE_GOVERNANCE.md`.
+          required: true

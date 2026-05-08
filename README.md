@@ -2,114 +2,99 @@
 
 Operational intelligence for surviving German bureaucracy.
 
-Berlin-Tax is an early open-source preparation toolkit for agents and founder operators navigating German and Berlin administrative workflows. It focuses on intake, validation, checklists, source tracking, and accountant-handoff drafts.
+Berlin-Tax is an early open-source preparation toolkit for Berlin founder operations: intake, source tracking, deterministic checks, review gates, and accountant-handoff drafts for German administrative workflows.
 
-It is built for Berlin founders, freelancers, immigrants, side-business operators, UG/GmbH founders, solo entrepreneurs, restaurant operators, cross-border contractors, and first-time German business operators who need a reliable procedural map rather than another vague explanation of "German paperwork."
+It is built for agents and human operators helping founders, freelancers, immigrants, side-business operators, UG/GmbH founders, restaurant operators, cross-border contractors, and first-time German business operators. It is not a tax filing product.
 
-## Current Maturity
+Keywords: Berlin, Germany, bureaucracy, founder compliance, Gewerbeanmeldung, Finanzamt, ELSTER, UStVA, invoices, Kleinunternehmer, Steuerberater handoff, AI agent skills.
 
-This repository is useful when you need to structure a case, find missing inputs, run field and threshold checks, and prepare review packets. It is not yet deep enough to replace a real bookkeeping system, tax adviser workflow, payroll setup, immigration review, or company-law checklist.
+## Status
 
-Expect many outputs to say `review`. That is intentional. A `review` status means the workflow found a real-world decision, document gap, source freshness issue, or professional-review condition that should not be resolved by an LLM.
+Project stage: `0.1.x`, preparation-only.
 
-Good first uses:
+Use this repo when you need to structure a case, find missing inputs, run deterministic checks, and prepare a review packet. Do not use it to decide legal classification, VAT treatment, immigration permission, benefit eligibility, payroll, or company-law obligations.
 
-- Check whether a founder intake packet is missing obvious operational facts.
-- Validate invoice fields and route risky invoice cases to review.
-- Monitor Kleinunternehmer assumptions from structured revenue inputs.
-- Generate candidate UStVA planning dates with explicit caveats.
-- Prepare a messy but traceable packet for a Steuerberater or authority call.
+Many outputs intentionally return `review`. That means the workflow found a decision, document gap, stale source, or professional-review condition that should not be resolved by an LLM.
 
-Poor uses:
+## What It Does
 
-- Deciding whether you are freiberuflich or gewerblich.
-- Deciding VAT treatment for cross-border invoices.
-- Filing anything directly from generated text.
-- Treating a generated checklist as proof that an authority will accept your case.
+- Collects operational intake for German/Berlin founder workflows.
+- Runs plain Node.js validators for field checks, thresholds, source freshness, workflow routing, and candidate calendars.
+- Keeps source metadata separate from workflow prose.
+- Produces structured outputs with facts, user inputs, assumptions, verification checkpoints, and professional-review items separated.
+- Helps agents such as Codex, Claude Code, Cursor, Windsurf, and Aider use the same procedural layer.
 
-## What This Is
+## What It Does Not Do
 
-Berlin-Tax is:
-
-- Workflow orchestration for German/Berlin bureaucracy.
-- Compliance preparation for founder operations.
-- Deterministic field checks, threshold monitoring, candidate deadline generation, and handoff completeness checks.
-- Checklist generation with assumptions and uncertainty visible.
-- A procedural knowledge layer for Codex, Claude Code, Cursor, Windsurf, Aider, and similar agentic coding tools.
-- A structured accountant-handoff draft system, not an accountant replacement.
-
-Berlin-Tax is not:
-
-- An automated tax filing system.
-- A legal opinion engine.
-- A replacement for a Steuerberater, lawyer, Finanzamt, Arbeitsagentur, or official authority.
-- A promise that a filing, classification, invoice, or registration is correct.
-
-## Design Contract
-
-The repository follows four operating rules:
-
-1. LLMs interpret, ask for missing context, and orchestrate workflows.
-2. Plain Node.js scripts validate, calculate, and flag deterministic issues.
-3. Official sources come first, with source metadata tracked separately from workflows.
-4. Legal caution beats automation. If a step is uncertain, the output must say so.
-
-Every workflow output must separate:
-
-- Verified facts.
-- User-provided inputs.
-- Assumptions.
-- Open verification items.
-- Items requiring professional review.
-
-## First Release Scope
-
-The first release focuses on founder onboarding and early operating compliance preparation:
-
-- `skills/gewerbeanmeldung-berlin`: Berlin business registration preparation.
-- `skills/finanzamt-onboarding`: steuerliche Erfassung and Finanzamt onboarding preparation.
-- `skills/ustva-preparation`: Umsatzsteuer-Voranmeldung preparation without submission automation.
-- `skills/invoice-compliance-validation`: invoice field validation and review flags.
-- `skills/kleinunternehmer-workflows`: Kleinunternehmerregelung monitoring and document preparation.
-
-Future roadmap items include ALG I side-business preparation, UG/GmbH setup guidance, annual compliance calendar expansion, restaurant operator workflows, and cross-border contractor packs.
+- It does not submit to ELSTER or Service Berlin.
+- It does not generate tax returns.
+- It does not certify invoices as compliant.
+- It does not decide Freiberufler vs Gewerbe, Kleinunternehmer eligibility, VAT treatment, ALG I handling, residence permission, or UG/GmbH obligations.
+- It is not a substitute for a Steuerberater, lawyer, Finanzamt, Arbeitsagentur, LEA, notary, IHK/HWK, or other authority.
 
 ## Quickstart
 
-Run the deterministic checks:
+Requires Node.js 20 or newer.
 
 ```bash
 npm test
 ```
 
-Validate an invoice sample. This sample intentionally returns `review` because domestic B2B Kleinunternehmer invoicing has review-gated e-invoice and status questions:
+Run the main sample checks:
+
+```bash
+npm run validate:workflows
+npm run validate:invoice:sample
+npm run check:thresholds
+npm run calendar:sample
+npm run stress
+```
+
+The invoice sample intentionally returns `review` because domestic B2B Kleinunternehmer invoicing has e-invoice and status questions:
 
 ```bash
 node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-b2b-review.json
 ```
 
-Check Kleinunternehmer monitoring inputs:
+## Current Workflows
 
-```bash
-node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-monitoring.json
+| Workflow | Path | Deterministic support |
+| --- | --- | --- |
+| Berlin Gewerbeanmeldung preparation | `skills/gewerbeanmeldung-berlin` | intake validator and review routing |
+| Finanzamt onboarding | `skills/finanzamt-onboarding` | intake, handoff, contradiction validators |
+| UStVA preparation | `skills/ustva-preparation` | candidate calendar generation |
+| Invoice field validation | `skills/invoice-compliance-validation` | invoice validator |
+| Kleinunternehmer monitoring | `skills/kleinunternehmer-workflows` | threshold monitor |
+
+## Repository Layout
+
+```text
+.
+|-- .github/               GitHub issue forms and pull request template
+|-- config/                Machine-readable rule packs and output contracts
+|-- docs/                  Maintainer guidance, source process, versioning
+|-- examples/              Fictional fixtures, stress cases, sample outputs
+|-- scripts/               Plain Node.js validators and audits
+|-- scripts/lib/           Shared script utilities
+|-- skills/                Agent-readable procedural skills
+|-- sources/               Official-source registry and review metadata
+|-- templates/             Shared workflow output templates
+|-- ARCHITECTURE.md        System model and diagrams
+|-- CONTRIBUTING.md        Contributor rules and PR expectations
+|-- SECURITY.md            Security and unsafe-advice reporting policy
 ```
 
-Generate a sample compliance calendar:
+## Architecture
 
-```bash
-node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berlin.json
-```
+Berlin-Tax separates orchestration from validation:
 
-## Repository Map
+- LLMs interpret context and assemble outputs.
+- Scripts validate structured facts and emit review gates.
+- Config stores thresholds, fields, and routing rules.
+- Source registry records official-source provenance.
+- Humans and qualified professionals make case-specific legal, tax, employment, immigration, filing, and company-law decisions.
 
-- `skills/`: installable agent skills with purpose, workflow, inputs, outputs, risks, escalation conditions, source notes, and examples.
-- `config/`: source-backed rule packs. Legal thresholds and deadlines belong here, not inside scripts or prose.
-- `scripts/`: plain Node.js validators and generators.
-- `sources/`: official-source registry and review metadata.
-- `templates/`: shared output formats for assumption logs, accountant handoff, and professional review.
-- `examples/`: sample inputs, stress fixtures, and outputs for realistic founder scenarios.
-- `AUDIT_REPORT.md`: current trust-boundary audit findings and safeguards.
-- `BRUTAL_HONESTY_REVIEW.md`: skeptical review of what felt fake, shallow, overpromised, or operationally weak.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for diagrams and maintainer rules.
 
 ## Source Discipline
 
@@ -120,56 +105,55 @@ Every unstable rule must include:
 - `last_verified`
 - `review_by`
 - `risk_level`
-
-If a value affects tax, registration, invoice compliance, or deadline behavior, it must be config-driven. Pull requests that add hardcoded thresholds to scripts should be rejected.
+- `verification_checkpoint` for high-risk or professional-review rules
 
 Run:
 
 ```bash
-node scripts/audit-sources.mjs
-node scripts/self-audit.mjs
+npm run audit:sources
+npm run audit:self
 ```
 
-Run stress fixtures:
+Source and stale-rule updates are documented in [docs/SOURCE_GOVERNANCE.md](docs/SOURCE_GOVERNANCE.md).
+
+## Contributing
+
+Start with [CONTRIBUTING.md](CONTRIBUTING.md). Experienced contributors should also read:
+
+- [docs/MAINTAINER_GUIDE.md](docs/MAINTAINER_GUIDE.md)
+- [docs/NAMING_CONVENTIONS.md](docs/NAMING_CONVENTIONS.md)
+- [docs/VERSIONING.md](docs/VERSIONING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- [SECURITY.md](SECURITY.md)
+- [BRUTAL_HONESTY_REVIEW.md](BRUTAL_HONESTY_REVIEW.md)
+
+Good first contribution types:
+
+- Source freshness updates.
+- Better examples with realistic evidence state.
+- Validator gaps where deterministic logic should replace agent reasoning.
+- Workflow wording that reduces overclaiming or ambiguity.
+
+## Maintainer Checks
+
+Before merging, maintainers should run:
 
 ```bash
-npm run stress
+npm run maintain:check
+git diff --check
 ```
 
-Run deterministic workflow validators:
-
-```bash
-npm run validate:workflows
-```
-
-## Output Standard
-
-Generated outputs must include:
-
-- Next steps.
-- Required documents.
-- Responsible authority.
-- Assumptions.
-- Open verification items.
-- Verification checkpoints.
-- Source notes.
-- Professional review triggers.
-
-Never present an uncertain legal, tax, employment, residency, or company-law classification as a conclusion. Present it as a preparation position and route it to review.
-
-Validation reports are not compliance certificates. A generated invoice report, threshold report, or calendar is preparation-only until every verification checkpoint is complete.
+Pull requests must not add hardcoded legal thresholds to scripts, case-specific legal/tax determinations to prose, or clean happy-path examples that hide missing evidence.
 
 ## What Is Still Weak
 
-- There is no attachment manifest validator yet.
-- There is no ledger reconciliation engine yet.
-- There is no XRechnung/ZUGFeRD parser yet.
+- No attachment manifest validator yet.
+- No ledger reconciliation engine yet.
+- No XRechnung/ZUGFeRD parser yet.
 - UStVA scripts generate candidate dates, not filing figures.
-- The examples are fictional public fixtures, not model answers for real users.
-- The repository cannot resolve conflicting adviser, authority, or forum advice by itself.
+- Public examples are fictional fixtures, not model answers for real users.
+- The repo cannot resolve conflicting adviser, authority, or forum advice by itself.
 
 ## Legal Notice
 
-Berlin-Tax is operational infrastructure, not legal or tax advice. It may help organize information for professional review, but users remain responsible for verifying requirements with official authorities and qualified professionals.
-
-Read `LEGAL_DISCLAIMER.md` before using this repository for real-world workflows.
+Berlin-Tax is operational infrastructure, not legal, tax, accounting, immigration, employment, or company-law advice. Read [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) before using it for real-world workflows.

@@ -1,5 +1,5 @@
 name: Skill request
-description: Propose a new Berlin-Tax skill.
+description: Propose a new Berlin-Tax procedural skill.
 title: "[Skill]: "
 labels: ["skill", "needs-triage"]
 body:
@@ -8,20 +8,41 @@ body:
     attributes:
       label: Workflow
       description: What founder or bureaucracy workflow should this skill support?
+      placeholder: Example: ALG I side-business preparation for a laid-off founder.
     validations:
       required: true
   - type: textarea
     id: users
     attributes:
-      label: Target users
-      description: Who needs this, and what mistake or uncertainty does it reduce?
+      label: Target users and failure mode
+      description: Who needs this, and what mistake, missed deadline, or confusion does it reduce?
     validations:
       required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Non-goals and review gates
+      description: What must this skill not decide? What should route to professional or authority review?
+    validations:
+      required: true
+  - type: textarea
+    id: deterministic
+    attributes:
+      label: Deterministic checks
+      description: Which fields, thresholds, syntax, document completeness, recurrence, or branching should scripts handle?
+    validations:
+      required: false
   - type: textarea
     id: sources
     attributes:
       label: Candidate official sources
-      description: Add official URLs if known.
+      description: Add official URLs or existing source IDs if known.
     validations:
       required: false
-
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I have not included personal data, tax numbers, addresses, invoices, identity documents, or authority correspondence.
+          required: true

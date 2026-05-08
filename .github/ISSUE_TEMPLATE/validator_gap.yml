@@ -1,20 +1,52 @@
 name: Validator gap
-description: Report a missing deterministic validation.
+description: Report a place where deterministic validation should replace LLM reasoning.
 title: "[Validator]: "
-labels: ["scripts", "validation"]
+labels: ["scripts", "validation", "needs-triage"]
 body:
   - type: textarea
     id: gap
     attributes:
       label: Gap
       description: What should be validated deterministically?
+      placeholder: Example: invoice number sequence should detect sent invoices after a suspected Kleinunternehmer threshold crossing.
+    validations:
+      required: true
+  - type: dropdown
+    id: validation_type
+    attributes:
+      label: Validation type
+      options:
+        - calculation
+        - threshold
+        - syntax
+        - field completeness
+        - recurrence
+        - source freshness
+        - workflow branching
+        - document completeness
+        - invoice/VAT review gate
+        - other
     validations:
       required: true
   - type: textarea
     id: example
     attributes:
-      label: Example input
-      description: Provide a minimal redacted example if possible.
+      label: Minimal redacted example
+      description: Provide redacted JSON or prose input if possible.
+      render: json
     validations:
       required: false
-
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected report behavior
+      description: Should this produce `pass`, `review`, or `fail`, and why?
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I have removed personal data, tax numbers, addresses, invoices, identity documents, and authority correspondence.
+          required: true
