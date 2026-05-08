@@ -56,6 +56,16 @@ The invoice sample intentionally returns `review` because domestic B2B Kleinunte
 node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-b2b-review.json
 ```
 
+## User Guide
+
+End users should start with [docs/USER_GUIDE.md](docs/USER_GUIDE.md). It explains:
+
+- which workflow to use for a specific Berlin tax or bureaucracy goal
+- which inputs to collect first
+- which scripts to run
+- how to interpret `pass`, `review`, and `fail`
+- when to stop and escalate to a Steuerberater or authority
+
 ## Current Workflows
 
 | Workflow | Path | Deterministic support |
