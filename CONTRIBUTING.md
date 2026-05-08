@@ -17,8 +17,9 @@ Before opening a PR:
 
 - Run `npm test`.
 - Confirm every new source has `source_url`, `last_verified`, `review_by`, and `risk_level`.
+- Confirm every high-risk rule has a `verification_checkpoint`.
 - Confirm every new skill has purpose, workflow, required inputs, outputs, risks, escalation conditions, source notes, and examples.
-- Confirm outputs separate verified facts, user-provided inputs, assumptions, open verification items, and professional-review items.
+- Confirm outputs separate verified facts, user-provided inputs, assumptions, open verification items, verification checkpoints, and professional-review items.
 - Run the self-audit and resolve unsafe claim patterns before merging.
 
 ## Risk Levels

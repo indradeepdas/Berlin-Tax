@@ -43,7 +43,8 @@ export function collectObjectsWithSourceIds(value, pathParts = [], found = []) {
       source_id: value.source_id,
       review_by: value.review_by,
       last_verified: value.last_verified,
-      risk_level: value.risk_level
+      risk_level: value.risk_level,
+      verification_checkpoint: value.verification_checkpoint
     });
   }
 
@@ -68,6 +69,7 @@ export function createReport({ status = "pass", title, source_ids = [], user_inp
     user_provided_inputs: Object.entries(user_input).map(([key, value]) => ({ key, value })),
     assumptions: [],
     open_verification_items: [],
+    verification_checkpoints: [],
     professional_review_items: [],
     findings: [],
     next_steps: [],
@@ -95,4 +97,3 @@ export function setStatus(report) {
 export function printReport(report) {
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 }
-

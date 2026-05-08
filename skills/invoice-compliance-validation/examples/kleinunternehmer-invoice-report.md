@@ -18,12 +18,18 @@
 
 ## Open Verification Items
 
-- Confirm current e-invoice obligations for this domestic B2B invoice.
+- Confirm current e-invoice obligations and any UStDV 34a relief for this domestic B2B Kleinunternehmer invoice.
 - Confirm tax regime with accountant before using the invoice template repeatedly.
+
+## Verification Checkpoints
+
+- Confirm the supplier tax number, VAT ID, or Kleinunternehmer identifier is valid for invoice use.
+- Verify the invoice note satisfies the current Kleinunternehmer invoice source.
+- Keep the report as a field check, not a compliance certificate.
 
 ## Professional Review Items
 
-- Domestic B2B e-invoice handling.
+- Domestic B2B e-invoice handling and UStDV 34a Kleinunternehmer invoice requirements.
 
 ## Next Steps
 
@@ -42,5 +48,4 @@
 
 ## Source Notes
 
-- `ustg-14`, `ustdv-33`, `ustg-19`, `bmf-e-rechnung-faq`.
-
+- `ustg-14`, `ustdv-33`, `ustdv-34a`, `ustg-19`, `bmf-e-rechnung-faq`.

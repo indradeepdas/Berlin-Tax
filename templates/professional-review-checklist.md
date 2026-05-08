@@ -11,3 +11,9 @@ Mark any matching item as blocking for unsupervised workflow completion.
 - Regulated activity, permit, food service, alcohol, transport, health, finance, childcare, security, craft trade, or similar sector.
 - Any material tax amount or penalty exposure.
 
+## Verify Before Submission
+
+- Recheck all cited official sources after the package date.
+- Confirm the user's source documents match the summarized inputs.
+- Confirm the responsible authority and form path are current.
+- Keep generated outputs in preparation status until a qualified reviewer or authority-specific check clears the blocking items.

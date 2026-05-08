@@ -5,10 +5,11 @@
   "currency": "EUR",
   "tax_regime": "kleinunternehmer",
   "relationship": "domestic_b2b",
+  "special_vat_case": false,
   "supplier": {
     "name": "Sample Founder",
     "address": "Musterstrasse 1, 10115 Berlin",
-    "tax_number": "pending"
+    "tax_number": "12/345/67890"
   },
   "customer": {
     "name": "Example GmbH",
@@ -31,6 +32,5 @@
     }
   ],
   "gross_total_eur": 950,
-  "notes": "No VAT charged under Kleinunternehmer assumption according to UStG 19. Please verify tax treatment before repeated use."
+  "notes": "No VAT charged under Kleinunternehmer assumption according to UStG 19. Please verify tax treatment and UStDV 34a requirements before repeated use."
 }
-

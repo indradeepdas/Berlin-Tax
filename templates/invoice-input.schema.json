@@ -10,6 +10,7 @@
     "currency": { "type": "string" },
     "tax_regime": { "type": "string", "enum": ["regular_vat", "kleinunternehmer", "unknown"] },
     "relationship": { "type": "string", "enum": ["domestic_b2b", "domestic_b2c", "eu_b2b", "eu_b2c", "non_eu", "unknown"] },
+    "special_vat_case": { "type": "boolean", "description": "Set true for reverse charge, intra-EU supply/service, marketplace, exemption, credit note, import/export, or another non-standard VAT case." },
     "supplier": { "type": "object" },
     "customer": { "type": "object" },
     "line_items": { "type": "array" },
@@ -19,4 +20,3 @@
     "notes": { "type": "string" }
   }
 }
-

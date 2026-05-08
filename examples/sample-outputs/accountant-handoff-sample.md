@@ -33,6 +33,12 @@
 - Is Kleinunternehmer treatment appropriate for the expected client base?
 - What invoice wording should be used until the tax number arrives?
 
+## Verification Checkpoints
+
+- Recheck all cited official sources before submission or invoicing.
+- Reconcile revenue forecasts and prior-year figures to source records.
+- Confirm classification, VAT, and Kleinunternehmer assumptions with a Steuerberater before external use.
+
 ## Professional Review Items
 
 - Classification as freiberuflich vs Gewerbe.
@@ -45,4 +51,4 @@
 - `elster-fseeun`
 - `ustg-19`
 - `ustg-14`
-
+- `ustdv-34a`

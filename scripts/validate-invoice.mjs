@@ -12,15 +12,22 @@ const invoice = JSON.parse(readFileSync(inputPath, "utf8"));
 const rules = loadRules();
 const smallLimit = rules.invoice.small_invoice_gross_limit_eur.value;
 const isSmallInvoice = Number(invoice.gross_total_eur) <= smallLimit;
-const required = isSmallInvoice
-  ? rules.invoice.small_invoice_required_fields.value
-  : rules.invoice.regular_required_fields.value;
+const domesticRelationships = new Set(["domestic_b2b", "domestic_b2c"]);
+const smallInvoiceReliefCandidate = isSmallInvoice && domesticRelationships.has(invoice.relationship) && !invoice.special_vat_case;
+const ruleSet = invoice.tax_regime === "kleinunternehmer"
+  ? rules.invoice.kleinunternehmer_required_fields
+  : smallInvoiceReliefCandidate
+    ? rules.invoice.small_invoice_required_fields
+    : rules.invoice.regular_required_fields;
+const required = ruleSet.value;
 
 const report = createReport({
   title: "Invoice compliance validation",
   source_ids: [
     rules.invoice.regular_required_fields.source_id,
     rules.invoice.small_invoice_required_fields.source_id,
+    rules.invoice.kleinunternehmer_required_fields.source_id,
+    "ustg-19",
     rules.invoice.e_invoice_review_required_for_domestic_b2b.source_id
   ],
   user_input: {
@@ -28,14 +35,23 @@ const report = createReport({
     issue_date: invoice.issue_date,
     gross_total_eur: invoice.gross_total_eur,
     tax_regime: invoice.tax_regime,
-    relationship: invoice.relationship
+    relationship: invoice.relationship,
+    special_vat_case: Boolean(invoice.special_vat_case)
   }
 });
 
 report.verified_facts.push({
-  fact: isSmallInvoice ? "Input is at or below the configured small-invoice gross threshold." : "Input exceeds the configured small-invoice gross threshold.",
+  fact: isSmallInvoice
+    ? "Based on the user-provided gross total, the invoice is at or below the configured small-invoice amount candidate."
+    : "Based on the user-provided gross total, the invoice exceeds the configured small-invoice amount candidate.",
   source_id: rules.invoice.small_invoice_gross_limit_eur.source_id
 });
+report.verified_facts.push({
+  fact: `The validator selected the ${invoice.tax_regime === "kleinunternehmer" ? "Kleinunternehmer" : smallInvoiceReliefCandidate ? "small-invoice" : "regular invoice"} field checklist. This is a validation path, not a legal conclusion.`,
+  source_id: ruleSet.source_id
+});
+report.verification_checkpoints.push(rules.invoice.small_invoice_gross_limit_eur.verification_checkpoint);
+report.verification_checkpoints.push(ruleSet.verification_checkpoint);
 
 function hasPath(obj, dottedPath) {
   if (dottedPath === "supplier.tax_number_or_vat_id") {
@@ -43,6 +59,10 @@ function hasPath(obj, dottedPath) {
   }
   if (dottedPath === "vat_rate_or_exemption_note") {
     return Boolean(obj?.vat_breakdown?.length || obj?.notes);
+  }
+  if (dottedPath === "kleinunternehmer_exemption_note") {
+    const notes = String(obj?.notes || "").toLowerCase();
+    return notes.includes("kleinunternehmer") || notes.includes("§ 19") || notes.includes("ustg 19");
   }
   let cursor = obj;
   for (const part of dottedPath.split(".")) {
@@ -58,9 +78,18 @@ for (const field of required) {
       level: "error",
       code: "missing_required_field",
       message: `Missing required invoice field candidate: ${field}`,
-      source_id: isSmallInvoice ? rules.invoice.small_invoice_required_fields.source_id : rules.invoice.regular_required_fields.source_id
+      source_id: ruleSet.source_id
     });
   }
+}
+
+if (isSmallInvoice && !smallInvoiceReliefCandidate && invoice.tax_regime !== "kleinunternehmer") {
+  report.findings.push({
+    level: "review",
+    code: "small_invoice_relief_not_selected",
+    message: "Invoice amount is within the small-invoice range, but relationship or special VAT indicators require review before using relaxed small-invoice fields.",
+    source_id: rules.invoice.small_invoice_required_fields.source_id
+  });
 }
 
 if (!Array.isArray(invoice.line_items) || invoice.line_items.length === 0) {
@@ -103,8 +132,18 @@ if (invoice.tax_regime === "kleinunternehmer") {
 
 if (invoice.relationship === "domestic_b2b" && rules.invoice.e_invoice_review_required_for_domestic_b2b.value) {
   report.professional_review_items.push({
-    item: "Domestic B2B invoice detected. Check current e-invoice obligations and transition rules before issuing.",
+    item: invoice.tax_regime === "kleinunternehmer"
+      ? "Domestic B2B Kleinunternehmer invoice detected. Check current e-invoice obligations, UStDV 34a relief, and transition rules before issuing."
+      : "Domestic B2B invoice detected. Check current e-invoice obligations and transition rules before issuing.",
     source_id: rules.invoice.e_invoice_review_required_for_domestic_b2b.source_id
+  });
+  report.verification_checkpoints.push(rules.invoice.e_invoice_review_required_for_domestic_b2b.verification_checkpoint);
+}
+
+if (!domesticRelationships.has(invoice.relationship)) {
+  report.professional_review_items.push({
+    item: "Non-domestic or unknown customer relationship detected. Review VAT place-of-supply, reverse charge, VAT ID, OSS, and local invoicing rules before issuing.",
+    source_id: rules.invoice.regular_required_fields.source_id
   });
 }
 

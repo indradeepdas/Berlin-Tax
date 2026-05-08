@@ -56,11 +56,17 @@ Require professional review when:
 - The user is Kleinunternehmer but includes VAT amounts.
 - The invoice corrects or cancels an earlier invoice.
 
+## Verify Before Submission Controls
+
+- Confirm the user's tax regime and tax number/VAT ID/Kleinunternehmer identifier before issuing.
+- Verify UStG 14, UStDV 33, UStDV 34a, and e-invoice obligations for the specific customer relationship.
+- Treat non-domestic, reverse-charge, marketplace, exemption, and credit-note cases as review-gated even when field validation passes.
+- Keep validation reports labeled as field checks, not compliance certificates.
+
 ## Source Notes
 
-Use `ustg-14` for regular invoice fields, `ustdv-33` for small invoices, `ustg-19` for Kleinunternehmer warnings, and `bmf-e-rechnung-faq` for e-invoice review flags.
+Use `ustg-14` for regular invoice fields, `ustdv-33` for small invoices, `ustdv-34a` for Kleinunternehmer invoice fields, `ustg-19` for Kleinunternehmer status warnings, and `bmf-e-rechnung-faq` for e-invoice review flags.
 
 ## Examples
 
 See `examples/kleinunternehmer-invoice-report.md` and root `examples/invoices/`.
-

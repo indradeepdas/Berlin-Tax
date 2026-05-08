@@ -13,7 +13,7 @@ Agents do three things:
 Scripts do three things:
 
 - Validate structured inputs.
-- Calculate config-backed thresholds and deadline candidates.
+- Calculate config-backed thresholds, field checks, and deadline scenarios.
 - Fail or warn when source metadata is missing, stale, or unsafe.
 
 Humans and professionals do the final legal, tax, company-law, employment, and filing decisions.
@@ -28,7 +28,7 @@ Humans and professionals do the final legal, tax, company-law, employment, and f
 
 `scripts/` contains deterministic Node.js logic. Scripts must not contain legal thresholds that also exist in `config/`.
 
-`templates/` contains output contracts. These define how agent outputs should separate facts, assumptions, user inputs, uncertainty, and professional-review items.
+`templates/` contains output contracts. These define how agent outputs should separate facts, assumptions, user inputs, uncertainty, verification checkpoints, and professional-review items.
 
 ## Trust Boundaries
 
@@ -55,6 +55,8 @@ Every rule pack value has an owner-facing lifecycle:
 
 The default posture is conservative. A stale source should create a warning or failure, not silent confidence.
 
+High-risk config values must include a `verification_checkpoint`. Scripts should surface those checkpoints in generated reports so a user cannot mistake a candidate result for a submission-ready answer.
+
 ## Agent Compatibility
 
 Skills are plain directories with `SKILL.md` and optional references/examples. They are intentionally readable by Codex, Claude Code, Cursor, Windsurf, Aider, and other file-oriented coding agents.
@@ -67,4 +69,3 @@ The expected agent pattern is:
 4. Run deterministic scripts where structured validation is available.
 5. Produce output using the shared templates.
 6. Clearly label uncertainty and review items.
-

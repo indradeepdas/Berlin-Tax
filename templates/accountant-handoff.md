@@ -39,6 +39,12 @@
 
 - 
 
+## Verification Checkpoints
+
+- Confirm the cited source pages were reviewed after the repository `last_verified` date.
+- Confirm user-provided revenue, invoice, and registration data against source documents.
+- Confirm no filing or authority communication depends only on this generated handoff.
+
 ## Professional Review Items
 
 - 
@@ -47,3 +53,6 @@
 
 - 
 
+## Boundary Notice
+
+This handoff is a preparation package for professional review. It is not tax, legal, accounting, immigration, employment, or company-law advice.

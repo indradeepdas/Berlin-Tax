@@ -58,6 +58,13 @@ Require professional or authority review when:
 - A UG/GmbH is in formation or Handelsregister data is incomplete.
 - The user already started operating without registration.
 
+## Verify Before Submission Controls
+
+- Recheck the current Service Berlin page and fee table before filing or telling a user how to pay.
+- Confirm whether the activity is gewerblich, freiberuflich, regulated, or permit-sensitive before presenting a filing path as ready.
+- Confirm the user's right to self-employment in Germany if immigration, residence, employer, or ALG I facts are present.
+- Keep the output in preparation status until the responsible authority path and required documents are verified for the user's legal form.
+
 ## Source Notes
 
 Read `references/source-notes.md` before producing final workflow output. Use `source_id` `berlin-gewerbeanmeldung` for Berlin procedural notes and `gewerbeanmeldung-legal-basis` for the federal notification basis.

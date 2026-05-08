@@ -55,11 +55,17 @@ Require professional review when:
 - The user wants to opt out, opt back in, or compare tax outcomes.
 - There is any missed registration, correction, or retroactive issue.
 
+## Verify Before Submission Controls
+
+- Reconcile revenue inputs to sales ledgers, invoice records, and bank data before relying on threshold monitoring.
+- Confirm whether figures are Gesamtumsatz under the cited rule, not profit or cash balance.
+- Confirm opt-out history, prior filings, cross-border activity, and VAT charged on invoices before using a Kleinunternehmer assumption.
+- Keep outputs labeled as monitoring and preparation unless a Steuerberater or Finanzamt confirms the user's position.
+
 ## Source Notes
 
-Use `ustg-19` for threshold monitoring. Load threshold values from `config/rules.de.berlin.json`; do not restate them as permanent prose. Use `ustg-14`, `ustdv-33`, and `bmf-e-rechnung-faq` when invoices are involved.
+Use `ustg-19` for threshold monitoring. Load threshold values from `config/rules.de.berlin.json`; do not restate them as permanent prose. Use `ustg-14`, `ustdv-33`, `ustdv-34a`, and `bmf-e-rechnung-faq` when invoices are involved.
 
 ## Examples
 
 See `examples/revenue-monitoring-output.md` and root `examples/thresholds/`.
-

@@ -12,7 +12,7 @@ Berlin-Tax is:
 
 - Workflow orchestration for German/Berlin bureaucracy.
 - Compliance preparation for founder operations.
-- Deterministic validation for invoices, thresholds, deadlines, and handoff completeness.
+- Deterministic field checks, threshold monitoring, candidate deadline generation, and handoff completeness checks.
 - Checklist generation with assumptions and uncertainty visible.
 - A procedural knowledge layer for Codex, Claude Code, Cursor, Windsurf, Aider, and similar agentic coding tools.
 - An accountant-ready output system, not an accountant replacement.
@@ -87,6 +87,7 @@ node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berli
 - `sources/`: official-source registry and review metadata.
 - `templates/`: shared output formats for assumption logs, accountant handoff, and professional review.
 - `examples/`: sample inputs and outputs for realistic founder scenarios.
+- `AUDIT_REPORT.md`: current trust-boundary audit findings and safeguards.
 
 ## Source Discipline
 
@@ -116,14 +117,16 @@ Generated outputs must include:
 - Responsible authority.
 - Assumptions.
 - Open verification items.
+- Verification checkpoints.
 - Source notes.
 - Professional review triggers.
 
 Never present an uncertain legal, tax, employment, residency, or company-law classification as a conclusion. Present it as a preparation position and route it to review.
+
+Validation reports are not compliance certificates. A generated invoice report, threshold report, or calendar is preparation-only until every verification checkpoint is complete.
 
 ## Legal Notice
 
 Berlin-Tax is operational infrastructure, not legal or tax advice. It may help organize information for professional review, but users remain responsible for verifying requirements with official authorities and qualified professionals.
 
 Read `LEGAL_DISCLAIMER.md` before using this repository for real-world workflows.
-

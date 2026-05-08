@@ -13,21 +13,24 @@
       "source_id": "ustg-19",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before using this threshold, verify the current UStG 19 text and confirm that user revenue is Gesamtumsatz, not profit."
     },
     "current_calendar_year_total_revenue_limit_eur": {
       "value": 100000,
       "source_id": "ustg-19",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before using this threshold, verify the current UStG 19 text and confirm whether current-year monitoring, opt-out history, and special cases were reviewed."
     },
     "monitoring_warning_ratio": {
       "value": 0.8,
       "source_id": "ustg-19",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "medium"
+      "risk_level": "medium",
+      "verification_checkpoint": "Confirm the warning ratio is project policy only and not an official threshold."
     }
   },
   "ustva": {
@@ -36,28 +39,32 @@
       "source_id": "ustg-18",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before using a date externally, verify the current UStG 18 text, weekends, public holidays, Dauerfristverlaengerung, and Finanzamt correspondence."
     },
     "monthly_previous_year_tax_threshold_eur": {
       "value": 9000,
       "source_id": "ustg-18",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before selecting a period, verify the current UStG 18 text and the user's Finanzamt correspondence."
     },
-    "new_business_default_period": {
-      "value": "monthly",
+    "new_business_period_policy": {
+      "value": "requires_expected_tax_and_finanzamt_confirmation",
       "source_id": "ustg-18",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Do not assume a new business is monthly by default. Confirm expected VAT and Finanzamt/ELSTER period before generating submission reminders."
     },
     "calendar_adjustment_policy": {
       "value": "candidate_only_not_adjusted_for_weekends_or_holidays",
       "source_id": "ustg-18",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Treat generated dates as candidate planning dates until adjusted for weekends, holidays, extensions, exemptions, and user-specific authority messages."
     }
   },
   "invoice": {
@@ -66,7 +73,8 @@
       "source_id": "ustdv-33",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before applying small-invoice relief, verify UStDV 33 and confirm the invoice is not for a cross-border or reverse-charge-sensitive case."
     },
     "regular_required_fields": {
       "value": [
@@ -86,7 +94,8 @@
       "source_id": "ustg-14",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before issuing, verify UStG 14, UStG 14a if relevant, and the user's actual tax treatment."
     },
     "small_invoice_required_fields": {
       "value": [
@@ -100,14 +109,34 @@
       "source_id": "ustdv-33",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before using relaxed small-invoice fields, verify UStDV 33 and check whether any exclusion applies."
+    },
+    "kleinunternehmer_required_fields": {
+      "value": [
+        "supplier.name",
+        "supplier.address",
+        "customer.name",
+        "customer.address",
+        "supplier.tax_number_or_vat_id",
+        "issue_date",
+        "line_items",
+        "gross_total_eur",
+        "kleinunternehmer_exemption_note"
+      ],
+      "source_id": "ustdv-34a",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "verification_checkpoint": "Before issuing a Kleinunternehmer invoice, verify UStDV 34a, UStG 19 status, and whether the invoice may be sent as a sonstige Rechnung."
     },
     "e_invoice_review_required_for_domestic_b2b": {
       "value": true,
       "source_id": "bmf-e-rechnung-faq",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "high"
+      "risk_level": "high",
+      "verification_checkpoint": "Before issuing domestic B2B invoices, verify current e-invoice obligations, transition rules, and any Kleinunternehmer-specific exception or relief."
     }
   },
   "berlin_gewerbeanmeldung": {
@@ -116,29 +145,32 @@
       "source_id": "berlin-gewerbeanmeldung",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "medium"
+      "risk_level": "medium",
+      "verification_checkpoint": "Verify the current Service Berlin fee table before payment or user-facing fee output."
     },
     "fee_legal_entity_one_representative_eur": {
       "value": 31,
       "source_id": "berlin-gewerbeanmeldung",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "medium"
+      "risk_level": "medium",
+      "verification_checkpoint": "Verify the current Service Berlin fee table before payment or user-facing fee output."
     },
     "fee_each_additional_legal_representative_eur": {
       "value": 13,
       "source_id": "berlin-gewerbeanmeldung",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "medium"
+      "risk_level": "medium",
+      "verification_checkpoint": "Verify the current Service Berlin fee table before payment or user-facing fee output."
     },
     "fee_online_procedure_eur": {
       "value": 15,
       "source_id": "berlin-gewerbeanmeldung",
       "last_verified": "2026-05-08",
       "review_by": "2026-08-06",
-      "risk_level": "medium"
+      "risk_level": "medium",
+      "verification_checkpoint": "Verify the current Service Berlin fee table before payment or user-facing fee output."
     }
   }
 }
-

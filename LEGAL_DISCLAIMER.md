@@ -35,3 +35,6 @@ Users should seek qualified professional review when a matter involves:
 
 German and Berlin administrative rules change. Source metadata in this repository records when a source was last checked, not that it remains correct forever. Treat stale source warnings as blocking until reviewed.
 
+## Preparation-Only Outputs
+
+Generated outputs, validation reports, threshold checks, and calendar dates are preparation artifacts. They are not ready for filing, invoicing, payment, or authority communication until the listed verification checkpoints are complete and any professional-review items have been resolved.

@@ -8,6 +8,6 @@ Primary source IDs:
 Operational notes:
 
 - Candidate deadlines must be presented as preparation dates, not final filing advice.
+- New-business profiles without confirmed Finanzamt/ELSTER period should not be treated as monthly by default. Generate scenario dates or block on verification.
 - Do not adjust deadlines for weekends or holidays unless a dedicated official-source-backed calendar module is added.
 - Always ask for Finanzamt correspondence because individual handling can override assumptions.
-

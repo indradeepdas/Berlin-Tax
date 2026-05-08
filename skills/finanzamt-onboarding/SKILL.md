@@ -59,6 +59,13 @@ Require professional review when:
 - The user is unsure whether the activity is freiberuflich or gewerblich.
 - The user needs retrospective registration or correction.
 
+## Verify Before Submission Controls
+
+- Confirm the correct ELSTER form for the user's legal form before entering data.
+- Verify tax number, VAT ID, bank data, activity wording, and revenue/profit estimates against user documents.
+- Confirm Kleinunternehmer, VAT ID, cross-border, payroll, and advance-payment assumptions with a Steuerberater when present.
+- Keep the output in preparation status until ELSTER and Finanzamt correspondence have been checked.
+
 ## Source Notes
 
 Use `elster-fseeun` and `elster-fseeun-help` for Einzelunternehmen onboarding. For corporations and partnerships, treat Einzelunternehmen references as incomplete and add an open verification item for the correct ELSTER form.
@@ -66,4 +73,3 @@ Use `elster-fseeun` and `elster-fseeun-help` for Einzelunternehmen onboarding. F
 ## Examples
 
 See `examples/freelancer-elster-prep.md` for a sample onboarding preparation package.
-

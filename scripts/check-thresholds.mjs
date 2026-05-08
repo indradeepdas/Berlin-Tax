@@ -28,6 +28,8 @@ report.verified_facts.push({
   fact: "Threshold values were loaded from config/rules.de.berlin.json, not hardcoded in the script.",
   source_id: "ustg-19"
 });
+report.verification_checkpoints.push(rules.kleinunternehmer.prior_calendar_year_total_revenue_limit_eur.verification_checkpoint);
+report.verification_checkpoints.push(rules.kleinunternehmer.current_calendar_year_total_revenue_limit_eur.verification_checkpoint);
 
 if (!Number.isFinite(priorRevenue)) {
   report.findings.push({
@@ -48,6 +50,23 @@ if (!Number.isFinite(priorRevenue)) {
     level: "warning",
     code: "near_prior_year_limit",
     message: "Prior calendar year revenue is near the configured limit. Confirm calculations with an accountant.",
+    source_id: "ustg-19"
+  });
+}
+
+if (input.opted_out_previously === true) {
+  report.findings.push({
+    level: "review",
+    code: "opt_out_history_present",
+    message: "User indicates a prior opt-out or waiver history. Threshold monitoring alone is not enough to support a Kleinunternehmer assumption.",
+    source_id: "ustg-19"
+  });
+}
+
+const customerMix = input.customer_mix || {};
+if (customerMix.eu_b2b || customerMix.eu_b2c || customerMix.non_eu) {
+  report.professional_review_items.push({
+    item: "Cross-border customer mix detected. Review VAT ID, place-of-supply, OSS, reverse charge, and cross-border Kleinunternehmer rules before relying on the assumption.",
     source_id: "ustg-19"
   });
 }
@@ -76,6 +95,7 @@ report.professional_review_items.push({
   item: "Confirm eligibility, opt-out history, and VAT treatment with a Steuerberater before relying on the result.",
   source_id: "ustg-19"
 });
+report.verification_checkpoints.push("Reconcile revenue inputs to invoice ledger and bank records before using the report externally.");
 report.next_steps.push("Attach revenue calculation detail to the accountant handoff.");
 report.next_steps.push("Update the monitoring input after each invoice batch.");
 report.required_documents.push("Sales ledger for prior calendar year.");
@@ -84,4 +104,3 @@ report.responsible_authority.push("Steuerberater");
 report.responsible_authority.push("Finanzamt for binding case handling");
 
 printReport(setStatus(report));
-

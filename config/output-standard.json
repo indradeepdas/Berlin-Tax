@@ -4,6 +4,7 @@
     "user_provided_inputs",
     "assumptions",
     "open_verification_items",
+    "verification_checkpoints",
     "professional_review_items",
     "next_steps",
     "required_documents",
@@ -12,6 +13,5 @@
   ],
   "finding_levels": ["info", "warning", "error", "review"],
   "status_values": ["pass", "review", "fail"],
-  "policy": "Every output must separate facts from assumptions and professional-review items."
+  "policy": "Every output must separate facts from assumptions and professional-review items. No generated output is submission-ready until its verification_checkpoints are complete."
 }
-

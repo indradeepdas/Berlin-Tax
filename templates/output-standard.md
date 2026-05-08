@@ -18,6 +18,10 @@ Assumptions made to continue the workflow. Each assumption should be easy for th
 
 Questions that must be checked against an official authority, source, professional adviser, or the user's documents.
 
+## Verification Checkpoints
+
+Blocking checks that must be completed before a form, invoice, calendar, or handoff package is used externally. If any checkpoint is incomplete, mark the output as preparation-only.
+
 ## Professional Review Items
 
 Issues that require a Steuerberater, lawyer, notary, Arbeitsagentur, Finanzamt, immigration adviser, IHK/HWK, or another qualified authority.
@@ -38,3 +42,6 @@ The office, portal, adviser, or institution responsible for the next action.
 
 Official sources used, with source IDs and review dates.
 
+## Boundary Notice
+
+This output is preparation support. It is not legal, tax, accounting, immigration, employment, or company-law advice and is not ready for submission until the verification checkpoints are complete.

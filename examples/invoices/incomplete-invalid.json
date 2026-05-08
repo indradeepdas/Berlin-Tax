@@ -4,6 +4,7 @@
   "currency": "EUR",
   "tax_regime": "kleinunternehmer",
   "relationship": "eu_b2b",
+  "special_vat_case": true,
   "supplier": {
     "name": "Sample Founder"
   },
@@ -14,4 +15,3 @@
   "gross_total_eur": 1200,
   "notes": "Consulting invoice"
 }
-

@@ -22,6 +22,12 @@
 - Confirm no EU/non-EU VAT complications.
 - Confirm whether any invoices charged VAT.
 
+## Verification Checkpoints
+
+- Reconcile revenue to sales ledger, invoice records, and bank data.
+- Confirm the figures are Gesamtumsatz under the cited rule.
+- Keep the output as monitoring until a Steuerberater or Finanzamt confirms the position.
+
 ## Professional Review Items
 
 - Eligibility and forward-looking VAT treatment.
@@ -46,4 +52,3 @@
 ## Source Notes
 
 - `ustg-19`.
-

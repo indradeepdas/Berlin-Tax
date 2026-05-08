@@ -21,6 +21,12 @@
 - Confirm correct ELSTER form for the user's legal form.
 - Confirm whether a VAT ID should be requested.
 
+## Verification Checkpoints
+
+- Compare all ELSTER inputs against user documents before entry.
+- Confirm cross-border and Kleinunternehmer assumptions with a Steuerberater.
+- Keep the output in preparation status until Finanzamt/ELSTER form path is confirmed.
+
 ## Professional Review Items
 
 - EU B2B services and VAT treatment.
@@ -46,4 +52,3 @@
 ## Source Notes
 
 - `elster-fseeun`, `elster-fseeun-help`, `ustg-19`.
-

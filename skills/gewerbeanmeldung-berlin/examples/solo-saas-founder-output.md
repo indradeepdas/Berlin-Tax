@@ -22,6 +22,12 @@
 - Confirm activity wording in German before submission.
 - Confirm whether any visa or employer restrictions apply.
 
+## Verification Checkpoints
+
+- Check Service Berlin on the day of filing.
+- Confirm no regulated activity or permit-sensitive service has been omitted.
+- Keep the package in preparation status until classification uncertainty is resolved.
+
 ## Professional Review Items
 
 - Gewerbe vs freiberuflich classification should be reviewed if the SaaS includes consulting, teaching, or mixed services.

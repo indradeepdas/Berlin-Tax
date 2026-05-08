@@ -72,6 +72,17 @@
       "used_for": ["small invoice validation"]
     },
     {
+      "id": "ustdv-34a",
+      "title": "UStDV Section 34a - Rechnungen von Kleinunternehmern",
+      "authority": "Bundesministerium der Justiz",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.gesetze-im-internet.de/ustdv_1980/__34a.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["Kleinunternehmer invoice validation", "Kleinunternehmer invoice wording warnings"]
+    },
+    {
       "id": "ustg-18",
       "title": "UStG Section 18 - Besteuerungsverfahren",
       "authority": "Bundesministerium der Justiz",

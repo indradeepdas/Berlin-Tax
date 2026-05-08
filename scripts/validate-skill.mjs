@@ -11,6 +11,7 @@ const requiredHeadings = [
   "Outputs",
   "Risks",
   "Escalation Conditions",
+  "Verify Before Submission Controls",
   "Source Notes",
   "Examples"
 ];
@@ -54,4 +55,3 @@ if (failures > 0) {
 }
 
 process.stdout.write("Skill validation passed.\n");
-

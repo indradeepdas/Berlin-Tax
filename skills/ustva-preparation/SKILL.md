@@ -13,7 +13,7 @@ Prepare Umsatzsteuer-Voranmeldung work without submitting it. The skill helps th
 
 1. Collect legal form, tax number status, VAT ID status, business start date, Kleinunternehmer status, and UStVA frequency if known.
 2. Collect sales, expense, VAT, reverse charge, EU, non-EU, and import/export indicators.
-3. Use `scripts/generate-compliance-calendar.mjs` for candidate deadlines when profile data is structured.
+3. Use `scripts/generate-compliance-calendar.mjs` for candidate deadlines when profile data is structured. If the UStVA period is not confirmed, generate scenario dates only and mark the output as review-gated.
 4. Produce a data-readiness checklist and accountant handoff.
 5. Explicitly label candidate deadlines as unadjusted for weekends, holidays, Dauerfristverlaengerung, exemptions, and Finanzamt-specific decisions.
 
@@ -32,7 +32,7 @@ Prepare Umsatzsteuer-Voranmeldung work without submitting it. The skill helps th
 ## Outputs
 
 - UStVA readiness report.
-- Candidate deadline calendar.
+- Candidate deadline calendar or scenario calendar when the period is unconfirmed.
 - Missing data list.
 - VAT treatment review flags.
 - Accountant handoff questions.
@@ -55,6 +55,13 @@ Require professional review when:
 - Deadlines were missed.
 - The user is unsure about UStVA frequency or Kleinunternehmer status.
 
+## Verify Before Submission Controls
+
+- Confirm the UStVA period from Finanzamt correspondence or ELSTER before adding deadlines to an operational calendar.
+- Verify whether the user has Dauerfristverlaengerung, exemptions, missed deadlines, or correction obligations.
+- Reconcile sales, expenses, VAT rates, and input VAT against source documents before preparing figures.
+- Treat every generated deadline as a planning candidate until weekends, holidays, extensions, and user-specific authority messages are checked.
+
 ## Source Notes
 
 Use `ustg-18` for filing procedure and deadline candidates. Use `ustg-19` when Kleinunternehmer assumptions affect whether or how VAT pre-returns apply. Do not submit through ELSTER.
@@ -62,4 +69,3 @@ Use `ustg-18` for filing procedure and deadline candidates. Use `ustg-19` when K
 ## Examples
 
 See `examples/ug-monthly-calendar.md` for a calendar preparation example.
-

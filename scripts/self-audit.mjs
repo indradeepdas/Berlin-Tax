@@ -11,7 +11,7 @@ const unsafePatterns = [
   { pattern: /final legal conclusion/i, message: "Avoid final legal conclusion language." },
   { pattern: /replace(s|ment)?\s+(a\s+)?(steuerberater|lawyer|accountant)/i, message: "Avoid replacement claims." }
 ];
-const hardcodedThresholdPattern = /\b(25000|100000|9000)\b/;
+const hardcodedThresholdPattern = /\b(25000|25\s*000|100000|100\s*000|9000|9\s*000|2000|2\s*000|250)\b/;
 const ignoredDirs = new Set([".git", "node_modules", ".cache", "dist", "coverage"]);
 const textExtensions = new Set([".md", ".json", ".mjs", ".yml", ".yaml"]);
 let failures = 0;
@@ -37,8 +37,14 @@ function walk(dir) {
       }
     }
 
-    if (relative.startsWith("scripts/") && hardcodedThresholdPattern.test(content)) {
-      process.stderr.write(`${relative}: possible hardcoded legal threshold. Load from config instead.\n`);
+    const thresholdAllowed =
+      relative.startsWith("config/") ||
+      relative.startsWith("sources/") ||
+      relative.startsWith("examples/") ||
+      relative === "package.json";
+
+    if (!thresholdAllowed && hardcodedThresholdPattern.test(content)) {
+      process.stderr.write(`${relative}: possible hardcoded legal threshold or statutory amount. Load from config or source registry instead.\n`);
       failures++;
     }
   }

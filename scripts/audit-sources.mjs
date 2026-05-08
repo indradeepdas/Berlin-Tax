@@ -55,6 +55,10 @@ for (const rule of collectObjectsWithSourceIds(rules)) {
       failures++;
     }
   }
+  if (["high", "professional_review_required"].includes(rule.risk_level) && !rule.verification_checkpoint) {
+    process.stderr.write(`Rule ${rule.path} missing verification_checkpoint for ${rule.risk_level} risk\n`);
+    failures++;
+  }
   if (isPastDate(rule.review_by, asOf)) {
     process.stderr.write(`Rule ${rule.path} is stale as of ${asOf.toISOString().slice(0, 10)}\n`);
     failures++;
@@ -67,4 +71,3 @@ if (failures > 0) {
 }
 
 process.stdout.write("Source audit passed.\n");
-
