@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Berlin-Tax invoice validation input",
+  "type": "object",
+  "required": ["supplier", "customer", "issue_date", "invoice_number", "line_items", "gross_total_eur", "currency"],
+  "properties": {
+    "invoice_number": { "type": "string" },
+    "issue_date": { "type": "string" },
+    "service_date_or_period": { "type": "string" },
+    "currency": { "type": "string" },
+    "tax_regime": { "type": "string", "enum": ["regular_vat", "kleinunternehmer", "unknown"] },
+    "relationship": { "type": "string", "enum": ["domestic_b2b", "domestic_b2c", "eu_b2b", "eu_b2c", "non_eu", "unknown"] },
+    "supplier": { "type": "object" },
+    "customer": { "type": "object" },
+    "line_items": { "type": "array" },
+    "net_total_eur": { "type": "number" },
+    "gross_total_eur": { "type": "number" },
+    "vat_breakdown": { "type": "array" },
+    "notes": { "type": "string" }
+  }
+}
+

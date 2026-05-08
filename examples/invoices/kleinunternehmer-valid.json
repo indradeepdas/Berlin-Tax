@@ -1,0 +1,36 @@
+{
+  "invoice_number": "BT-2026-001",
+  "issue_date": "2026-05-07",
+  "service_date_or_period": "2026-05-01 to 2026-05-07",
+  "currency": "EUR",
+  "tax_regime": "kleinunternehmer",
+  "relationship": "domestic_b2b",
+  "supplier": {
+    "name": "Sample Founder",
+    "address": "Musterstrasse 1, 10115 Berlin",
+    "tax_number": "pending"
+  },
+  "customer": {
+    "name": "Example GmbH",
+    "address": "Beispielweg 10, 10999 Berlin"
+  },
+  "line_items": [
+    {
+      "description": "Product strategy workshop",
+      "quantity": 1,
+      "unit_price_eur": 950,
+      "net_amount_eur": 950
+    }
+  ],
+  "net_total_eur": 950,
+  "vat_breakdown": [
+    {
+      "vat_rate": 0,
+      "vat_amount_eur": 0,
+      "reason": "Kleinunternehmer assumption"
+    }
+  ],
+  "gross_total_eur": 950,
+  "notes": "No VAT charged under Kleinunternehmer assumption according to UStG 19. Please verify tax treatment before repeated use."
+}
+

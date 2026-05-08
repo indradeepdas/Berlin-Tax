@@ -1,0 +1,16 @@
+{
+  "entity_name": "Sample Founder",
+  "tax_year": 2026,
+  "prior_calendar_year_revenue_eur": 18200,
+  "current_year_revenue_to_date_eur": 7600,
+  "forecast_current_year_revenue_eur": 22000,
+  "tax_regime_assumption": "kleinunternehmer",
+  "opted_out_previously": false,
+  "customer_mix": {
+    "domestic_b2b": true,
+    "domestic_b2c": false,
+    "eu_b2b": false,
+    "non_eu": false
+  }
+}
+

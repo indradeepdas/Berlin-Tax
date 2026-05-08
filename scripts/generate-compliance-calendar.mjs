@@ -1,0 +1,79 @@
+#!/usr/bin/env node
+import { readFileSync } from "node:fs";
+import { createReport, loadRules, printReport, setStatus } from "./lib/config.mjs";
+
+const inputPath = process.argv[2];
+if (!inputPath) {
+  process.stderr.write("Usage: node scripts/generate-compliance-calendar.mjs <profile.json>\n");
+  process.exit(2);
+}
+
+const profile = JSON.parse(readFileSync(inputPath, "utf8"));
+const rules = loadRules();
+const start = profile.calendar_start || new Date().toISOString().slice(0, 10);
+const months = Number(profile.months || 12);
+const previousVat = Number(profile.previous_year_vat_due_eur || 0);
+const dueDay = rules.ustva.due_day_after_period_end.value;
+const monthlyThreshold = rules.ustva.monthly_previous_year_tax_threshold_eur.value;
+const isNewBusiness = Boolean(profile.new_business);
+const period = isNewBusiness || previousVat > monthlyThreshold ? "monthly" : "quarterly";
+
+const report = createReport({
+  title: "Compliance calendar candidate",
+  source_ids: ["ustg-18", "berlin-gewerbeanmeldung"],
+  user_input: profile
+});
+
+function addMonths(date, count) {
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + count, 1));
+}
+
+function deadlineForPeriodEnd(year, monthIndex) {
+  return new Date(Date.UTC(year, monthIndex + 1, dueDay));
+}
+
+const startDate = new Date(`${start}T00:00:00Z`);
+const events = [];
+
+for (let offset = 0; offset < months; offset += period === "monthly" ? 1 : 3) {
+  const periodStart = addMonths(startDate, offset);
+  const periodEndMonth = period === "monthly" ? periodStart.getUTCMonth() : periodStart.getUTCMonth() + 2;
+  const periodEnd = new Date(Date.UTC(periodStart.getUTCFullYear(), periodEndMonth + 1, 0));
+  events.push({
+    type: "ustva_candidate_deadline",
+    period,
+    period_start: periodStart.toISOString().slice(0, 10),
+    period_end: periodEnd.toISOString().slice(0, 10),
+    candidate_due_date: deadlineForPeriodEnd(periodEnd.getUTCFullYear(), periodEnd.getUTCMonth()).toISOString().slice(0, 10),
+    source_id: "ustg-18",
+    caution: "Candidate only. Not adjusted for weekends, holidays, Dauerfristverlaengerung, exemptions, or Finanzamt-specific handling."
+  });
+}
+
+if (profile.gewerbeanmeldung_status !== "completed") {
+  events.unshift({
+    type: "gewerbeanmeldung_preparation",
+    status: profile.gewerbeanmeldung_status || "unknown",
+    responsible_authority: "Berlin Ordnungsamt / Service Berlin",
+    source_id: "berlin-gewerbeanmeldung",
+    caution: "Confirm whether the activity is gewerblich, freiberuflich, regulated, or permit-sensitive before filing."
+  });
+}
+
+report.verified_facts.push({
+  fact: `UStVA period candidate selected as ${period} from config-backed rules and user profile.`,
+  source_id: "ustg-18"
+});
+report.assumptions.push("Deadline dates are candidate calendar dates and not adjusted for weekends, holidays, Dauerfristverlaengerung, or individual Finanzamt decisions.");
+report.assumptions.push("The profile does not encode special VAT schemes, cross-border obligations, payroll, or trade-specific permits.");
+report.open_verification_items.push("Confirm actual UStVA filing frequency and any exemptions in ELSTER/Finanzamt correspondence.");
+report.next_steps.push("Review candidate deadlines with the Steuerberater.");
+report.next_steps.push("Add confirmed deadlines to the user's operational calendar.");
+report.required_documents.push("Finanzamt letters and ELSTER messages.");
+report.required_documents.push("Prior-year VAT due calculation if not a new business.");
+report.responsible_authority.push("Finanzamt");
+report.responsible_authority.push("Steuerberater");
+report.events = events;
+
+printReport(setStatus(report));
+

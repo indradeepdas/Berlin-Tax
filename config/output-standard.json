@@ -1,0 +1,17 @@
+{
+  "required_sections": [
+    "verified_facts",
+    "user_provided_inputs",
+    "assumptions",
+    "open_verification_items",
+    "professional_review_items",
+    "next_steps",
+    "required_documents",
+    "responsible_authority",
+    "source_notes"
+  ],
+  "finding_levels": ["info", "warning", "error", "review"],
+  "status_values": ["pass", "review", "fail"],
+  "policy": "Every output must separate facts from assumptions and professional-review items."
+}
+

@@ -1,0 +1,31 @@
+{
+  "entity_name": "Example UG",
+  "period": "2026-05",
+  "sales": [
+    {
+      "invoice_number": "UG-2026-001",
+      "date": "2026-05-10",
+      "customer_country": "DE",
+      "net_eur": 1000,
+      "vat_rate": 0.19,
+      "vat_eur": 190,
+      "gross_eur": 1190
+    }
+  ],
+  "expenses": [
+    {
+      "date": "2026-05-12",
+      "vendor_country": "DE",
+      "description": "Software subscription",
+      "net_eur": 100,
+      "vat_rate": 0.19,
+      "vat_eur": 19,
+      "gross_eur": 119
+    }
+  ],
+  "open_review_items": [
+    "Confirm whether input VAT deduction is available for each expense.",
+    "Confirm no reverse charge or cross-border services are missing."
+  ]
+}
+

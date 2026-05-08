@@ -1,0 +1,17 @@
+{
+  "invoice_number": "",
+  "issue_date": "2026-05-07",
+  "currency": "EUR",
+  "tax_regime": "kleinunternehmer",
+  "relationship": "eu_b2b",
+  "supplier": {
+    "name": "Sample Founder"
+  },
+  "customer": {
+    "name": "Client BV"
+  },
+  "line_items": [],
+  "gross_total_eur": 1200,
+  "notes": "Consulting invoice"
+}
+

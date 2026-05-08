@@ -1,0 +1,15 @@
+{
+  "entity_name": "Example UG",
+  "legal_form": "UG",
+  "business_address": "Musterstrasse 2, 10115 Berlin",
+  "new_business": true,
+  "business_start_date": "2026-05-01",
+  "calendar_start": "2026-05-01",
+  "months": 6,
+  "previous_year_vat_due_eur": 0,
+  "gewerbeanmeldung_status": "in_preparation",
+  "tax_number_status": "pending",
+  "vat_id_status": "not_requested",
+  "known_risks": ["new entity", "Finanzamt onboarding pending"]
+}
+

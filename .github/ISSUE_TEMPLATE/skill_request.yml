@@ -1,0 +1,27 @@
+name: Skill request
+description: Propose a new Berlin-Tax skill.
+title: "[Skill]: "
+labels: ["skill", "needs-triage"]
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow
+      description: What founder or bureaucracy workflow should this skill support?
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: Target users
+      description: Who needs this, and what mistake or uncertainty does it reduce?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Candidate official sources
+      description: Add official URLs if known.
+    validations:
+      required: false
+

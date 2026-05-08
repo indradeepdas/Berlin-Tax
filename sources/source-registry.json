@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "project": "Berlin-Tax",
+    "last_registry_review": "2026-05-08",
+    "policy": "Prefer official German federal, Berlin, ELSTER, and authority sources. Non-official sources require explicit labeling and must not drive deterministic rules."
+  },
+  "sources": [
+    {
+      "id": "berlin-gewerbeanmeldung",
+      "title": "Gewerbe anmelden - Service Berlin",
+      "authority": "Land Berlin",
+      "jurisdiction": "Berlin",
+      "source_url": "https://service.berlin.de/dienstleistung/121921/",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["gewerbeanmeldung workflow", "Berlin fee candidates", "required documents"]
+    },
+    {
+      "id": "gewerbeanmeldung-legal-basis",
+      "title": "Gewerbeordnung Section 14",
+      "authority": "Bundesministerium der Justiz",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.gesetze-im-internet.de/gewo/__14.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-11-04",
+      "risk_level": "medium",
+      "used_for": ["trade notification legal basis"]
+    },
+    {
+      "id": "elster-fseeun",
+      "title": "ELSTER Fragebogen zur steuerlichen Erfassung fuer Einzelunternehmen",
+      "authority": "ELSTER",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.elster.de/eportal/formulare-leistungen/alleformulare/fseeun?locale=en_US",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["Finanzamt onboarding", "steuerliche Erfassung preparation"]
+    },
+    {
+      "id": "elster-fseeun-help",
+      "title": "ELSTER Hilfe zum Fragebogen steuerliche Erfassung Einzelunternehmen",
+      "authority": "ELSTER",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.faq.elster.de/eportal/helpGlobal?themaGlobal=help_fseeun_202401",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["Finanzamt onboarding instructions", "source notes"]
+    },
+    {
+      "id": "ustg-14",
+      "title": "UStG Section 14 - Ausstellung von Rechnungen",
+      "authority": "Bundesministerium der Justiz",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["invoice required fields", "e-invoice awareness"]
+    },
+    {
+      "id": "ustdv-33",
+      "title": "UStDV Section 33 - Rechnungen ueber Kleinbetraege",
+      "authority": "Bundesministerium der Justiz",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.gesetze-im-internet.de/ustdv_1980/__33.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["small invoice validation"]
+    },
+    {
+      "id": "ustg-18",
+      "title": "UStG Section 18 - Besteuerungsverfahren",
+      "authority": "Bundesministerium der Justiz",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.gesetze-im-internet.de/ustg_1980/__18.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["UStVA due date candidates", "filing frequency candidates"]
+    },
+    {
+      "id": "ustg-19",
+      "title": "UStG Section 19 - Besteuerung der Kleinunternehmer",
+      "authority": "Bundesministerium der Justiz",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.gesetze-im-internet.de/ustg_1980/__19.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["Kleinunternehmer threshold monitoring", "invoice warnings"]
+    },
+    {
+      "id": "bmf-e-rechnung-faq",
+      "title": "BMF FAQ zur obligatorischen E-Rechnung",
+      "authority": "Bundesministerium der Finanzen",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["e-invoice caution notes", "invoice validator review flags"]
+    },
+    {
+      "id": "ba-alg1-nebenjob",
+      "title": "Nebenjob und Arbeitslosengeld",
+      "authority": "Bundesagentur fuer Arbeit",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld/das-muessen-sie-beachten/nebenjob-und-arbeitslosengeld",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "professional_review_required",
+      "used_for": ["roadmap context only", "future ALG I side-business skill"]
+    }
+  ]
+}
