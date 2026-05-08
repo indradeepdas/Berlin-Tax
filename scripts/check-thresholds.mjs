@@ -63,6 +63,16 @@ if (input.opted_out_previously === true) {
   });
 }
 
+if (input.threshold_crossing_invoice_number || input.threshold_crossing_date) {
+  report.findings.push({
+    level: "review",
+    code: "threshold_crossing_event_reported",
+    message: "Input identifies a suspected threshold-crossing event. Review the invoice sequence before issuing more invoices under the previous assumption.",
+    source_id: "ustg-19"
+  });
+  report.verification_checkpoints.push("Verify the invoice that crossed the monitoring threshold, all later invoices, credit notes, and payment dates before changing tax treatment.");
+}
+
 const customerMix = input.customer_mix || {};
 if (customerMix.eu_b2b || customerMix.eu_b2c || customerMix.non_eu) {
   report.professional_review_items.push({
@@ -78,6 +88,11 @@ if (Number.isFinite(currentRevenue) && currentRevenue > currentLimit) {
     message: "Current-year revenue to date exceeds the configured current-year limit candidate.",
     source_id: "ustg-19"
   });
+  report.professional_review_items.push({
+    item: "Current-year monitoring limit appears exceeded. Freeze invoice template changes and prepare invoice sequence, crossing date, and post-crossing invoices for Steuerberater review.",
+    source_id: "ustg-19"
+  });
+  report.next_steps.push("Freeze the invoice template until the threshold-crossing sequence has been reviewed.");
 }
 
 if (Number.isFinite(forecastRevenue) && forecastRevenue >= currentLimit * warningRatio) {

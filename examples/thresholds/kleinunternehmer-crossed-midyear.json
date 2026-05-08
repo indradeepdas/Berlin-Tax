@@ -1,0 +1,19 @@
+{
+  "entity_name": "Fast-Growing Design Solo",
+  "tax_year": 2026,
+  "prior_calendar_year_revenue_eur": 23800,
+  "current_year_revenue_to_date_eur": 104500,
+  "forecast_current_year_revenue_eur": 135000,
+  "tax_regime_assumption": "kleinunternehmer",
+  "opted_out_previously": false,
+  "threshold_crossing_date": "2026-07-18",
+  "threshold_crossing_invoice_number": "FGD-2026-072",
+  "post_crossing_invoice_numbers": ["FGD-2026-073", "FGD-2026-074"],
+  "customer_mix": {
+    "domestic_b2b": true,
+    "domestic_b2c": true,
+    "eu_b2b": false,
+    "non_eu": false
+  }
+}
+

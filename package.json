@@ -10,6 +10,11 @@
     "audit:sources": "node scripts/audit-sources.mjs",
     "audit:self": "node scripts/self-audit.mjs",
     "validate:invoice:valid": "node scripts/validate-invoice.mjs examples/invoices/kleinunternehmer-valid.json",
+    "stress:restaurant": "node scripts/validate-invoice.mjs examples/invoices/restaurant-incorrect.json",
+    "stress:eu-invoice": "node scripts/validate-invoice.mjs examples/invoices/eu-contractor-review.json",
+    "stress:threshold-crossing": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-crossed-midyear.json",
+    "stress:missed-ustva": "node scripts/generate-compliance-calendar.mjs examples/profiles/missed-vat-deadlines.json",
+    "stress": "npm run stress:restaurant && npm run stress:eu-invoice && npm run stress:threshold-crossing && npm run stress:missed-ustva",
     "validate:invoice:invalid": "node scripts/validate-invoice.mjs examples/invoices/incomplete-invalid.json",
     "check:thresholds": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-monitoring.json",
     "calendar:sample": "node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berlin.json",
@@ -19,4 +24,3 @@
     "node": ">=20"
   }
 }
-

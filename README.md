@@ -86,7 +86,7 @@ node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berli
 - `scripts/`: plain Node.js validators and generators.
 - `sources/`: official-source registry and review metadata.
 - `templates/`: shared output formats for assumption logs, accountant handoff, and professional review.
-- `examples/`: sample inputs and outputs for realistic founder scenarios.
+- `examples/`: sample inputs, stress fixtures, and outputs for realistic founder scenarios.
 - `AUDIT_REPORT.md`: current trust-boundary audit findings and safeguards.
 
 ## Source Discipline
@@ -106,6 +106,12 @@ Run:
 ```bash
 node scripts/audit-sources.mjs
 node scripts/self-audit.mjs
+```
+
+Run stress fixtures:
+
+```bash
+npm run stress
 ```
 
 ## Output Standard

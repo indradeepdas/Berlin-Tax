@@ -7,9 +7,11 @@ Primary source IDs:
 - `ustdv-34a`: Kleinunternehmer invoice requirements.
 - `ustg-19`: Kleinunternehmer warning context.
 - `bmf-e-rechnung-faq`: e-invoice operational caution.
+- `berlin-gaststaette-permit`: restaurant/hospitality escalation context.
 
 Operational notes:
 
 - The validator checks field presence and obvious contradictions.
 - It does not validate XML, XRechnung, ZUGFeRD, VAT ID validity, VAT rate correctness, or tax treatment.
 - Domestic B2B invoices should be routed to e-invoice review. Kleinunternehmer invoices also need UStDV 34a review because the required fields and transmission format may differ from regular invoices.
+- Restaurant and POS/cash-register workflows are operationally high risk. Treat them as accountant-review cases even when field presence passes.

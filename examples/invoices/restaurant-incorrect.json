@@ -1,0 +1,32 @@
+{
+  "invoice_number": "REST-2026-014",
+  "issue_date": "2026-05-08",
+  "service_date_or_period": "2026-05-08 dinner service",
+  "currency": "EUR",
+  "tax_regime": "regular_vat",
+  "relationship": "domestic_b2c",
+  "business_sector": "restaurant",
+  "document_state": "paid",
+  "special_vat_case": true,
+  "supplier": {
+    "name": "Example Bistro UG",
+    "address": "Restaurantstrasse 4, 10999 Berlin",
+    "tax_number": "12/345/67890"
+  },
+  "customer": {
+    "name": "Walk-in customer"
+  },
+  "line_items": [
+    {
+      "description": "Mixed food and drinks from POS summary",
+      "quantity": 1,
+      "unit_price_eur": 89.5,
+      "net_amount_eur": 89.5
+    }
+  ],
+  "net_total_eur": 89.5,
+  "gross_total_eur": 106.5,
+  "vat_breakdown": [],
+  "notes": "Customer asked for invoice after payment. VAT split unknown."
+}
+

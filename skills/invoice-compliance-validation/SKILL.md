@@ -14,8 +14,9 @@ Validate whether an invoice draft contains required field candidates and obvious
 1. Ask for the invoice JSON or enough invoice fields to create one.
 2. Identify relationship type: domestic B2B, domestic B2C, EU B2B, EU B2C, non-EU, or unknown.
 3. Identify tax regime: regular VAT, Kleinunternehmer, or unknown.
-4. Run `scripts/validate-invoice.mjs` on structured invoice JSON.
-5. Convert findings into an accountant-ready output using the shared output standard.
+4. Identify whether the invoice comes from a restaurant, POS/cash register, marketplace, reverse-charge, credit-note, or correction context.
+5. Run `scripts/validate-invoice.mjs` on structured invoice JSON.
+6. Convert findings into an accountant-ready output using the shared output standard.
 
 ## Required Inputs
 
@@ -28,6 +29,8 @@ Validate whether an invoice draft contains required field candidates and obvious
 - Net total, VAT breakdown, and gross total where applicable.
 - Tax regime assumption.
 - Customer relationship and country.
+- Business sector and whether cash/POS receipts are involved.
+- Whether this is an original invoice, correction, cancellation, credit note, receipt, or duplicate.
 - Notes printed on the invoice.
 
 ## Outputs
@@ -36,6 +39,8 @@ Validate whether an invoice draft contains required field candidates and obvious
 - Missing field list.
 - Kleinunternehmer note warning if applicable.
 - Domestic B2B e-invoice review flag.
+- Restaurant/POS/cash-handling review flag when relevant.
+- Correction or cancellation packet when the invoice has already been issued.
 - Accountant review items.
 - Corrective next steps.
 
@@ -45,6 +50,8 @@ Validate whether an invoice draft contains required field candidates and obvious
 - Cross-border invoices may need reverse charge, VAT ID validation, OSS, or local-country handling.
 - Kleinunternehmer invoices require careful VAT wording and no unsupported VAT amount.
 - A field-level validator cannot confirm the underlying tax treatment.
+- Restaurant invoices can involve POS/cash register, food/beverage, voucher, tip, split-rate, and correction workflows that are outside field validation.
+- Incorrect invoices already sent may require correction steps, not silent replacement.
 
 ## Escalation Conditions
 
@@ -55,17 +62,20 @@ Require professional review when:
 - The invoice uses reverse charge, VAT exemption, or mixed VAT rates.
 - The user is Kleinunternehmer but includes VAT amounts.
 - The invoice corrects or cancels an earlier invoice.
+- The business sector is restaurant, food service, alcohol, hospitality, or cash/POS-heavy retail.
+- The invoice was already sent, paid, booked, or reported in a VAT period.
 
 ## Verify Before Submission Controls
 
 - Confirm the user's tax regime and tax number/VAT ID/Kleinunternehmer identifier before issuing.
 - Verify UStG 14, UStDV 33, UStDV 34a, and e-invoice obligations for the specific customer relationship.
 - Treat non-domestic, reverse-charge, marketplace, exemption, and credit-note cases as review-gated even when field validation passes.
+- For restaurant/POS cases, verify permit, cash-register, receipt, VAT-rate, and correction handling with a Steuerberater before reissuing documents.
 - Keep validation reports labeled as field checks, not compliance certificates.
 
 ## Source Notes
 
-Use `ustg-14` for regular invoice fields, `ustdv-33` for small invoices, `ustdv-34a` for Kleinunternehmer invoice fields, `ustg-19` for Kleinunternehmer status warnings, and `bmf-e-rechnung-faq` for e-invoice review flags.
+Use `ustg-14` for regular invoice fields, `ustdv-33` for small invoices, `ustdv-34a` for Kleinunternehmer invoice fields, `ustg-19` for Kleinunternehmer status warnings, `bmf-e-rechnung-faq` for e-invoice review flags, and `berlin-gaststaette-permit` for restaurant/hospitality escalation context.
 
 ## Examples
 

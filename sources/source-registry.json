@@ -125,6 +125,72 @@
       "review_by": "2026-08-06",
       "risk_level": "professional_review_required",
       "used_for": ["roadmap context only", "future ALG I side-business skill"]
+    },
+    {
+      "id": "berlin-tax-registration",
+      "title": "Gruendungen - steuerliche Anmeldung von Unternehmen, Gesellschaften, Vereinen, Gewerben, Selbstaendigkeit oder land- und forstwirtschaftlicher Taetigkeit",
+      "authority": "Land Berlin",
+      "jurisdiction": "Berlin",
+      "source_url": "https://service.berlin.de/dienstleistung/325409/",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["Finanzamt onboarding", "ELSTER registration path", "founder tax registration"]
+    },
+    {
+      "id": "berlin-lea-self-employed",
+      "title": "Aufenthaltserlaubnis zur selbststaendigen Taetigkeit beantragen",
+      "authority": "Land Berlin",
+      "jurisdiction": "Berlin",
+      "source_url": "https://service.berlin.de/dienstleistung/305249/de/",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "professional_review_required",
+      "used_for": ["non-EU founder self-employment review", "immigration escalation"]
+    },
+    {
+      "id": "berlin-lea-freelance",
+      "title": "Aufenthaltserlaubnis zur freiberuflichen Taetigkeit beantragen",
+      "authority": "Land Berlin",
+      "jurisdiction": "Berlin",
+      "source_url": "https://service.berlin.de/dienstleistung/328332",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "professional_review_required",
+      "used_for": ["non-EU freelance review", "immigration escalation"]
+    },
+    {
+      "id": "bmwk-freiberuf-gewerbe-difference",
+      "title": "Wer muss was: der feine Unterschied",
+      "authority": "Bundesministerium fuer Wirtschaft und Klimaschutz Existenzgruendungsportal",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.existenzgruendungsportal.de/Redaktion/DE/So-gehts/Unternehmensanmeldung/wer-muss-was-der-feine-unterschied",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["Freiberufler vs Gewerbe preparation", "classification review routing"]
+    },
+    {
+      "id": "bmwk-freie-berufe",
+      "title": "Freie Berufe",
+      "authority": "Bundesministerium fuer Wirtschaft und Klimaschutz Existenzgruendungsportal",
+      "jurisdiction": "Germany",
+      "source_url": "https://www.existenzgruendungsportal.de/SharedDocs/Expertenforum_Unterseiten/Freie-Berufe/inhalt",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "high",
+      "used_for": ["freelance classification context", "qualification evidence checklist"]
+    },
+    {
+      "id": "berlin-gaststaette-permit",
+      "title": "Gaststaettengewerbe - Erlaubnis beantragen",
+      "authority": "Land Berlin",
+      "jurisdiction": "Berlin",
+      "source_url": "https://service.berlin.de/dienstleistung/327483/",
+      "last_verified": "2026-05-08",
+      "review_by": "2026-08-06",
+      "risk_level": "professional_review_required",
+      "used_for": ["restaurant operator escalation", "hospitality permit review"]
     }
   ]
 }

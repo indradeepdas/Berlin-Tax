@@ -48,6 +48,15 @@ if (!period) {
   });
 }
 
+if (Array.isArray(profile.missed_ustva_periods) && profile.missed_ustva_periods.length > 0) {
+  events.unshift({
+    type: "missed_ustva_damage_control",
+    periods: profile.missed_ustva_periods,
+    source_id: "ustg-18",
+    caution: "Missed periods require adviser review, ledger reconciliation, notices review, and payment-status review before filing or correction."
+  });
+}
+
 for (const generatedPeriod of periodsToGenerate) {
   for (let offset = 0; offset < months; offset += generatedPeriod === "monthly" ? 1 : 3) {
     const periodStart = addMonths(startDate, offset);
@@ -94,6 +103,14 @@ if (!period) {
     item: "New-business UStVA period is not selected by this script. Confirm expected VAT and Finanzamt/ELSTER period before adding reminders to an operational calendar.",
     source_id: "ustg-18"
   });
+}
+if (Array.isArray(profile.missed_ustva_periods) && profile.missed_ustva_periods.length > 0) {
+  report.professional_review_items.push({
+    item: "Missed UStVA periods reported. Prepare a damage-control packet and review with Steuerberater before filing, correcting, or paying.",
+    source_id: "ustg-18"
+  });
+  report.verification_checkpoints.push("For missed periods, collect Finanzamt notices, ELSTER status, ledgers, payment records, and bank cash position before taking action.");
+  report.next_steps.push("Build a missed-period damage-control packet before filing, correcting, paying, or adding future reminders.");
 }
 report.next_steps.push("Review candidate deadlines with the Steuerberater.");
 report.next_steps.push("Add confirmed deadlines to the user's operational calendar.");

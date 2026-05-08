@@ -36,6 +36,8 @@ const report = createReport({
     gross_total_eur: invoice.gross_total_eur,
     tax_regime: invoice.tax_regime,
     relationship: invoice.relationship,
+    business_sector: invoice.business_sector,
+    document_state: invoice.document_state,
     special_vat_case: Boolean(invoice.special_vat_case)
   }
 });
@@ -62,7 +64,7 @@ function hasPath(obj, dottedPath) {
   }
   if (dottedPath === "kleinunternehmer_exemption_note") {
     const notes = String(obj?.notes || "").toLowerCase();
-    return notes.includes("kleinunternehmer") || notes.includes("§ 19") || notes.includes("ustg 19");
+    return notes.includes("kleinunternehmer") || notes.includes("ustg 19");
   }
   let cursor = obj;
   for (const part of dottedPath.split(".")) {
@@ -145,6 +147,27 @@ if (!domesticRelationships.has(invoice.relationship)) {
     item: "Non-domestic or unknown customer relationship detected. Review VAT place-of-supply, reverse charge, VAT ID, OSS, and local invoicing rules before issuing.",
     source_id: rules.invoice.regular_required_fields.source_id
   });
+}
+
+const sector = String(invoice.business_sector || "").toLowerCase();
+if (["restaurant", "hospitality", "food_service", "alcohol", "pos_retail"].includes(sector)) {
+  if (!report.source_notes.includes("berlin-gaststaette-permit")) {
+    report.source_notes.push("berlin-gaststaette-permit");
+  }
+  report.professional_review_items.push({
+    item: "Restaurant, hospitality, food service, alcohol, or POS/cash-register context detected. Review receipt, cash-register, VAT-rate, permit, and correction handling before issuing or replacing documents.",
+    source_id: "berlin-gaststaette-permit"
+  });
+  report.verification_checkpoints.push("For restaurant/POS cases, reconcile invoice data to cash register/POS exports, Z-reports, menus, payment provider records, and booking records before correction.");
+}
+
+const state = String(invoice.document_state || "draft").toLowerCase();
+if (["sent", "paid", "booked", "reported", "correction", "credit_note", "cancellation"].includes(state)) {
+  report.professional_review_items.push({
+    item: "Invoice appears to be sent, paid, booked, reported, or a correction. Do not silently replace it; prepare a correction packet for professional review.",
+    source_id: rules.invoice.regular_required_fields.source_id
+  });
+  report.verification_checkpoints.push("Before changing an issued document, identify the original invoice, customer delivery state, payment state, booking state, and VAT reporting period.");
 }
 
 report.next_steps.push("Correct missing fields before issuing or booking the invoice.");

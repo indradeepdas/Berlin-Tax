@@ -66,7 +66,9 @@ export function createReport({ status = "pass", title, source_ids = [], user_inp
     status,
     title,
     verified_facts: [],
-    user_provided_inputs: Object.entries(user_input).map(([key, value]) => ({ key, value })),
+    user_provided_inputs: Object.entries(user_input)
+      .filter(([, value]) => value !== undefined)
+      .map(([key, value]) => ({ key, value })),
     assumptions: [],
     open_verification_items: [],
     verification_checkpoints: [],

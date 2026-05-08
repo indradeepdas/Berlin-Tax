@@ -11,3 +11,4 @@ Operational notes:
 - New-business profiles without confirmed Finanzamt/ELSTER period should not be treated as monthly by default. Generate scenario dates or block on verification.
 - Do not adjust deadlines for weekends or holidays unless a dedicated official-source-backed calendar module is added.
 - Always ask for Finanzamt correspondence because individual handling can override assumptions.
+- Missed deadlines are not calendar-generation problems. Treat them as damage-control workflows with adviser review.

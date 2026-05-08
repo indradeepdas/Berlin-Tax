@@ -1,0 +1,21 @@
+{
+  "entity_name": "Late VAT UG",
+  "legal_form": "UG",
+  "business_address": "Mahnungstrasse 11, 10243 Berlin",
+  "new_business": false,
+  "business_start_date": "2025-11-01",
+  "calendar_start": "2026-01-01",
+  "months": 6,
+  "previous_year_vat_due_eur": 12000,
+  "confirmed_ustva_period": "monthly",
+  "gewerbeanmeldung_status": "completed",
+  "tax_number_status": "received",
+  "vat_id_status": "received",
+  "missed_ustva_periods": ["2026-02", "2026-03"],
+  "known_risks": [
+    "missed UStVA periods",
+    "Finanzamt reminder received",
+    "bookkeeping incomplete"
+  ]
+}
+

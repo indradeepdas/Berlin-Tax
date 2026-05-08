@@ -16,7 +16,8 @@ const officialHosts = [
   "www.elster.de",
   "www.faq.elster.de",
   "www.bundesfinanzministerium.de",
-  "www.arbeitsagentur.de"
+  "www.arbeitsagentur.de",
+  "www.existenzgruendungsportal.de"
 ];
 
 let failures = 0;

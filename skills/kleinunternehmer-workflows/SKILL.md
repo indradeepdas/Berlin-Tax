@@ -12,10 +12,12 @@ Help users monitor and document a Kleinunternehmer assumption. The skill prepare
 ## Workflow
 
 1. Collect prior-year revenue, current-year revenue to date, current-year forecast, legal form, business start date, and whether the user opted out of Kleinunternehmer treatment.
-2. Ask whether there are EU, non-EU, reverse charge, marketplace, import/export, or platform transactions.
-3. Run `scripts/check-thresholds.mjs` on structured revenue inputs.
-4. Run `scripts/validate-invoice.mjs` on sample invoices when invoice assumptions matter.
-5. Produce an assumption log and accountant handoff.
+2. Ask whether the current-year threshold was already crossed, which invoice crossed it, and whether any invoices were issued after crossing.
+3. Ask whether there are EU, non-EU, reverse charge, marketplace, import/export, or platform transactions.
+4. Run `scripts/check-thresholds.mjs` on structured revenue inputs.
+5. Run `scripts/validate-invoice.mjs` on sample invoices when invoice assumptions matter.
+6. Produce an assumption log and accountant handoff.
+7. If threshold crossing or VAT-charged invoices are present, add a "freeze invoice template until review" next step instead of giving new invoice wording.
 
 ## Required Inputs
 
@@ -25,6 +27,8 @@ Help users monitor and document a Kleinunternehmer assumption. The skill prepare
 - Business start date.
 - Tax regime currently used on invoices.
 - Whether VAT has ever been charged.
+- Invoice number and date that appears to cross the current-year monitoring threshold, if known.
+- Invoice numbers issued after the suspected crossing date.
 - Whether the user opted out of Kleinunternehmer treatment.
 - Customer geography and B2B/B2C mix.
 - Sample invoices.
@@ -33,6 +37,7 @@ Help users monitor and document a Kleinunternehmer assumption. The skill prepare
 
 - Threshold monitoring report.
 - Kleinunternehmer assumption log.
+- Suspected threshold-crossing event log.
 - Invoice wording review flags.
 - Accountant questions.
 - Next steps, required documents, responsible authority, assumptions, and source notes.
@@ -44,14 +49,17 @@ Help users monitor and document a Kleinunternehmer assumption. The skill prepare
 - Cross-border activity can create VAT obligations that this skill does not resolve.
 - Opt-out history and prior filings matter.
 - Incorrect invoices may require corrections.
+- Mid-year crossing creates operational sequencing questions: last safe invoice, first review-gated invoice, client communication, bookkeeping, and future template state.
 
 ## Escalation Conditions
 
 Require professional review when:
 
 - Revenue is near or over configured limits.
+- The user believes the threshold was crossed mid-year.
 - The user has EU or non-EU customers.
 - The user has charged VAT while claiming Kleinunternehmer treatment.
+- The user issued more invoices after a suspected crossing event.
 - The user wants to opt out, opt back in, or compare tax outcomes.
 - There is any missed registration, correction, or retroactive issue.
 
@@ -60,6 +68,7 @@ Require professional review when:
 - Reconcile revenue inputs to sales ledgers, invoice records, and bank data before relying on threshold monitoring.
 - Confirm whether figures are Gesamtumsatz under the cited rule, not profit or cash balance.
 - Confirm opt-out history, prior filings, cross-border activity, and VAT charged on invoices before using a Kleinunternehmer assumption.
+- If crossing is suspected, freeze invoice templates and prepare a dated invoice sequence for Steuerberater review before issuing more invoices.
 - Keep outputs labeled as monitoring and preparation unless a Steuerberater or Finanzamt confirms the user's position.
 
 ## Source Notes

@@ -11,12 +11,14 @@ Prepare the user to complete steuerliche Erfassung through ELSTER and coordinate
 
 ## Workflow
 
-1. Determine legal form, activity type, start date, Berlin address, and whether Gewerbeanmeldung is complete or not required.
-2. Collect ELSTER access status and identify whether the user needs individual or organization access.
-3. Prepare structured inputs for steuerliche Erfassung: identity, address, bank, activity, start date, revenue/profit estimates, VAT assumptions, employees, and tax adviser contact.
-4. Flag VAT, Kleinunternehmer, cross-border, payroll, and classification risks.
-5. Produce a handoff package using `templates/accountant-handoff.md`.
-6. Route invoice or threshold checks to the relevant deterministic scripts where structured inputs exist.
+1. Start with `templates/operational-intake.md` and preserve any uncertainty in `templates/assumption-log.md`.
+2. Determine legal form, activity type, start date, Berlin address, and whether Gewerbeanmeldung is complete or not required.
+3. Collect ELSTER access status and identify whether the user needs individual or organization access.
+4. Prepare structured inputs for steuerliche Erfassung: identity, address, bank, activity, start date, revenue/profit estimates, VAT assumptions, employees, and tax adviser contact.
+5. Flag VAT, Kleinunternehmer, cross-border, payroll, and classification risks.
+6. If the user has conflicting advice, create a `templates/contradictory-advice-log.md` entry before selecting a tax-registration posture.
+7. Produce a handoff package using `templates/accountant-handoff.md`.
+8. Route invoice or threshold checks to the relevant deterministic scripts where structured inputs exist.
 
 ## Required Inputs
 
@@ -31,6 +33,7 @@ Prepare the user to complete steuerliche Erfassung through ELSTER and coordinate
 - Payroll or contractor plans.
 - Bank account readiness.
 - Existing tax numbers, VAT ID, or Wirtschafts-Identifikationsnummer if available.
+- Contradictory advice received from forums, advisers, friends, online calculators, or authority calls.
 
 ## Outputs
 
@@ -39,6 +42,7 @@ Prepare the user to complete steuerliche Erfassung through ELSTER and coordinate
 - steuerliche Erfassung input pack.
 - Accountant questions.
 - VAT and Kleinunternehmer review flags.
+- Contradictory advice log when user-facing claims conflict.
 - Next steps, required documents, responsible authority, assumptions, and source notes.
 
 ## Risks
@@ -47,6 +51,7 @@ Prepare the user to complete steuerliche Erfassung through ELSTER and coordinate
 - Cross-border services may create VAT complexity.
 - Payroll creates additional tax and social-security workflows.
 - Incorrect activity classification can create downstream corrections.
+- Informal advice can be outdated, jurisdiction-specific, or correct for a different fact pattern.
 - ELSTER forms and help text can change.
 
 ## Escalation Conditions
@@ -57,6 +62,8 @@ Require professional review when:
 - The user wants Kleinunternehmer treatment but expects growth near thresholds.
 - The user has employees, mini-jobbers, contractors, or managing director salary questions.
 - The user is unsure whether the activity is freiberuflich or gewerblich.
+- The user has been told both "register a Gewerbe" and "you are Freiberufler" for the same activity.
+- The user has contradictory advice about VAT ID, Kleinunternehmer, reverse charge, or invoice wording.
 - The user needs retrospective registration or correction.
 
 ## Verify Before Submission Controls
@@ -64,11 +71,14 @@ Require professional review when:
 - Confirm the correct ELSTER form for the user's legal form before entering data.
 - Verify tax number, VAT ID, bank data, activity wording, and revenue/profit estimates against user documents.
 - Confirm Kleinunternehmer, VAT ID, cross-border, payroll, and advance-payment assumptions with a Steuerberater when present.
+- Resolve any contradictory advice using official sources or professional review before filing the steuerliche Erfassung.
 - Keep the output in preparation status until ELSTER and Finanzamt correspondence have been checked.
 
 ## Source Notes
 
-Use `elster-fseeun` and `elster-fseeun-help` for Einzelunternehmen onboarding. For corporations and partnerships, treat Einzelunternehmen references as incomplete and add an open verification item for the correct ELSTER form.
+Use `berlin-tax-registration`, `elster-fseeun`, and `elster-fseeun-help` for onboarding. For corporations and partnerships, treat Einzelunternehmen references as incomplete and add an open verification item for the correct ELSTER form.
+
+Use `bmwk-freiberuf-gewerbe-difference` and `bmwk-freie-berufe` only as classification context. The output must still route the final classification posture to Finanzamt, Gewerbeamt, or professional review.
 
 ## Examples
 
