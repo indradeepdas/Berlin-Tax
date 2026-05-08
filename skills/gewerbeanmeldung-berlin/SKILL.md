@@ -11,11 +11,11 @@ Prepare a Berlin trade-registration workflow that reduces missed documents, auth
 
 ## Workflow
 
-1. Start with `templates/operational-intake.md`; do not choose a filing path until immigration, ALG I, employer, sector, and legal-form constraints are visible.
+1. Start with `templates/operational-intake.md`; when structured intake JSON is available, run `node scripts/validate-workflow.mjs operational_intake <input.json>`.
 2. Collect the user's activity description, legal form, Berlin operating address, start date, representative data, immigration status if relevant, and whether the activity may be regulated.
 3. Identify whether the user is preparing an Einzelgewerbe, Personengesellschaft, UG/GmbH, company in formation, or a case that may not belong in Gewerbeanmeldung because it may be freiberuflich.
 4. Create a document checklist using the Berlin service source notes.
-5. Flag activities that may require permits, sector review, IHK/HWK review, immigration review, Agentur fuer Arbeit review, or legal review.
+5. Flag activities that may require permits, sector review, IHK/HWK review, immigration review, Agentur fuer Arbeit review, or legal review. Prefer validator findings over free-form inference when the same fact is represented in structured intake.
 6. Produce an output using `templates/output-standard.md`.
 7. If the user also needs tax onboarding, hand off to `skills/finanzamt-onboarding`.
 

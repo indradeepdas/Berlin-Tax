@@ -15,10 +15,14 @@
     "stress:threshold-crossing": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-crossed-midyear.json",
     "stress:missed-ustva": "node scripts/generate-compliance-calendar.mjs examples/profiles/missed-vat-deadlines.json",
     "stress": "npm run stress:restaurant && npm run stress:eu-invoice && npm run stress:threshold-crossing && npm run stress:missed-ustva",
+    "validate:intake": "node scripts/validate-workflow.mjs operational_intake examples/intake/non-eu-gewerbe-intake.json",
+    "validate:handoff": "node scripts/validate-workflow.mjs accountant_handoff examples/handoffs/solo-founder-handoff.json",
+    "validate:advice": "node scripts/validate-workflow.mjs contradictory_advice examples/advice/contradictory-online-advice.json",
+    "validate:workflows": "npm run validate:intake && npm run validate:handoff && npm run validate:advice",
     "validate:invoice:invalid": "node scripts/validate-invoice.mjs examples/invoices/incomplete-invalid.json",
     "check:thresholds": "node scripts/check-thresholds.mjs examples/thresholds/kleinunternehmer-monitoring.json",
     "calendar:sample": "node scripts/generate-compliance-calendar.mjs examples/profiles/ug-founder-berlin.json",
-    "test": "npm run validate:skills && npm run audit:sources && npm run audit:self && npm run validate:invoice:valid && npm run check:thresholds && npm run calendar:sample"
+    "test": "npm run validate:skills && npm run audit:sources && npm run audit:self && npm run validate:invoice:valid && npm run check:thresholds && npm run calendar:sample && npm run validate:workflows"
   },
   "engines": {
     "node": ">=20"

@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "name": "Berlin-Tax deterministic workflow rule pack",
+    "version": "2026.05.08",
+    "policy": "These rules validate completeness and route review. They do not decide legal, tax, immigration, benefit, or company-law outcomes."
+  },
+  "operational_intake": {
+    "required_fields": [
+      "person.name",
+      "person.residence_status",
+      "business.activity_description",
+      "business.activity_description_de",
+      "business.start_date",
+      "business.first_invoice_date",
+      "business.customer_locations",
+      "business.b2b_b2c_mix",
+      "operations.elster_status",
+      "operations.tax_number_status",
+      "operations.invoice_tool",
+      "operations.bookkeeping_status"
+    ],
+    "review_rules": [
+      {
+        "code": "immigration_review",
+        "path": "person.non_eu_citizen",
+        "equals": true,
+        "message": "Non-EU founder context requires residence-title and self-employment permission review.",
+        "source_id": "berlin-lea-self-employed"
+      },
+      {
+        "code": "alg1_review",
+        "path": "person.alg1_status",
+        "equals": "receiving",
+        "message": "ALG I context requires Agentur fuer Arbeit notification and availability review before work starts.",
+        "source_id": "ba-alg1-nebenjob"
+      },
+      {
+        "code": "regulated_sector_review",
+        "path": "business.regulated_sector",
+        "equals": true,
+        "message": "Regulated or permit-sensitive activity requires authority/professional review before treating setup as complete.",
+        "source_id": "berlin-gewerbeanmeldung"
+      },
+      {
+        "code": "restaurant_review",
+        "path": "business.sector",
+        "in": ["restaurant", "hospitality", "food_service", "alcohol"],
+        "message": "Restaurant, hospitality, food, or alcohol context requires permit, hygiene, POS/cash, and invoice review.",
+        "source_id": "berlin-gaststaette-permit"
+      },
+      {
+        "code": "contradictory_advice_review",
+        "path": "advice.contradictory_claims_present",
+        "equals": true,
+        "message": "Contradictory advice must be logged and resolved against official sources or professional review before choosing an action.",
+        "source_id": "berlin-tax-registration"
+      }
+    ]
+  },
+  "accountant_handoff": {
+    "required_fields": [
+      "client.name",
+      "client.legal_form",
+      "client.business_address",
+      "client.activity_description",
+      "client.start_date",
+      "tax.elster_status",
+      "tax.tax_number_status",
+      "tax.vat_id_status",
+      "records.sales_ledger_status",
+      "records.expense_ledger_status",
+      "records.bank_statements_status",
+      "records.invoice_records_status",
+      "assumptions",
+      "open_questions",
+      "professional_review_items",
+      "source_notes"
+    ]
+  },
+  "contradictory_advice": {
+    "required_fields": [
+      "claims"
+    ],
+    "claim_required_fields": [
+      "claim",
+      "source_type",
+      "date_seen",
+      "user_action_it_would_change",
+      "official_source_to_check",
+      "review_owner",
+      "status"
+    ],
+    "blocking_statuses": ["unverified", "conflicting", "needs_professional_review"]
+  }
+}
+

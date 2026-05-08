@@ -1,0 +1,23 @@
+{
+  "claims": [
+    {
+      "claim": "A software developer in Berlin is always Freiberufler.",
+      "source_type": "forum",
+      "date_seen": "2026-05-01",
+      "user_action_it_would_change": "Skip Gewerbeanmeldung and file steuerliche Erfassung as Freiberufler.",
+      "official_source_to_check": "bmwk-freiberuf-gewerbe-difference",
+      "review_owner": "Steuerberater or Finanzamt",
+      "status": "unverified"
+    },
+    {
+      "claim": "All SaaS founders must register a Gewerbe immediately.",
+      "source_type": "social_media",
+      "date_seen": "2026-05-02",
+      "user_action_it_would_change": "File Gewerbeanmeldung before classification review.",
+      "official_source_to_check": "berlin-gewerbeanmeldung",
+      "review_owner": "Gewerbeamt or Steuerberater",
+      "status": "conflicting"
+    }
+  ]
+}
+

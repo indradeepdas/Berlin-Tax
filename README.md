@@ -114,6 +114,12 @@ Run stress fixtures:
 npm run stress
 ```
 
+Run deterministic workflow validators:
+
+```bash
+npm run validate:workflows
+```
+
 ## Output Standard
 
 Generated outputs must include:

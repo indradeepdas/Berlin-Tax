@@ -16,7 +16,7 @@ Help users monitor and document a Kleinunternehmer assumption. The skill prepare
 3. Ask whether there are EU, non-EU, reverse charge, marketplace, import/export, or platform transactions.
 4. Run `scripts/check-thresholds.mjs` on structured revenue inputs.
 5. Run `scripts/validate-invoice.mjs` on sample invoices when invoice assumptions matter.
-6. Produce an assumption log and accountant handoff.
+6. Produce an assumption log and accountant handoff. When structured handoff JSON is available, run `node scripts/validate-workflow.mjs accountant_handoff <input.json>`.
 7. If threshold crossing or VAT-charged invoices are present, add a "freeze invoice template until review" next step instead of giving new invoice wording.
 
 ## Required Inputs

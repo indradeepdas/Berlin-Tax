@@ -1,0 +1,35 @@
+{
+  "client": {
+    "name": "Sample Founder",
+    "legal_form": "Einzelunternehmen candidate",
+    "business_address": "Musterstrasse 1, 10115 Berlin",
+    "activity_description": "Product strategy consulting and workshops",
+    "start_date": "2026-05-01"
+  },
+  "tax": {
+    "elster_status": "private access available",
+    "tax_number_status": "pending",
+    "vat_id_status": "not requested"
+  },
+  "records": {
+    "sales_ledger_status": "not started",
+    "expense_ledger_status": "folder of receipts",
+    "bank_statements_status": "available",
+    "invoice_records_status": "two draft invoices"
+  },
+  "assumptions": [
+    "Kleinunternehmer treatment is assumed but not confirmed."
+  ],
+  "open_questions": [
+    "Confirm Gewerbe vs freiberuflich classification.",
+    "Confirm VAT ID need before EU clients."
+  ],
+  "professional_review_items": [
+    "Classification and Kleinunternehmer posture."
+  ],
+  "source_notes": [
+    "berlin-tax-registration",
+    "ustg-19"
+  ]
+}
+

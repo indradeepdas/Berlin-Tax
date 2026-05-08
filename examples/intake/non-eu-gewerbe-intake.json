@@ -1,0 +1,28 @@
+{
+  "person": {
+    "name": "Sample Non-EU Founder",
+    "residence_status": "residence permit - self-employment permission unclear",
+    "non_eu_citizen": true,
+    "alg1_status": "none"
+  },
+  "business": {
+    "activity_description": "Online retail and product sourcing",
+    "activity_description_de": "Onlinehandel mit Konsumguetern",
+    "start_date": "2026-06-01",
+    "first_invoice_date": "2026-06-10",
+    "customer_locations": ["DE"],
+    "b2b_b2c_mix": "mostly B2C",
+    "sector": "online_retail",
+    "regulated_sector": false
+  },
+  "operations": {
+    "elster_status": "not_started",
+    "tax_number_status": "pending",
+    "invoice_tool": "spreadsheet",
+    "bookkeeping_status": "not_started"
+  },
+  "advice": {
+    "contradictory_claims_present": false
+  }
+}
+

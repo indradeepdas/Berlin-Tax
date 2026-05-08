@@ -16,7 +16,7 @@ Validate whether an invoice draft contains required field candidates and obvious
 3. Identify tax regime: regular VAT, Kleinunternehmer, or unknown.
 4. Identify whether the invoice comes from a restaurant, POS/cash register, marketplace, reverse-charge, credit-note, or correction context.
 5. Run `scripts/validate-invoice.mjs` on structured invoice JSON.
-6. Convert findings into an accountant-ready output using the shared output standard.
+6. Convert findings into an accountant-ready output using the shared output standard. If the invoice belongs in a broader handoff, run `node scripts/validate-workflow.mjs accountant_handoff <input.json>` on the handoff package.
 
 ## Required Inputs
 

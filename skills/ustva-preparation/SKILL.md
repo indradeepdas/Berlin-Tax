@@ -15,7 +15,7 @@ Prepare Umsatzsteuer-Voranmeldung work without submitting it. The skill helps th
 2. Ask whether any UStVA period is already late, already filed, corrected, or mentioned in Finanzamt correspondence.
 3. Collect sales, expense, VAT, reverse charge, EU, non-EU, and import/export indicators.
 4. Use `scripts/generate-compliance-calendar.mjs` for candidate deadlines when profile data is structured. If the UStVA period is not confirmed, generate scenario dates only and mark the output as review-gated.
-5. Produce a data-readiness checklist and accountant handoff.
+5. Produce a data-readiness checklist and accountant handoff. When structured handoff JSON is available, run `node scripts/validate-workflow.mjs accountant_handoff <input.json>`.
 6. If deadlines are missed, create a damage-control packet: missing periods, available ledgers, notices received, cash position, and adviser questions. Do not tell the user to file unsupervised.
 7. Explicitly label candidate deadlines as unadjusted for weekends, holidays, Dauerfristverlaengerung, exemptions, and Finanzamt-specific decisions.
 
