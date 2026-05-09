@@ -12,6 +12,8 @@ Keywords: Berlin, Germany, bureaucracy, founder compliance, Gewerbeanmeldung, Fi
 
 Project stage: `0.1.x`, preparation-only.
 
+Public label: `Berlin-Tax v0.1 - private alpha for workflow testing and expert review`.
+
 Use this repo when you need to structure a case, find missing inputs, run deterministic checks, and prepare a review packet. Do not use it to decide legal classification, VAT treatment, immigration permission, benefit eligibility, payroll, or company-law obligations.
 
 Many outputs intentionally return `review`. That means the workflow found a decision, document gap, stale source, or professional-review condition that should not be resolved by an LLM.
@@ -36,8 +38,29 @@ Many outputs intentionally return `review`. That means the workflow found a deci
 
 Requires Node.js 20 or newer.
 
+For a non-engineer path, start with [docs/NON_ENGINEER_QUICKSTART.md](docs/NON_ENGINEER_QUICKSTART.md).
+
 ```bash
 npm test
+```
+
+Run the founder beta candidate path:
+
+```bash
+npm run beta:golden-path
+```
+
+Generate intake JSON:
+
+```bash
+npm run intake:wizard
+npm run intake:wizard -- --profile solo-consulting-side-business --print
+```
+
+Check source freshness metadata:
+
+```bash
+npm run sources:dashboard
 ```
 
 Run the main sample checks:
@@ -65,6 +88,8 @@ End users should start with [docs/USER_GUIDE.md](docs/USER_GUIDE.md). It explain
 - which scripts to run
 - how to interpret `pass`, `review`, and `fail`
 - when to stop and escalate to a Steuerberater or authority
+
+Beta status and release gates are tracked in [docs/BETA_READINESS.md](docs/BETA_READINESS.md).
 
 ## Current Workflows
 
@@ -121,6 +146,7 @@ Run:
 
 ```bash
 npm run audit:sources
+npm run sources:dashboard
 npm run audit:self
 ```
 
@@ -160,6 +186,8 @@ Pull requests must not add hardcoded legal thresholds to scripts, case-specific 
 - No attachment manifest validator yet.
 - No ledger reconciliation engine yet.
 - No XRechnung/ZUGFeRD parser yet.
+- No VAT ID validity checker yet.
+- No live official-source freshness checker yet.
 - UStVA scripts generate candidate dates, not filing figures.
 - Public examples are fictional fixtures, not model answers for real users.
 - The repo cannot resolve conflicting adviser, authority, or forum advice by itself.

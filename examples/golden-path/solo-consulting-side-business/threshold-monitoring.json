@@ -1,0 +1,20 @@
+{
+  "prior_calendar_year_revenue_eur": 0,
+  "current_year_revenue_to_date_eur": 0,
+  "forecast_current_year_revenue_eur": 12000,
+  "opted_out_previously": false,
+  "threshold_crossing_invoice_number": null,
+  "threshold_crossing_date": null,
+  "customer_mix": {
+    "domestic_b2b": true,
+    "domestic_b2c": false,
+    "eu_b2b": false,
+    "eu_b2c": false,
+    "non_eu": false
+  },
+  "evidence_state": {
+    "sales_ledger": "not started",
+    "bank_reconciliation": "not yet applicable",
+    "forecast_basis": "founder estimate for public fixture"
+  }
+}

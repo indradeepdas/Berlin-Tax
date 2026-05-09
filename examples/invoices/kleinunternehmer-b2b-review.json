@@ -5,6 +5,7 @@
   "currency": "EUR",
   "tax_regime": "kleinunternehmer",
   "relationship": "domestic_b2b",
+  "document_format": "pdf_draft",
   "special_vat_case": false,
   "supplier": {
     "name": "Fictional Solo Operator",

@@ -32,3 +32,12 @@ Add a CI job that runs `npm test` and opens a warning issue when `review_by` is 
 
 Risk: `medium`
 
+## 6. Scope XRechnung/ZUGFeRD e-invoice validation
+
+Design the next invoice-validation layer for structured e-invoice artifacts. The first milestone should detect whether an invoice input is a draft PDF/spreadsheet, XRechnung XML, ZUGFeRD/hybrid document, or unknown format, then route unsupported formats to review.
+
+The issue must stay preparation-only. It must not decide VAT treatment, customer status, place of supply, or whether a specific invoice can legally be issued.
+
+Official source anchor: https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html
+
+Risk: `high`

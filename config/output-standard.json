@@ -1,8 +1,12 @@
 {
   "required_sections": [
-    "verified_facts",
-    "user_provided_inputs",
+    "boundary_notice",
     "assumptions",
+    "user_provided_inputs",
+    "verified_facts",
+    "verified_source_references",
+    "professional_review_required",
+    "verification_before_submission",
     "open_verification_items",
     "verification_checkpoints",
     "professional_review_items",
@@ -11,8 +15,17 @@
     "responsible_authority",
     "source_notes"
   ],
-  "finding_levels": ["info", "warning", "error", "review"],
-  "status_values": ["pass", "review", "fail"],
+  "finding_levels": [
+    "info",
+    "warning",
+    "error",
+    "review"
+  ],
+  "status_values": [
+    "pass",
+    "review",
+    "fail"
+  ],
   "optional_sections": ["evidence_state", "authority_correspondence", "decision_log"],
-  "policy": "Every output must separate facts from assumptions and professional-review items. No generated output is submission-ready until its verification_checkpoints are complete."
+  "policy": "Every output must start with a preparation-only boundary notice and separate assumptions, user-provided inputs, verified source references, review gates, and verification-before-submission items. No generated output is submission-ready until verification_checkpoints and professional_review_items are resolved."
 }

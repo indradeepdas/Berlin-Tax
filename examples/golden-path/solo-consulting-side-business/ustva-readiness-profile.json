@@ -1,0 +1,20 @@
+{
+  "entity_name": "Fictional Berlin Solo Consulting",
+  "legal_form": "Einzelunternehmen candidate",
+  "business_address": "Berlin - full address omitted in public fixture",
+  "new_business": true,
+  "business_start_date": "2026-06-01",
+  "calendar_start": "2026-06-01",
+  "months": 6,
+  "previous_year_vat_due_eur": 0,
+  "confirmed_ustva_period": null,
+  "gewerbeanmeldung_status": "classification_review_pending",
+  "tax_number_status": "pending",
+  "vat_id_status": "not_requested",
+  "known_risks": [
+    "new business",
+    "Kleinunternehmer posture not confirmed",
+    "UStVA period not confirmed",
+    "domestic B2B e-invoice review needed before issuing invoices"
+  ]
+}

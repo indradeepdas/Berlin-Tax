@@ -1,0 +1,57 @@
+{
+  "client": {
+    "name": "Fictional Berlin solo consulting founder",
+    "legal_form": "Einzelunternehmen candidate",
+    "business_address": "Berlin - full address omitted in public fixture",
+    "activity_description": "Product strategy consulting and workshop facilitation for Berlin business clients",
+    "start_date": "2026-06-01"
+  },
+  "tax": {
+    "elster_status": "private access available",
+    "tax_number_status": "pending",
+    "vat_id_status": "not requested",
+    "kleinunternehmer_assumption": "planned but not confirmed"
+  },
+  "records": {
+    "sales_ledger_status": "not started",
+    "expense_ledger_status": "not started",
+    "bank_statements_status": "not yet applicable",
+    "invoice_records_status": "one draft invoice",
+    "ledger_reconciliation_status": "not reconciled"
+  },
+  "attachments": {
+    "identity_status": "available",
+    "authority_letters_status": "missing",
+    "invoice_exports_status": "draft only",
+    "bank_exports_status": "not yet applicable"
+  },
+  "assumptions": [
+    "Founder has unrestricted work permission in this public fixture.",
+    "No ALG I and no cross-border customers are assumed.",
+    "Kleinunternehmer treatment is planned but not confirmed.",
+    "Freiberufler vs Gewerbe classification is unresolved."
+  ],
+  "open_questions": [
+    "Is the activity freiberuflich, gewerblich, or mixed for this founder's actual qualifications and offer?",
+    "Should a Gewerbeanmeldung be filed before the first invoice?",
+    "Should the founder apply Kleinunternehmer treatment or regular VAT treatment?",
+    "Does the employer contract or side-business policy require notification or approval?",
+    "What invoice format should be used for domestic B2B clients under current e-invoice rules?",
+    "Which UStVA period, if any, is visible in ELSTER or Finanzamt correspondence after onboarding?"
+  ],
+  "professional_review_items": [
+    "Classification and registration route.",
+    "Kleinunternehmer posture and invoice wording.",
+    "Domestic B2B e-invoice handling before sending the first invoice.",
+    "UStVA period and onboarding messages after tax registration."
+  ],
+  "source_notes": [
+    "berlin-gewerbeanmeldung",
+    "berlin-tax-registration",
+    "elster-fseeun",
+    "ustg-18",
+    "ustg-19",
+    "bmf-e-rechnung-faq",
+    "bmwk-freiberuf-gewerbe-difference"
+  ]
+}

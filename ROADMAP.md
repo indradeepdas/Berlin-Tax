@@ -11,12 +11,14 @@ Berlin-Tax starts with founder onboarding and early operating compliance. It del
 - Kleinunternehmer workflow monitoring.
 - Source registry and stale-source audit.
 - Self-audit for unsafe claims and hardcoded thresholds.
+- Founder CLI beta readiness layer: guided intake wizard, golden-path packets, source dashboard, and beta-safe output boundaries.
 
 ## v0.2 Founder Survival Workflows
 
 - Attachment manifest validator for accountant handoffs.
 - Ledger reconciliation checks for revenue, invoice, and bank-export consistency.
 - Invoice sequence validator for draft/sent/paid/booked/reported document state.
+- XRechnung/ZUGFeRD roadmap spike: detect structured e-invoice artifacts, define validation boundaries, and decide whether to integrate a dedicated parser without making tax-treatment decisions.
 - GitHub Actions for `npm test`, source freshness audit, and template validation.
 - Freelancer vs Gewerbe classification preparation, with mandatory review routing.
 - ALG I plus side-business compliance preparation.

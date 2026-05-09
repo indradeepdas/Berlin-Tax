@@ -42,6 +42,13 @@
         "source_id": "berlin-gewerbeanmeldung"
       },
       {
+        "code": "classification_review",
+        "path": "business.classification_assumption",
+        "in": ["unresolved", "unknown", "Freiberufler vs Gewerbe unresolved"],
+        "message": "Freiberufler vs Gewerbe classification is unresolved. Treat Gewerbeanmeldung and Finanzamt onboarding as preparation until classification evidence is reviewed.",
+        "source_id": "bmwk-freiberuf-gewerbe-difference"
+      },
+      {
         "code": "restaurant_review",
         "path": "business.sector",
         "in": ["restaurant", "hospitality", "food_service", "alcohol"],

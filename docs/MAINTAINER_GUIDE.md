@@ -16,6 +16,8 @@ Before merging a pull request, verify:
 
 - `npm test` passes.
 - `npm run stress` passes when workflows, examples, or validators changed.
+- `npm run beta:golden-path` passes when public examples, output standards, or founder-facing docs changed.
+- `npm run sources:dashboard` shows no stale high-risk or professional-review sources before beta release.
 - `git diff --check` is clean.
 - New source-backed values live in `config/`, not only in prose or scripts.
 - New or changed sources are in `sources/source-registry.json`.
@@ -53,8 +55,9 @@ Before tagging a release:
 1. Run `npm test`.
 2. Run `npm run stress`.
 3. Run `npm run audit:sources`.
-4. Review stale sources and update `review_by` only after checking the cited source.
-5. Update `ROADMAP.md` if scope changed.
-6. Update `docs/VERSIONING.md` if release policy changed.
-7. Confirm `SECURITY.md` still describes supported versions.
-
+4. Run `npm run beta:golden-path`.
+5. Run `npm run sources:dashboard`.
+6. Review stale sources and update `review_by` only after checking the cited source.
+7. Update `ROADMAP.md` if scope changed.
+8. Update `docs/VERSIONING.md` if release policy changed.
+9. Confirm `SECURITY.md` still describes supported versions.

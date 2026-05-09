@@ -37,6 +37,7 @@ const report = createReport({
     tax_regime: invoice.tax_regime,
     relationship: invoice.relationship,
     business_sector: invoice.business_sector,
+    document_format: invoice.document_format,
     document_state: invoice.document_state,
     special_vat_case: Boolean(invoice.special_vat_case)
   }
@@ -54,6 +55,7 @@ report.verified_facts.push({
 });
 report.verification_checkpoints.push(rules.invoice.small_invoice_gross_limit_eur.verification_checkpoint);
 report.verification_checkpoints.push(ruleSet.verification_checkpoint);
+report.open_verification_items.push("This validator does not validate XRechnung/ZUGFeRD XML, VAT ID validity, e-invoice transmission, or the user's actual VAT treatment.");
 
 function hasPath(obj, dottedPath) {
   if (dottedPath === "supplier.tax_number_or_vat_id") {
@@ -133,6 +135,22 @@ if (invoice.tax_regime === "kleinunternehmer") {
 }
 
 if (invoice.relationship === "domestic_b2b" && rules.invoice.e_invoice_review_required_for_domestic_b2b.value) {
+  report.verification_before_submission.push("For domestic B2B invoices, verify whether the invoice must be a structured e-invoice and use a dedicated XRechnung/ZUGFeRD-capable tool or professional review before issuance.");
+  const format = String(invoice.document_format || "").toLowerCase();
+  report.findings.push({
+    level: "review",
+    code: "e_invoice_format_review_required",
+    message: "Domestic B2B context detected. This validator checks field completeness only and does not validate XRechnung, ZUGFeRD, XML syntax, or e-invoice transmission readiness.",
+    source_id: rules.invoice.e_invoice_review_required_for_domestic_b2b.source_id
+  });
+  if (!format || ["pdf", "pdf_draft", "spreadsheet", "word_processor"].includes(format)) {
+    report.findings.push({
+      level: "warning",
+      code: "e_invoice_format_not_structured",
+      message: "Input document format is missing or appears unstructured. Treat PDF/spreadsheet invoice drafts as review material, not as e-invoice validation evidence.",
+      source_id: rules.invoice.e_invoice_review_required_for_domestic_b2b.source_id
+    });
+  }
   report.professional_review_items.push({
     item: invoice.tax_regime === "kleinunternehmer"
       ? "Domestic B2B Kleinunternehmer invoice detected. Check current e-invoice obligations, UStDV 34a relief, and transition rules before issuing."

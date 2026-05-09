@@ -39,6 +39,7 @@ Config values that affect registration, invoice checks, thresholds, deadlines, o
 
 ```bash
 npm run audit:sources
+npm run sources:dashboard
 npm test
 ```
 
@@ -62,6 +63,14 @@ When a stale rule is found:
 5. If the source moved, update the registry URL and preserve the same `source_id` unless the authority changed.
 6. If the source disappeared, do not silently replace it with an unofficial source. Open an issue and mark affected rules review-gated.
 
+Regenerate the public dashboard after source metadata changes:
+
+```bash
+node scripts/generate-source-dashboard.mjs --out docs/SOURCE_DASHBOARD.md
+```
+
+The dashboard is a maintainer visibility tool. It does not fetch live official pages and must not be described as live legal freshness certification.
+
 ## Review Windows
 
 Use shorter windows for higher operational risk:
@@ -76,4 +85,3 @@ When in doubt, use the shorter window.
 ## Non-Official Sources
 
 Non-official sources may be used for context in examples or discussion, but they must not drive deterministic legal, tax, deadline, or registration behavior.
-

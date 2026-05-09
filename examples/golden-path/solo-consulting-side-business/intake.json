@@ -1,0 +1,50 @@
+{
+  "person": {
+    "name": "Fictional Berlin solo consulting founder",
+    "residence_status": "unrestricted work permission assumed for public fixture",
+    "non_eu_citizen": false,
+    "alg1_status": "none",
+    "employment_status": "employed with planned side business",
+    "employer_permission_status": "unknown"
+  },
+  "business": {
+    "activity_description": "Product strategy consulting and workshop facilitation for Berlin business clients",
+    "activity_description_de": "Produktstrategie-Beratung und Workshop-Moderation fuer Berliner Geschaeftskunden",
+    "start_date": "2026-06-01",
+    "first_invoice_date": "2026-06-30",
+    "customer_locations": ["DE"],
+    "b2b_b2c_mix": "mostly domestic B2B",
+    "sector": "consulting",
+    "regulated_sector": false,
+    "planned_legal_form": "Einzelunternehmen candidate",
+    "classification_assumption": "Freiberufler vs Gewerbe unresolved"
+  },
+  "operations": {
+    "elster_status": "private access available",
+    "tax_number_status": "pending",
+    "invoice_tool": "spreadsheet draft",
+    "bookkeeping_status": "not_started",
+    "accountant_status": "not engaged"
+  },
+  "tax_assumptions": {
+    "kleinunternehmer_assumption": "planned but not confirmed",
+    "vat_id_status": "not requested",
+    "cross_border_sales_planned": false
+  },
+  "evidence": {
+    "identity_status": "available",
+    "business_address_evidence": "available",
+    "employer_permission_evidence": "missing",
+    "authority_letters": "none",
+    "invoice_exports": "draft only",
+    "bank_exports": "not yet applicable"
+  },
+  "messy_reality": {
+    "already_started_work": false,
+    "already_sent_invoices": false,
+    "already_contacted_authority": false
+  },
+  "advice": {
+    "contradictory_claims_present": false
+  }
+}

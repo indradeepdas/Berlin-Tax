@@ -24,6 +24,28 @@ Berlin-Tax works best when you can gather facts in a structured way. Before usin
 
 Start with [templates/operational-intake.md](../templates/operational-intake.md) when your case is messy.
 
+## Fast Path: Berlin Solo Consulting Side Business
+
+If you are trying to understand the repo quickly, start with the golden path:
+
+```bash
+npm run beta:golden-path
+```
+
+Then read:
+
+- [Gewerbe prep packet](../examples/golden-path/solo-consulting-side-business/gewerbe-prep-packet.md)
+- [Finanzamt onboarding packet](../examples/golden-path/solo-consulting-side-business/finanzamt-onboarding-packet.md)
+- [accountant handoff packet](../examples/golden-path/solo-consulting-side-business/accountant-handoff-packet.md)
+
+This scenario is intentionally not a clean approval. It shows how a realistic Berlin founder case can still produce useful next steps while keeping classification, Kleinunternehmer posture, e-invoice handling, UStVA period, and employment-side-business evidence under review.
+
+To generate a similar intake structure:
+
+```bash
+npm run intake:wizard -- --profile solo-consulting-side-business --print
+```
+
 ## How To Read Results
 
 Berlin-Tax reports use three statuses:
@@ -153,9 +175,14 @@ Stop and escalate when:
 
 - the invoice is cross-border
 - the invoice is domestic B2B and e-invoice questions apply
+- you need XRechnung, ZUGFeRD, XML syntax, VAT ID validity, transmission, or tax-treatment validation
 - the invoice is already sent, paid, booked, or reported
 - the business is restaurant, hospitality, alcohol, or POS/cash-heavy
 - the invoice mixes VAT rates, reverse charge, or exemptions
+
+Practical rule:
+
+- this repo validates invoice structure and review gates; it does not certify an invoice as an E-Rechnung
 
 ## Goal 4: Monitor Kleinunternehmer Risk
 
@@ -238,6 +265,7 @@ Stop and escalate when:
 Practical rule:
 
 - generated dates are planning candidates, not confirmed deadlines
+- UStVA outputs are readiness packets, not tax returns or ELSTER submissions
 
 ## Goal 6: Prepare An Accountant Handoff
 
@@ -339,6 +367,9 @@ Use these as a fast shortcut:
 ## Recommended Files To Read
 
 - [README.md](../README.md)
+- [NON_ENGINEER_QUICKSTART.md](NON_ENGINEER_QUICKSTART.md)
+- [BETA_READINESS.md](BETA_READINESS.md)
+- [SOURCE_DASHBOARD.md](SOURCE_DASHBOARD.md)
 - [LEGAL_DISCLAIMER.md](../LEGAL_DISCLAIMER.md)
 - [templates/operational-intake.md](../templates/operational-intake.md)
 - [templates/accountant-handoff.md](../templates/accountant-handoff.md)

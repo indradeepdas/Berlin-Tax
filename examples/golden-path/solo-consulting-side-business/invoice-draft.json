@@ -1,0 +1,39 @@
+{
+  "invoice_number": "BT-GP-2026-001",
+  "issue_date": "2026-06-30",
+  "service_date_or_period": "2026-06-01 to 2026-06-30",
+  "currency": "EUR",
+  "tax_regime": "kleinunternehmer",
+  "relationship": "domestic_b2b",
+  "document_format": "pdf_draft",
+  "document_state": "draft",
+  "special_vat_case": false,
+  "business_sector": "consulting",
+  "supplier": {
+    "name": "Fictional Berlin Solo Consulting",
+    "address": "Berlin - full address omitted in public fixture",
+    "tax_number": "12/345/67890"
+  },
+  "customer": {
+    "name": "Fictional Berlin Client GmbH",
+    "address": "Berlin - full address omitted in public fixture"
+  },
+  "line_items": [
+    {
+      "description": "Product strategy consulting retainer",
+      "quantity": 1,
+      "unit_price_eur": 1800,
+      "net_amount_eur": 1800
+    }
+  ],
+  "net_total_eur": 1800,
+  "vat_breakdown": [
+    {
+      "vat_rate": 0,
+      "vat_amount_eur": 0,
+      "reason": "Kleinunternehmer assumption pending review"
+    }
+  ],
+  "gross_total_eur": 1800,
+  "notes": "Draft only. No VAT charged under the public fixture's Kleinunternehmer assumption. Do not issue until classification, Kleinunternehmer posture, and e-invoice handling are reviewed."
+}
