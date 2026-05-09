@@ -8,6 +8,8 @@ It is built for agents and human operators helping founders, freelancers, immigr
 
 Keywords: Berlin, Germany, bureaucracy, founder compliance, Gewerbeanmeldung, Finanzamt, ELSTER, UStVA, invoices, Kleinunternehmer, Steuerberater handoff, AI agent skills.
 
+Recent repository changes are summarized in [CHANGELOG.md](CHANGELOG.md).
+
 ## Status
 
 Project stage: `0.1.x`, preparation-only.

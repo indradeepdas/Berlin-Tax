@@ -2,6 +2,18 @@
 
 Use this before selecting a skill path.
 
+For a guided JSON starting point, run:
+
+```bash
+npm run intake:wizard
+```
+
+For the founder beta fixture:
+
+```bash
+npm run intake:wizard -- --profile solo-consulting-side-business --print
+```
+
 ## Identity And Authority
 
 - Legal name and contact details.
@@ -14,6 +26,7 @@ Use this before selecting a skill path.
 - Activity description in plain English and German working wording.
 - First operating date, first invoice date, and first cash receipt date.
 - Customer locations and B2B/B2C mix.
+- Freiberufler vs Gewerbe assumption status.
 - Regulated sector indicators: food, alcohol, health, craft, transport, security, finance, childcare, platform sales, marketplace sales.
 
 ## Tax And Records
@@ -21,6 +34,7 @@ Use this before selecting a skill path.
 - ELSTER access status.
 - Tax number and VAT ID status.
 - Kleinunternehmer assumption or regular VAT assumption.
+- Accountant status and whether the case is already in review.
 - Invoice tool, POS/cash register, bank account, and bookkeeping status.
 - Existing letters from Finanzamt, Ordnungsamt, LEA, Agentur fuer Arbeit, IHK/HWK, or adviser.
 
@@ -42,6 +56,7 @@ Record the state as `available`, `partial`, `missing`, `pending`, `not reconcile
 ## Messy Reality Checks
 
 - Has the user already started work, issued an invoice, received money, or bought inventory?
+- Is the user relying on a PDF or spreadsheet invoice draft for a domestic B2B case that may need structured e-invoice handling?
 - Are there draft invoices that differ from sent invoices?
 - Has an authority, adviser, employer, or online source given conflicting advice?
 - Is the user asking for "the form" when the unresolved issue is actually status, permission, VAT treatment, or missed deadlines?

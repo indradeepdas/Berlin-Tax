@@ -17,6 +17,7 @@ Validate whether an invoice draft contains required field candidates and obvious
 4. Identify whether the invoice comes from a restaurant, POS/cash register, marketplace, reverse-charge, credit-note, or correction context.
 5. Run `scripts/validate-invoice.mjs` on structured invoice JSON.
 6. Convert findings into an accountant handoff draft using the shared output standard. If the invoice belongs in a broader handoff, run `node scripts/validate-workflow.mjs accountant_handoff <input.json>` on the handoff package.
+7. For domestic B2B cases, treat the validator output as e-invoice awareness only. It does not validate XRechnung, ZUGFeRD, XML syntax, transmission, or VAT ID validity.
 
 ## Required Inputs
 
@@ -39,6 +40,7 @@ Validate whether an invoice draft contains required field candidates and obvious
 - Missing field list.
 - Kleinunternehmer note warning if applicable.
 - Domestic B2B e-invoice review flag.
+- Explicit open verification item for XRechnung/ZUGFeRD, VAT ID, transmission, and tax-treatment limitations.
 - Restaurant/POS/cash-handling review flag when relevant.
 - Correction or cancellation packet when the invoice has already been issued.
 - Accountant review items.
@@ -72,6 +74,7 @@ Require professional review when:
 - Treat non-domestic, reverse-charge, marketplace, exemption, and credit-note cases as review-gated even when field validation passes.
 - For restaurant/POS cases, verify permit, cash-register, receipt, VAT-rate, and correction handling with a Steuerberater before reissuing documents.
 - Keep validation reports labeled as field checks, not compliance certificates.
+- For domestic B2B cases, keep PDF or spreadsheet drafts labeled as review material, not e-invoice validation evidence.
 
 ## Operational Reality Checks
 
@@ -86,4 +89,4 @@ Use `ustg-14` for regular invoice fields, `ustdv-33` for small invoices, `ustdv-
 
 ## Examples
 
-See `examples/kleinunternehmer-invoice-report.md` and root `examples/invoices/`.
+See `examples/kleinunternehmer-invoice-report.md`, root `examples/invoices/`, and the founder golden path under `examples/golden-path/solo-consulting-side-business/`.

@@ -2,6 +2,13 @@
 
 Berlin-Tax is a procedural knowledge layer for AI agents and founder operators. It separates judgment, source metadata, deterministic checks, and human review.
 
+As of `0.1.x`, the public beta-candidate surface is GitHub plus CLI:
+
+- guided intake generation through `scripts/create-intake.mjs`
+- source freshness visibility through `scripts/generate-source-dashboard.mjs`
+- one founder golden path through `scripts/run-golden-path.mjs`
+- beta-safe deterministic reports that surface trust boundaries first
+
 ## Core Boundary
 
 Agents may interpret context, ask follow-up questions, assemble packets, and explain uncertainty. Scripts validate structured inputs and source freshness. Humans and qualified professionals make case-specific legal, tax, employment, immigration, company-law, and filing decisions.
@@ -14,6 +21,7 @@ flowchart LR
   Agent --> Scripts["scripts/*.mjs"]
   Scripts --> Config["config/*.json"]
   Scripts --> Sources["sources/source-registry.json"]
+  Scripts --> Dashboard["docs/SOURCE_DASHBOARD.md"]
   Sources --> Scripts
   Scripts --> Report["structured report: pass / review / fail"]
   Report --> Reviewer["Steuerberater / lawyer / authority / qualified reviewer"]
@@ -34,6 +42,7 @@ sequenceDiagram
 
   U->>A: Provides facts, documents, uncertainty
   A->>S: Selects workflow
+  A->>V: May generate structured intake from CLI wizard
   A->>V: Runs deterministic validator when structured input exists
   V->>C: Loads rule and workflow config
   V->>R: Checks source IDs and review dates
@@ -106,8 +115,38 @@ Scripts follow the same pattern:
 Current script groups:
 
 - Source and repository audits: `audit-sources.mjs`, `self-audit.mjs`, `validate-skill.mjs`.
+- Founder CLI helpers: `create-intake.mjs`, `run-golden-path.mjs`.
+- Source visibility tooling: `generate-source-dashboard.mjs`.
 - Domain validators: `validate-invoice.mjs`, `check-thresholds.mjs`, `generate-compliance-calendar.mjs`.
 - Workflow validators: `validate-workflow.mjs`.
+
+## Report Contract
+
+All deterministic reports now start with the same trust boundary:
+
+- `boundary_notice`
+- `assumptions`
+- `user_provided_inputs`
+- `verified_facts`
+- `verified_source_references`
+- `professional_review_required`
+- `professional_review_items`
+- `verification_before_submission`
+- `open_verification_items`
+- `verification_checkpoints`
+
+This is deliberate. The report should make it difficult for a user or agent to skip straight to the status and pretend the output is submission-ready.
+
+## Beta Surface
+
+The current founder-facing path is intentionally narrow:
+
+1. Generate or inspect intake JSON.
+2. Run deterministic checks.
+3. Read the golden-path packets or user guide.
+4. Escalate unresolved items with a cleaner packet.
+
+The repository is still preparation-only. It does not provide a browser app, ELSTER submission, invoice certification, or live source freshness checks.
 
 ## Configuration Strategy
 

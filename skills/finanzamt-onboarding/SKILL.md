@@ -11,7 +11,7 @@ Prepare the user to complete steuerliche Erfassung through ELSTER and coordinate
 
 ## Workflow
 
-1. Start with `templates/operational-intake.md` and preserve any uncertainty in `templates/assumption-log.md`. When structured intake JSON is available, run `node scripts/validate-workflow.mjs operational_intake <input.json>`.
+1. Start with `templates/operational-intake.md` and preserve any uncertainty in `templates/assumption-log.md`. For a guided starting point, use `node scripts/create-intake.mjs --profile solo-consulting-side-business --print`. When structured intake JSON is available, run `node scripts/validate-workflow.mjs operational_intake <input.json>`.
 2. Determine legal form, activity type, start date, Berlin address, and whether Gewerbeanmeldung is complete or not required.
 3. Collect ELSTER access status and identify whether the user needs individual or organization access.
 4. Prepare structured inputs for steuerliche Erfassung: identity, address, bank, activity, start date, revenue/profit estimates, VAT assumptions, employees, and tax adviser contact.
@@ -19,6 +19,7 @@ Prepare the user to complete steuerliche Erfassung through ELSTER and coordinate
 6. If the user has conflicting advice, create a `templates/contradictory-advice-log.md` entry and run `node scripts/validate-workflow.mjs contradictory_advice <input.json>` before selecting a tax-registration posture.
 7. Produce a handoff package using `templates/accountant-handoff.md`; when structured handoff JSON is available, run `node scripts/validate-workflow.mjs accountant_handoff <input.json>`.
 8. Route invoice or threshold checks to the relevant deterministic scripts where structured inputs exist.
+9. If the user needs a practical founder example, point them to the golden-path onboarding packet before improvising custom wording.
 
 ## Required Inputs
 
@@ -89,4 +90,4 @@ Use `bmwk-freiberuf-gewerbe-difference` and `bmwk-freie-berufe` only as classifi
 
 ## Examples
 
-See `examples/freelancer-elster-prep.md` for a sample onboarding preparation package.
+See `examples/freelancer-elster-prep.md` and the founder golden path under `examples/golden-path/solo-consulting-side-business/`.

@@ -11,7 +11,7 @@ Prepare a Berlin trade-registration workflow that reduces missed documents, auth
 
 ## Workflow
 
-1. Start with `templates/operational-intake.md`; when structured intake JSON is available, run `node scripts/validate-workflow.mjs operational_intake <input.json>`.
+1. Start with `templates/operational-intake.md`; for a guided starting point, use `node scripts/create-intake.mjs --profile solo-consulting-side-business --print`. When structured intake JSON is available, run `node scripts/validate-workflow.mjs operational_intake <input.json>`.
 2. Collect the user's activity description, legal form, Berlin operating address, start date, representative data, immigration status if relevant, and whether the activity may be regulated.
 3. Identify whether the user is preparing an Einzelgewerbe, Personengesellschaft, UG/GmbH, company in formation, or a case that may not belong in Gewerbeanmeldung because it may be freiberuflich.
 4. Create a document checklist using the Berlin service source notes.
@@ -90,4 +90,4 @@ Use `berlin-lea-self-employed` or `berlin-lea-freelance` for non-EU self-employm
 
 ## Examples
 
-See `examples/solo-saas-founder-output.md` for a sample preparation package.
+See `examples/solo-saas-founder-output.md` and the founder golden path under `examples/golden-path/solo-consulting-side-business/`.

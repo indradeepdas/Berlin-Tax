@@ -15,6 +15,7 @@ Prepare Umsatzsteuer-Voranmeldung work without submitting it. The skill helps th
 2. Ask whether any UStVA period is already late, already filed, corrected, or mentioned in Finanzamt correspondence.
 3. Collect sales, expense, VAT, reverse charge, EU, non-EU, and import/export indicators.
 4. Use `scripts/generate-compliance-calendar.mjs` for candidate deadlines when profile data is structured. If the UStVA period is not confirmed, generate scenario dates only and mark the output as review-gated.
+   The output is a readiness packet, not a filing or figure generator.
 5. Produce a data-readiness checklist and accountant handoff. When structured handoff JSON is available, run `node scripts/validate-workflow.mjs accountant_handoff <input.json>`.
 6. If deadlines are missed, create a damage-control packet: missing periods, available ledgers, notices received, cash position, and adviser questions. Do not tell the user to file unsupervised.
 7. Explicitly label candidate deadlines as unadjusted for weekends, holidays, Dauerfristverlaengerung, exemptions, and Finanzamt-specific decisions.
@@ -37,6 +38,7 @@ Prepare Umsatzsteuer-Voranmeldung work without submitting it. The skill helps th
 
 - UStVA readiness report.
 - Candidate deadline calendar or scenario calendar when the period is unconfirmed.
+- UStVA readiness packet that makes the unconfirmed period or missed-period state explicit.
 - Missing data list.
 - Missed-deadline damage-control packet when relevant.
 - VAT treatment review flags.
@@ -68,6 +70,7 @@ Require professional review when:
 - Reconcile sales, expenses, VAT rates, and input VAT against source documents before preparing figures.
 - If a deadline was missed, preserve notices and payment records, collect the missing-period ledger, and route to Steuerberater before filing or correcting.
 - Treat every generated deadline as a planning candidate until weekends, holidays, extensions, and user-specific authority messages are checked.
+- Keep ELSTER form handling, filed amounts, and tax-position decisions outside this skill unless they are provided as reviewed facts.
 
 ## Operational Reality Checks
 
@@ -82,4 +85,4 @@ Use `ustg-18` for filing procedure and deadline candidates. Use `ustg-19` when K
 
 ## Examples
 
-See `examples/ug-monthly-calendar.md` for a calendar preparation example.
+See `examples/ug-monthly-calendar.md`, root `examples/profiles/`, and the founder golden path under `examples/golden-path/solo-consulting-side-business/`.

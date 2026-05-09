@@ -6,7 +6,9 @@ Before contributing, read:
 
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - [SECURITY.md](SECURITY.md)
+- [docs/BETA_READINESS.md](docs/BETA_READINESS.md)
 - [docs/MAINTAINER_GUIDE.md](docs/MAINTAINER_GUIDE.md)
+- [docs/NON_ENGINEER_QUICKSTART.md](docs/NON_ENGINEER_QUICKSTART.md)
 - [docs/SOURCE_GOVERNANCE.md](docs/SOURCE_GOVERNANCE.md)
 - [docs/NAMING_CONVENTIONS.md](docs/NAMING_CONVENTIONS.md)
 - [docs/VERSIONING.md](docs/VERSIONING.md)
@@ -39,6 +41,7 @@ Requires Node.js 20 or newer.
 ```bash
 npm test
 npm run stress
+npm run beta:golden-path
 ```
 
 No install step is currently required because the deterministic scripts use plain Node.js only.
@@ -49,12 +52,28 @@ Before opening a pull request:
 
 - Run `npm test`.
 - Run `npm run stress` if you changed workflows, examples, validators, config, or templates.
+- Run `npm run beta:golden-path` if you changed founder-facing docs, example packets, intake generation, or report shape.
+- Run `npm run sources:dashboard` if you changed source governance, source metadata, or beta-release docs.
 - Run `git diff --check`.
 - Confirm every new source has `source_url`, `last_verified`, `review_by`, and `risk_level`.
 - Confirm every high-risk rule has a `verification_checkpoint`.
 - Confirm every new skill has purpose, workflow, required inputs, outputs, risks, escalation conditions, verify-before-submission controls, operational reality checks, source notes, and examples.
 - Confirm generated outputs separate verified facts, user-provided inputs, assumptions, open verification items, verification checkpoints, and professional-review items.
+- Confirm generated outputs start with the boundary notice and include verified source references plus verify-before-submission controls.
 - Confirm examples are fictional, redacted, and explicit about evidence state.
+
+## Documentation Expectations
+
+If you change CLI behavior, report shape, sample packets, or source-governance behavior, update the related documentation in the same change set.
+
+At minimum, review:
+
+- `README.md`
+- `docs/USER_GUIDE.md`
+- `docs/NON_ENGINEER_QUICKSTART.md`
+- `docs/BETA_READINESS.md`
+- `templates/output-standard.md`
+- skill docs for the affected workflow
 
 ## Source-Backed Rules
 
