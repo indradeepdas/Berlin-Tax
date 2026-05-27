@@ -59,7 +59,6 @@ const requiredRootFiles = [
   "CONTRIBUTING.md",
   "CODE_OF_CONDUCT.md",
   "SECURITY.md",
-  "ROADMAP.md",
   "BRUTAL_HONESTY_REVIEW.md",
   "ISSUE_TEMPLATE.md",
   "PR_TEMPLATE.md"

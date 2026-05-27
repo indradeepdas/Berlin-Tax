@@ -58,6 +58,6 @@ Before tagging a release:
 4. Run `npm run beta:golden-path`.
 5. Run `npm run sources:dashboard`.
 6. Review stale sources and update `review_by` only after checking the cited source.
-7. Update `ROADMAP.md` if scope changed.
+7. Update `CHANGELOG.md` if public capabilities, interfaces, or limitations changed.
 8. Update `docs/VERSIONING.md` if release policy changed.
 9. Confirm `SECURITY.md` still describes supported versions.
