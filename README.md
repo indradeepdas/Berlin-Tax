@@ -16,9 +16,9 @@ Recent repository changes are summarized in [CHANGELOG.md](CHANGELOG.md).
 
 ## Status
 
-Project stage: `0.1.x`, preparation-only.
+Project stage: `0.2.x`, preparation-only public beta.
 
-Public label: `Berlin-Tax v0.1 - private alpha for workflow testing and expert review`.
+Public label: `Berlin-Tax v0.2 - public beta for workflow preparation and expert review`.
 
 Use this repo when you need to structure a case, find missing inputs, run deterministic checks, and prepare a review packet. Do not use it to decide legal classification, VAT treatment, immigration permission, benefit eligibility, payroll, or company-law obligations.
 
@@ -50,7 +50,7 @@ For a non-engineer path, start with [docs/NON_ENGINEER_QUICKSTART.md](docs/NON_E
 npm test
 ```
 
-Run the founder beta candidate path:
+Run the founder public beta path:
 
 ```bash
 npm run beta:golden-path
@@ -67,6 +67,12 @@ Check source freshness metadata:
 
 ```bash
 npm run sources:dashboard
+```
+
+Run the public beta release gate:
+
+```bash
+npm run beta:check
 ```
 
 Run the main sample checks:
@@ -182,6 +188,8 @@ Before merging, maintainers should run:
 
 ```bash
 npm run maintain:check
+npm run sources:dashboard:write
+npm run beta:check
 git diff --check
 ```
 
@@ -197,6 +205,17 @@ Pull requests must not add hardcoded legal thresholds to scripts, case-specific 
 - UStVA scripts generate candidate dates, not filing figures.
 - Public examples are fictional fixtures, not model answers for real users.
 - The repo cannot resolve conflicting adviser, authority, or forum advice by itself.
+
+## Public Beta Scope
+
+Berlin-Tax is now positioned for public beta within a narrow scope:
+
+- workflow preparation
+- deterministic completeness and threshold checks
+- source freshness tracking
+- accountant-ready packet preparation
+
+The public beta does not mean Berlin-Tax is ready to file, certify, or decide tax and legal questions. It means the repository surface, release gate, examples, and deterministic checks are strong enough for public scrutiny within the stated preparation-only boundary.
 
 ## Legal Notice
 

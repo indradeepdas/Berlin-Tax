@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
-import { createReport, loadRules, printReport, setStatus } from "./lib/config.mjs";
+import { createReport, loadRules, printReport, readCliJsonFileOrExit, setStatus } from "./lib/config.mjs";
 
 const inputPath = process.argv[2];
 if (!inputPath) {
@@ -8,7 +7,7 @@ if (!inputPath) {
   process.exit(2);
 }
 
-const invoice = JSON.parse(readFileSync(inputPath, "utf8"));
+const invoice = readCliJsonFileOrExit(inputPath, "invoice");
 const rules = loadRules();
 const smallLimit = rules.invoice.small_invoice_gross_limit_eur.value;
 const isSmallInvoice = Number(invoice.gross_total_eur) <= smallLimit;

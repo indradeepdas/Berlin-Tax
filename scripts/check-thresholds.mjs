@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
-import { createReport, loadRules, printReport, setStatus } from "./lib/config.mjs";
+import { createReport, loadRules, printReport, readCliJsonFileOrExit, setStatus } from "./lib/config.mjs";
 
 const inputPath = process.argv[2];
 if (!inputPath) {
@@ -8,7 +7,7 @@ if (!inputPath) {
   process.exit(2);
 }
 
-const input = JSON.parse(readFileSync(inputPath, "utf8"));
+const input = readCliJsonFileOrExit(inputPath, "threshold input");
 const rules = loadRules();
 const priorLimit = rules.kleinunternehmer.prior_calendar_year_total_revenue_limit_eur.value;
 const currentLimit = rules.kleinunternehmer.current_calendar_year_total_revenue_limit_eur.value;

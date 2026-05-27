@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
-import { createReport, loadRules, printReport, setStatus } from "./lib/config.mjs";
+import { createReport, loadRules, printReport, readCliJsonFileOrExit, setStatus } from "./lib/config.mjs";
 
 const inputPath = process.argv[2];
 if (!inputPath) {
@@ -8,7 +7,7 @@ if (!inputPath) {
   process.exit(2);
 }
 
-const profile = JSON.parse(readFileSync(inputPath, "utf8"));
+const profile = readCliJsonFileOrExit(inputPath, "profile");
 const rules = loadRules();
 const start = profile.calendar_start || new Date().toISOString().slice(0, 10);
 const months = Number(profile.months || 12);

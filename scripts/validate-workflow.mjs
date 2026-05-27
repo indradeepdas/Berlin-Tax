@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
-import { createReport, loadSourceRegistry, printReport, readJsonFile, setStatus, sourceMap } from "./lib/config.mjs";
+import { createReport, loadSourceRegistry, printReport, readCliJsonFileOrExit, readJsonFile, setStatus, sourceMap } from "./lib/config.mjs";
 
 const [workflow, inputPath] = process.argv.slice(2);
 if (!workflow || !inputPath) {
@@ -16,7 +15,7 @@ if (!workflowRules) {
   process.exit(2);
 }
 
-const input = JSON.parse(readFileSync(inputPath, "utf8"));
+const input = readCliJsonFileOrExit(inputPath, "workflow input");
 const report = createReport({
   title: `${workflow} deterministic workflow validation`,
   source_ids: [],

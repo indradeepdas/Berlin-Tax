@@ -13,6 +13,37 @@ export function readJsonFile(filePath) {
   return JSON.parse(fs.readFileSync(absolute, "utf8"));
 }
 
+export function readCliJsonFileOrExit(filePath, label = "input") {
+  if (!filePath) {
+    process.stderr.write(`Missing ${label} file path.\n`);
+    process.exit(2);
+  }
+
+  const absolute = path.isAbsolute(filePath) ? filePath : resolveRepoPath(filePath);
+
+  if (!fs.existsSync(absolute)) {
+    process.stderr.write(`Could not find ${label} file: ${absolute}\n`);
+    process.exit(2);
+  }
+
+  let raw;
+  try {
+    raw = fs.readFileSync(absolute, "utf8");
+  } catch (error) {
+    process.stderr.write(`Could not read ${label} file: ${absolute}\n`);
+    if (error?.message) process.stderr.write(`${error.message}\n`);
+    process.exit(1);
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    process.stderr.write(`Invalid JSON in ${label} file: ${absolute}\n`);
+    if (error?.message) process.stderr.write(`${error.message}\n`);
+    process.exit(1);
+  }
+}
+
 export function loadRules() {
   return readJsonFile("config/rules.de.berlin.json");
 }

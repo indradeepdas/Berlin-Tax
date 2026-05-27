@@ -1,14 +1,14 @@
 # Beta Readiness
 
-Berlin-Tax is not yet public beta.
+Berlin-Tax is in public beta for workflow preparation and expert review.
 
 Current label:
 
 ```text
-Berlin-Tax v0.1 - private alpha for workflow testing and expert review
+Berlin-Tax v0.2 - public beta for workflow preparation and expert review
 ```
 
-The repository is useful for structured preparation, deterministic checks, source review, and accountant-ready packets. It should not be marketed as founder-facing beta until the checklist below passes.
+The repository is useful for structured preparation, deterministic checks, source review, and accountant-ready packets. Public beta here means the repository can be opened to public users and contributors with a defensible, machine-checkable quality gate. It does not mean the project files or decides tax, legal, employment, immigration, or filing outcomes.
 
 ## What Works Today
 
@@ -34,6 +34,24 @@ The repository is useful for structured preparation, deterministic checks, sourc
 - No final VAT treatment decision.
 - No employment, immigration, benefit, payroll, notary, or company-law decision.
 
+## Public Beta Scope
+
+Public beta covers:
+
+- repository quality
+- deterministic workflow checks
+- source freshness visibility
+- documentation fidelity
+- golden-path packet quality
+
+Public beta does not claim:
+
+- live legal or tax correctness certification
+- filing readiness
+- e-invoice format certification
+- binding case resolution
+- zero-review workflows
+
 ## Beta-Safe Use
 
 Every deterministic output should be treated as preparation material until:
@@ -48,7 +66,7 @@ The correct beta behavior is often `review`. That status should still produce us
 
 ## Golden Path
 
-The beta candidate has one polished founder journey:
+The public beta currently has one polished founder journey:
 
 ```bash
 npm run beta:golden-path
@@ -98,6 +116,25 @@ Official context:
 
 The ELSTER page exposes the UStVA form flow for entrepreneurs and shows that the period selection happens inside the form flow. Berlin-Tax should keep generated dates as candidate planning dates until ELSTER/Finanzamt correspondence is checked.
 
+## Public Beta Release Gate
+
+Run:
+
+```bash
+npm run sources:dashboard:write
+npm run beta:check
+```
+
+`npm run beta:check` is the machine-checkable release gate. It verifies:
+
+- core deterministic test suite
+- stress scenarios
+- golden-path execution
+- source dashboard freshness
+- public README and beta docs
+- golden-path packet structure
+- human-readable CLI failure modes
+
 ## Public Beta Entry Checklist
 
 - Golden path runs without `fail`.
@@ -107,13 +144,21 @@ The ELSTER page exposes the UStVA form flow for entrepreneurs and shows that the
 - Invoice docs visibly explain XRechnung/ZUGFeRD and VAT ID gaps.
 - UStVA docs visibly explain readiness-only behavior.
 - Every generated output starts with the preparation-only boundary.
-- At least one accountant or tax operations reviewer has reviewed the golden-path packets.
-- At least one founder tester can use the golden path to prepare a reviewer-ready packet without maintainer help.
+- `npm run beta:check` passes.
 
-## Do Not Call It Beta Until
+## What Still Requires Human Judgment
 
-- Users can generate or inspect a useful packet without being told only to ask a Steuerberater.
-- Review gates are actionable, not vague warnings.
-- Source freshness is visible from the README path.
-- The e-invoice limitation is impossible to miss.
-- The maintainer can explain exactly which decisions Berlin-Tax refuses to make.
+- invoice tax treatment
+- Freiberufler vs Gewerbe classification
+- Kleinunternehmer eligibility and opt-out interpretation
+- immigration and employment constraints
+- missed-filing recovery
+- authority-specific instructions and correspondence
+
+## Beta Posture
+
+Call it public beta only in this sense:
+
+- public, open-source, and ready for public scrutiny
+- preparation-only and review-gated by design
+- useful to founders and reviewers without pretending to decide the hard parts

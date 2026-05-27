@@ -2,11 +2,11 @@
 
 Berlin-Tax uses semantic versioning for repository releases, with additional caution for source-backed rule updates.
 
-Current project stage: `0.1.x`.
+Current project stage: `0.2.x public beta`.
 
 ## Version Format
 
-Use `MAJOR.MINOR.PATCH`.
+Use `MAJOR.MINOR.PATCH` with optional prerelease tags such as `-beta.1`.
 
 - `PATCH`: wording improvements, examples, source metadata refreshes with no behavior change, validator bug fixes that make outputs more conservative.
 - `MINOR`: new skills, new validators, new config rule groups, new templates, or changed report fields that remain backward compatible.
@@ -14,7 +14,7 @@ Use `MAJOR.MINOR.PATCH`.
 
 For the current repository shape, the following are public-interface changes and should be called out explicitly in release notes:
 
-- new npm scripts such as `intake:wizard`, `sources:dashboard`, or `beta:golden-path`
+- new npm scripts such as `intake:wizard`, `sources:dashboard`, `sources:dashboard:write`, `beta:golden-path`, or `beta:check`
 - changes to deterministic report fields or field ordering that downstream agents may parse
 - new founder-facing packet directories under `examples/golden-path/`
 - new source-governance artifacts such as `docs/SOURCE_DASHBOARD.md`

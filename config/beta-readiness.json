@@ -1,0 +1,72 @@
+{
+  "required_docs": [
+    {
+      "path": "README.md",
+      "required_patterns": [
+        "Operational intelligence for surviving German bureaucracy.",
+        "public beta for workflow preparation and expert review",
+        "What It Does Not Do",
+        "npm run beta:check",
+        "npm run beta:golden-path",
+        "npm run sources:dashboard"
+      ]
+    },
+    {
+      "path": "docs/BETA_READINESS.md",
+      "required_patterns": [
+        "Berlin-Tax is in public beta",
+        "Public Beta Release Gate",
+        "XRechnung",
+        "VAT ID",
+        "UStVA"
+      ]
+    },
+    {
+      "path": "docs/NON_ENGINEER_QUICKSTART.md",
+      "required_patterns": [
+        "npm run beta:golden-path",
+        "npm run intake:wizard",
+        "npm run sources:dashboard"
+      ]
+    }
+  ],
+  "required_packets": [
+    {
+      "path": "examples/golden-path/solo-consulting-side-business/gewerbe-prep-packet.md",
+      "required_headings": [
+        "## Boundary Notice",
+        "## Assumptions",
+        "## User-Provided Inputs",
+        "## Verified Source References",
+        "## Required Documents",
+        "## Review Gates",
+        "## Next Steps"
+      ]
+    },
+    {
+      "path": "examples/golden-path/solo-consulting-side-business/finanzamt-onboarding-packet.md",
+      "required_headings": [
+        "## Boundary Notice",
+        "## Assumptions",
+        "## User-Provided Inputs",
+        "## Verified Source References",
+        "## Required Documents",
+        "## Review Gates",
+        "## Next Steps"
+      ]
+    },
+    {
+      "path": "examples/golden-path/solo-consulting-side-business/accountant-handoff-packet.md",
+      "required_headings": [
+        "## Boundary Notice",
+        "## Assumptions",
+        "## User-Provided Inputs",
+        "## Verified Source References",
+        "## Deterministic Checks",
+        "## Attachment Checklist",
+        "## Review Gates",
+        "## Next Steps"
+      ]
+    }
+  ]
+}

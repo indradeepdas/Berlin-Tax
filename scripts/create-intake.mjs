@@ -92,34 +92,63 @@ async function askWithDefault(rl, question, defaultValue) {
   return answer.trim() || defaultValue;
 }
 
-async function interactiveProfile() {
+function createAnswerCursor(lines) {
+  let index = 0;
+  return async function askFromLines(_question, defaultValue) {
+    const answer = lines[index];
+    index += 1;
+    if (answer === undefined) return defaultValue;
+    return String(answer).trim() || defaultValue;
+  };
+}
+
+async function collectInteractiveAnswers() {
   const rl = readline.createInterface({ input, output });
+  return {
+    ask: (question, defaultValue) => askWithDefault(rl, question, defaultValue),
+    close: () => rl.close()
+  };
+}
+
+async function collectPipedAnswers() {
+  const chunks = [];
+  for await (const chunk of input) chunks.push(chunk);
+  const lines = Buffer.concat(chunks).toString("utf8").split(/\r?\n/);
+  return {
+    ask: createAnswerCursor(lines),
+    close: () => {}
+  };
+}
+
+async function interactiveProfile() {
+  const answerSource = input.isTTY ? await collectInteractiveAnswers() : await collectPipedAnswers();
   try {
-    const name = await askWithDefault(rl, "Founder or case name", "Berlin founder case");
-    const residenceStatus = await askWithDefault(rl, "Residence/work permission status", "unrestricted work permission assumed");
-    const nonEuCitizen = parseBoolean(await askWithDefault(rl, "Non-EU citizen? yes/no", "no"));
-    const alg1Status = await askWithDefault(rl, "ALG I status", "none");
-    const employmentStatus = await askWithDefault(rl, "Employment status", "employed with planned side business");
-    const employerPermissionStatus = await askWithDefault(rl, "Employer permission or contract review status", "unknown");
-    const activity = await askWithDefault(rl, "Business activity in English", "Product strategy consulting");
-    const activityDe = await askWithDefault(rl, "Working German activity description", "Produktstrategie-Beratung");
-    const startDate = await askWithDefault(rl, "Planned business start date YYYY-MM-DD", "2026-06-01");
-    const firstInvoiceDate = await askWithDefault(rl, "Expected first invoice date YYYY-MM-DD", "2026-06-30");
-    const customerLocations = parseList(await askWithDefault(rl, "Customer locations, comma-separated", "DE"));
-    const b2bB2cMix = await askWithDefault(rl, "Customer mix", "mostly domestic B2B");
-    const sector = await askWithDefault(rl, "Sector", "consulting");
-    const regulatedSector = parseBoolean(await askWithDefault(rl, "Regulated or permit-sensitive sector? yes/no", "no"));
-    const plannedLegalForm = await askWithDefault(rl, "Planned legal form", "Einzelunternehmen candidate");
-    const classificationAssumption = await askWithDefault(rl, "Freiberufler/Gewerbe assumption", "unresolved");
-    const elsterStatus = await askWithDefault(rl, "ELSTER status", "not_started");
-    const taxNumberStatus = await askWithDefault(rl, "Tax number status", "pending");
-    const invoiceTool = await askWithDefault(rl, "Invoice tool", "spreadsheet draft");
-    const bookkeepingStatus = await askWithDefault(rl, "Bookkeeping status", "not_started");
-    const accountantStatus = await askWithDefault(rl, "Accountant status", "not engaged");
-    const kleinunternehmerAssumption = await askWithDefault(rl, "Kleinunternehmer assumption", "planned but not confirmed");
-    const vatIdStatus = await askWithDefault(rl, "VAT ID status", "not requested");
-    const crossBorderSalesPlanned = parseBoolean(await askWithDefault(rl, "EU/non-EU sales planned? yes/no", "no"));
-    const contradictoryClaimsPresent = parseBoolean(await askWithDefault(rl, "Contradictory advice present? yes/no", "no"));
+    const ask = answerSource.ask;
+    const name = await ask("Founder or case name", "Berlin founder case");
+    const residenceStatus = await ask("Residence/work permission status", "unrestricted work permission assumed");
+    const nonEuCitizen = parseBoolean(await ask("Non-EU citizen? yes/no", "no"));
+    const alg1Status = await ask("ALG I status", "none");
+    const employmentStatus = await ask("Employment status", "employed with planned side business");
+    const employerPermissionStatus = await ask("Employer permission or contract review status", "unknown");
+    const activity = await ask("Business activity in English", "Product strategy consulting");
+    const activityDe = await ask("Working German activity description", "Produktstrategie-Beratung");
+    const startDate = await ask("Planned business start date YYYY-MM-DD", "2026-06-01");
+    const firstInvoiceDate = await ask("Expected first invoice date YYYY-MM-DD", "2026-06-30");
+    const customerLocations = parseList(await ask("Customer locations, comma-separated", "DE"));
+    const b2bB2cMix = await ask("Customer mix", "mostly domestic B2B");
+    const sector = await ask("Sector", "consulting");
+    const regulatedSector = parseBoolean(await ask("Regulated or permit-sensitive sector? yes/no", "no"));
+    const plannedLegalForm = await ask("Planned legal form", "Einzelunternehmen candidate");
+    const classificationAssumption = await ask("Freiberufler/Gewerbe assumption", "unresolved");
+    const elsterStatus = await ask("ELSTER status", "not_started");
+    const taxNumberStatus = await ask("Tax number status", "pending");
+    const invoiceTool = await ask("Invoice tool", "spreadsheet draft");
+    const bookkeepingStatus = await ask("Bookkeeping status", "not_started");
+    const accountantStatus = await ask("Accountant status", "not engaged");
+    const kleinunternehmerAssumption = await ask("Kleinunternehmer assumption", "planned but not confirmed");
+    const vatIdStatus = await ask("VAT ID status", "not requested");
+    const crossBorderSalesPlanned = parseBoolean(await ask("EU/non-EU sales planned? yes/no", "no"));
+    const contradictoryClaimsPresent = parseBoolean(await ask("Contradictory advice present? yes/no", "no"));
 
     return {
       person: {
@@ -172,7 +201,7 @@ async function interactiveProfile() {
       }
     };
   } finally {
-    rl.close();
+    answerSource.close();
   }
 }
 
@@ -185,16 +214,23 @@ async function buildIntake() {
   return interactiveProfile();
 }
 
-const intake = await buildIntake();
-const json = `${JSON.stringify(intake, null, 2)}\n`;
+async function main() {
+  const intake = await buildIntake();
+  const json = `${JSON.stringify(intake, null, 2)}\n`;
 
-if (outPath) {
-  const absolute = path.isAbsolute(outPath) ? outPath : resolveRepoPath(outPath);
-  fs.mkdirSync(path.dirname(absolute), { recursive: true });
-  fs.writeFileSync(absolute, json);
-  process.stderr.write(`Wrote intake JSON to ${absolute}\n`);
+  if (outPath) {
+    const absolute = path.isAbsolute(outPath) ? outPath : resolveRepoPath(outPath);
+    fs.mkdirSync(path.dirname(absolute), { recursive: true });
+    fs.writeFileSync(absolute, json);
+    process.stderr.write(`Wrote intake JSON to ${absolute}\n`);
+  }
+
+  if (shouldPrint) {
+    process.stdout.write(json);
+  }
 }
 
-if (shouldPrint) {
-  process.stdout.write(json);
-}
+main().catch((error) => {
+  process.stderr.write(`${error.stack || error.message}\n`);
+  process.exit(1);
+});

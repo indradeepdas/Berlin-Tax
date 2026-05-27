@@ -14,6 +14,12 @@ Check that the project works:
 npm test
 ```
 
+If you are checking whether the public repo is in release shape, run:
+
+```bash
+npm run beta:check
+```
+
 If this fails, do not use the output for real work yet. Ask a technical contributor to fix the repo state first.
 
 ## Step 2: Try The Founder Golden Path

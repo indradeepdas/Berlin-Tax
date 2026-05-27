@@ -2,11 +2,12 @@
 
 Berlin-Tax is a procedural knowledge layer for AI agents and founder operators. It separates judgment, source metadata, deterministic checks, and human review.
 
-As of `0.1.x`, the public beta-candidate surface is GitHub plus CLI:
+As of `0.2.x`, the public beta surface is GitHub plus CLI:
 
 - guided intake generation through `scripts/create-intake.mjs`
 - source freshness visibility through `scripts/generate-source-dashboard.mjs`
 - one founder golden path through `scripts/run-golden-path.mjs`
+- one config-driven public beta release gate through `scripts/check-beta-readiness.mjs`
 - beta-safe deterministic reports that surface trust boundaries first
 
 ## Core Boundary
@@ -117,6 +118,7 @@ Current script groups:
 - Source and repository audits: `audit-sources.mjs`, `self-audit.mjs`, `validate-skill.mjs`.
 - Founder CLI helpers: `create-intake.mjs`, `run-golden-path.mjs`.
 - Source visibility tooling: `generate-source-dashboard.mjs`.
+- Release quality gate: `check-beta-readiness.mjs`.
 - Domain validators: `validate-invoice.mjs`, `check-thresholds.mjs`, `generate-compliance-calendar.mjs`.
 - Workflow validators: `validate-workflow.mjs`.
 
@@ -147,6 +149,8 @@ The current founder-facing path is intentionally narrow:
 4. Escalate unresolved items with a cleaner packet.
 
 The repository is still preparation-only. It does not provide a browser app, ELSTER submission, invoice certification, or live source freshness checks.
+
+Public beta means the repository surface is intentionally open for public use and contribution within that narrow scope. It does not mean review-heavy workflows have disappeared.
 
 ## Configuration Strategy
 

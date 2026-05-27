@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-05-27
+
+### Improved
+
+- Public CLI validators now fail with readable messages when an input file is missing or JSON is invalid, instead of dumping raw Node stack traces.
+- Added a config-driven public beta readiness gate with documentation, packet-structure, source-freshness, and CLI failure-path checks.
+- Public repository status and beta docs now align with a preparation-only public beta release scope.
+
+### Fixed
+
+- Intake wizard now supports both interactive TTY prompting and piped stdin answers without hanging on unsettled top-level await.
+- Founder quickstart path using generated intake JSON was re-verified after the wizard fix.
+
+### Verification
+
+- `npm test`
+- `npm run maintain:check`
+- `npm run beta:golden-path`
+- `npm run sources:dashboard`
+- `npm run intake:wizard -- --profile solo-consulting-side-business --print`
+- `npm run intake:wizard -- --profile solo-consulting-side-business --out examples/generated/intake.json`
+- `node scripts/validate-workflow.mjs operational_intake examples/generated/intake.json`
+- piped stdin run of `npm run intake:wizard`
+
 ## 2026-05-09
 
 ### Added
