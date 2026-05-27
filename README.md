@@ -4,6 +4,10 @@ Operational intelligence for surviving German bureaucracy.
 
 Berlin-Tax is an early open-source preparation toolkit for Berlin founder operations: intake, source tracking, deterministic checks, review gates, and accountant-handoff drafts for German administrative workflows.
 
+This is an exploratory open-source experiment around AI-assisted contextual reconstruction for founder-facing tax/compliance workflows in Germany.
+
+The project is not intended to replace professional tax advice. The core idea is to explore whether fragmented operational and regulatory context can be transformed into structured intake, explicit assumptions, reviewable reasoning layers, and cleaner handoff workflows.
+
 It is built for agents and human operators helping founders, freelancers, immigrants, side-business operators, UG/GmbH founders, restaurant operators, cross-border contractors, and first-time German business operators. It is not a tax filing product.
 
 Keywords: Berlin, Germany, bureaucracy, founder compliance, Gewerbeanmeldung, Finanzamt, ELSTER, UStVA, invoices, Kleinunternehmer, Steuerberater handoff, AI agent skills.
